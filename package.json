@@ -1,0 +1,23 @@
+{
+  "name": "chargetruth-os",
+  "version": "2.1.0",
+  "description": "ChargeTruth OS v2.1 — Charger Reliability + Swap Interop Navigator. Hybrid OCPI/NREL live + offline packs. No Google Tax.",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve -l 5173 .",
+    "serve": "python -m http.server 5173",
+    "test": "node --test tests/*.test.js",
+    "pretest": "node --check src/js/reliability.js && node --check src/js/powermatch.js && node --check src/js/pluglogic.js && node --check src/js/trip-planner.js && node --check src/js/data-loader.js && node --check src/js/app.js && node --check src/js/site-config.js && node --check src/js/pilot.js && node --check src/js/enterprise.js && node --check src/js/offline-pack.js",
+    "ingest:ocm": "node scripts/ingest-ocm.js",
+    "ingest:osm": "node scripts/ingest-osm.js",
+    "build:pack": "node scripts/build-offline-pack.js",
+    "pipeline:dedupe": "node scripts/dedupe-pipeline.js",
+    "seo:prerender": "node scripts/prerender-seo.js",
+    "seo:indexnow": "node scripts/indexnow-submit.js",
+    "record:paren": "node scripts/record-paren-hash.js",
+    "cwv:budget": "node scripts/cwv-budget.js",
+    "enterprise:check": "node scripts/enterprise-check.js"
+  },
+  "keywords": ["ev", "charging", "reliability", "battery-swap", "offline", "pwa", "osm", "valhalla"],
+  "license": "MIT"
+}

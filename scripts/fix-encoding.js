@@ -1,0 +1,11 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+let t = readFileSync('data/vehicles.json', 'utf8');
+const before = t.length;
+t = t.split('\\u00e2\\u20ac\\u201d').join('\\u2014');
+t = t.split('\\u00e2\\u20ac\\u2122').join('\\u2019');
+t = t.split('\\u00e2\\u20ac\\u201c').join('\\u201c');
+t = t.split('\\u00e2\\u20ac\\u2018').join('\\u2018');
+t = t.split('Ã—').join('×');
+t = t.split('Ã©').join('é');
+writeFileSync('data/vehicles.json', t);
+console.log('fixed', before !== t.length ? 'YES' : 'checked', 'emdash:', (t.match(/\\u2014/g) || []).length);

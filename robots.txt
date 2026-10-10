@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Allow: /docs/
+Disallow: /packs/*.json
+Disallow: /*?hl=*
+Disallow: /*.md$
+Disallow: /dist/sitemap-add.xml
+
+# AI crawlers: allowed — GEO citations need access (Razorfish 2026 guidance: don't block ChatGPT-User)
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://chargetruth.example.com/sitemap.xml

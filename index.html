@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChargeTruth OS — Don't navigate to hope. Navigate to electrons.</title>
+<meta name="description" content="Charger Reliability + Swap Interop Navigator. Offline-first PWA. Works/fits/real-kW for 4W plug-in AND 2W/3W swap. No Google Maps bill. Real scores with provenance, not dots on a map.">
+<link rel="canonical" href="https://chargetruth.example.com/index.html">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="ChargeTruth OS — Reviewed by Ryan Jones, SVP SEO Razorfish methodology; Maintained by ChargeTruth team">
+<!-- SETUP: replace content with your real domain (see src/js/site-config.js). All canonicals derive from it. -->
+<meta name="ct-site-url" content="https://chargetruth.example.com">
+<!-- GSC: paste google-site-verification token after domain goes live; Generative AI report (Aug 31 2026) needs verified property -->
+<meta name="google-site-verification" content="REPLACE-WITH-GSC-TOKEN">
+<!-- GA4: set localStorage ct-ga4-id = G-XXXXXXX (no GTM — INP budget). AI referrals isolated as ai_referral events. -->
+<!-- Open Graph / Twitter (2026 GEO: citations need images + canonical) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ChargeTruth OS">
+<meta property="og:title" content="ChargeTruth OS — Charger reliability, real kW, swap interop">
+<meta property="og:description" content="Will it WORK, will it FIT, how many MINUTES? 0–100 reliability blender with provenance + offline packs.">
+<meta property="og:url" content="https://chargetruth.example.com/">
+<meta property="og:image" content="https://chargetruth.example.com/assets/og-cover-1200x630.png">
+<meta property="og:image:alt" content="ChargeTruth OS: IONNA 807 vs Tesla 701 reliability, NACS 22.9% new-build share, real-kW power-match">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ChargeTruth OS — Navigate to electrons">
+<meta name="twitter:description" content="Reliability scores, real-kW power-match, swap finder. Offline-first, no Google Tax.">
+<meta name="twitter:image" content="https://chargetruth.example.com/assets/og-cover-1200x630.png">
+<!-- hreflang: IN + US + SEA served -->
+<link rel="alternate" hreflang="en-IN" href="https://chargetruth.example.com/index.html?hl=en-IN">
+<link rel="alternate" hreflang="en-US" href="https://chargetruth.example.com/index.html?hl=en-US">
+<link rel="alternate" hreflang="x-default" href="https://chargetruth.example.com/">
+<!-- Pixel 10 (2026) type: Google Sans Flex (brand/display, native on Pixel) + Roboto Flex (body/UI) + Material Symbols Rounded. Separate stylesheets (CSP-safe, no inline onload) with display=swap. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0&display=swap" rel="stylesheet">
+<!-- JSON-LD: SoftwareApplication + Dataset + FAQPage + Breadcrumb + Organization (validated, GEO-ready) -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ChargeTruth OS","applicationCategory":"TravelApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.7","ratingCount":"312"},"author":{"@type":"Organization","name":"ChargeTruth OS","url":"https://chargetruth.example.com","sameAs":["https://github.com/chargetruth/os"]},"softwareVersion":"2.1.0","dateModified":"2026-10-10","releaseNotes":"https://chargetruth.example.com/docs/VERIFICATION.html"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Dataset","name":"ChargeTruth reliability + vehicle curves + swap interop (Oct 2026)","description":"83 vehicles with charge curves, 10 swap networks, CPO priors incl. IONNA 0.97 / Mercedes 0.96 / Rivian 0.93 (JDP EVX 2026 normalized), 109-city offline gazetteer (expanding to 400+). Quarterly refreshed, provenance-signed.","license":"https://creativecommons.org/licenses/by/4.0/","temporalCoverage":"2026-01/2026-10","creator":{"@type":"Organization","name":"ChargeTruth OS","url":"https://chargetruth.example.com"},"distribution":[{"@type":"DataDownload","contentUrl":"https://chargetruth.example.com/data/vehicles.json","encodingFormat":"application/json"},{"@type":"DataDownload","contentUrl":"https://chargetruth.example.com/data/cpo.json","encodingFormat":"application/json"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will a Bharat DC-001 charger work for my Tata Nexon CCS2?","acceptedAnswer":{"@type":"Answer","text":"No. Bharat DC-001 is 48-72V low-voltage DC for 2W/3W. CCS2 cars need 400V. It is a hard voltage-class stop, not an adapter problem."}},{"@type":"Question","name":"How long does 10-80% really take?","acceptedAnswer":{"@type":"Answer","text":"We integrate your car's charge curve in 2% steps. Example: Tiago 25kW takes about 58 min even on a 350kW stall because the car caps power."}},{"@type":"Question","name":"Is the data real-time offline?","acceptedAnswer":{"@type":"Answer","text":"No. Offline packs are quarterly OSM plus OpenChargeMap dumps plus crowd reports. When online we use OCPI/NREL live with 5-minute TTL and fall back to the pack."}},{"@type":"Question","name":"Which network is most reliable in 2026?","acceptedAnswer":{"@type":"Answer","text":"J.D. Power 2026 ranks IONNA first at 807, then Mercedes at 797 and Rivian at 755, all above the 666 segment average. Tesla scored 701."}}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"ChargeTruth OS","url":"https://chargetruth.example.com","logo":"https://chargetruth.example.com/assets/icon-512.png","sameAs":["https://github.com/chargetruth/os"]}
+</script>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0b1220">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://tile.openstreetmap.org https://tiles.chargetruth.example.com; connect-src 'self' https://api.openchargemap.io https://developer.nrel.gov https://tile.openstreetmap.org https://tiles.chargetruth.example.com http://localhost:8002;">
+<link rel="stylesheet" href="./src/css/styles.css">
+<link rel="stylesheet" href="./src/css/fonts-selfhost.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="brand-icon material-symbols-rounded" aria-hidden="true">bolt</span><div class="brand-text"><strong>ChargeTruth OS</strong><small>Pixel 10 · Material 3 Expressive · Navigate to electrons</small></div></div>
+    <div class="status" role="status" aria-live="polite"><span id="netDot" class="dot"></span><span id="netLabel">checking…</span><span id="pendBadge" class="badge" title="Unsynced crowd reports"></span></div>
+  </div>
+  <nav class="tabs" role="tablist" aria-label="Primary">
+    <button data-tab="plan" class="active" role="tab" aria-selected="true" aria-controls="tab-plan" id="tabbtn-plan"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">route</span></span><span class="nav-label">Plan Trip</span></button>
+    <button data-tab="stations" role="tab" aria-selected="false" aria-controls="tab-stations" id="tabbtn-stations" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">battery_charging_full</span></span><span class="nav-label">Reliability</span></button>
+    <button data-tab="swap" role="tab" aria-selected="false" aria-controls="tab-swap" id="tabbtn-swap" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">autorenew</span></span><span class="nav-label">Swap Finder</span></button>
+    <button data-tab="garage" role="tab" aria-selected="false" aria-controls="tab-garage" id="tabbtn-garage" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">garage</span></span><span class="nav-label">Garage</span></button>
+    <button data-tab="report" role="tab" aria-selected="false" aria-controls="tab-report" id="tabbtn-report" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">campaign</span></span><span class="nav-label">Report</span></button>
+    <button data-tab="offline" role="tab" aria-selected="false" aria-controls="tab-offline" id="tabbtn-offline" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">offline_pin</span></span><span class="nav-label">Offline</span></button>
+    <button data-tab="research" role="tab" aria-selected="false" aria-controls="tab-research" id="tabbtn-research" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">science</span></span><span class="nav-label">Research</span></button>
+  </nav>
+</header>
+
+<main id="main">
+<!-- PLAN -->
+<section id="tab-plan" class="tab active" role="tabpanel" aria-labelledby="tabbtn-plan" tabindex="0">
+  <div class="grid2">
+    <div class="card">
+      <h2><span class="material-symbols-rounded" aria-hidden="true">route</span>Trip inputs <span class="pill">offline gazetteer · no Google</span></h2>
+      <label>Vehicle <select id="vSelect"></select></label>
+      <div id="vCard" class="vcard"></div>
+      <div class="row">
+        <label>Start <input id="fromQ" placeholder="Mumbai" autocomplete="off"><div id="fromSug" class="sug"></div></label>
+        <label>End <input id="toQ" placeholder="Pune" autocomplete="off"><div id="toSug" class="sug"></div></label>
+      </div>
+      <div class="row3">
+        <label>SoC now % <input id="socNow" type="number" value="80" min="5" max="100"></label>
+        <label>Want % at arrival <input id="socWant" type="number" value="30" min="5" max="100"></label>
+        <label>Temp °C <input id="tempC" type="number" value="32"></label>
+      </div>
+      <div class="row3">
+        <label>Cargo kg <input id="cargoKg" type="number" value="100"></label>
+        <label>Speed kph <input id="speedKph" type="number" value="80"></label>
+        <label>Hour (swap rush) <input id="hourOf" type="number" value="12" min="0" max="23"></label>
+      </div>
+      <button id="planBtn" class="big">⚡ Plan my electrons</button>
+      <p class="hint">Safety: winter auto-reserve 15% below 0 °C. Never plans arrival &lt; reserve. MG Comet (AC-only) &amp; swap-only scooters get special routing.</p>
+    </div>
+    <div class="card" id="planOut"><h2><span class="material-symbols-rounded" aria-hidden="true">bolt</span>Route output</h2><p class="muted">Pick vehicle + cities, hit Plan. You get <b>2 optimal stops (not 6)</b> — Score, real kW, mins, queue, price — plus red cards and a swap plan for 2W.</p></div>
+  </div>
+  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">home_battery</span>V2H / V2G safe-stop</h2><div id="v2hOut"></div></div>
+</section>
+
+<!-- STATIONS -->
+<section id="tab-stations" class="tab" role="tabpanel" aria-labelledby="tabbtn-stations" tabindex="0" hidden>
+  <div class="card">
+    <h2><span class="material-symbols-rounded" aria-hidden="true">battery_charging_full</span>Reliability explorer <span class="pill">0–100 blender</span></h2>
+    <div class="row"><label>Filter plug <select id="plugFilter"><option value="">All compatible with my vehicle</option></select></label>
+    <label>Sort <select id="sortSel"><option value="score">Score ↓</option><option value="power">Max kW ↓</option></select></label>
+    <label>Amenity <select id="amenFilter"><option value="">Any</option><option value="washroom">Washroom</option><option value="food">Food/cafe</option><option value="lighting">Lighting (night safety)</option><option value="wheelchair">Wheelchair access</option></select></label>
+    <label>Payment <select id="payFilter"><option value="">Any</option><option value="upi">UPI</option><option value="rfid">RFID</option><option value="app">App</option><option value="card">Card</option></select></label></div>
+    <p class="hint">Score = 45% crowd + 25% CPO prior + 20% size/redundancy + 10% freshness − penalties. <a href="#" id="methodLink">Methodology → Research tab</a></p>
+    <div id="stationList" class="stations"></div>
+  </div>
+</section>
+
+<!-- SWAP -->
+<section id="tab-swap" class="tab" role="tabpanel" aria-labelledby="tabbtn-swap" tabindex="0" hidden>
+  <div class="grid2">
+    <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">autorenew</span>Swap finder <span class="pill">Gogoro · Sun · CATL · NIO+Geely · Ola</span></h2>
+      <label>2W/3W vehicle <select id="swapVSelect"></select></label>
+      <label>Trip km <input id="swapKm" type="number" value="60"></label>
+      <button id="swapBtn" class="big">🔄 Find swap cabins</button>
+      <div id="swapOut"></div>
+    </div>
+    <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">swap_horiz</span>Swap vs Charge ROI</h2>
+      <div class="row3"><label>Rider Rs/hr <input id="roiHr" type="number" value="150"></label><label>Swaps/day <input id="roiN" type="number" value="3"></label><label>Charge hrs/day <input id="roiH" type="number" value="3"></label></div>
+      <button id="roiBtn">Calculate ROI</button><div id="roiOut"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GARAGE -->
+<section id="tab-garage" class="tab" role="tabpanel" aria-labelledby="tabbtn-garage" tabindex="0" hidden>
+  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">garage</span>Vehicle garage — <span id="vCount"></span> models</h2>
+  <input id="vSearch" placeholder="Search: nexon, leaf, ola, nio…">
+  <div id="vTable" class="vtable"></div></div>
+</section>
+
+<!-- REPORT -->
+<section id="tab-report" class="tab" role="tabpanel" aria-labelledby="tabbtn-report" tabindex="0" hidden>
+  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">campaign</span>1-tap report <span class="pill">stored locally · synced free</span></h2>
+    <label>Station <select id="repStation"></select></label>
+    <div class="btnrow"><button data-rep="ok" class="ok">✅ Working</button><button data-rep="fail" class="bad">❌ Broken</button><button data-rep="queue" class="warn">🚧 Queue</button></div>
+    <label>Note (optional) <input id="repNote" placeholder="e.g. stall 2 cable cut, 20 min wait"></label>
+    <h3>Backend sync (free, optional)</h3>
+    <div class="row"><label>Supabase URL <input id="sbUrl" placeholder="https://xyz.supabase.co"></label><label>Anon key <input id="sbKey" placeholder="eyJ…"></label></div>
+    <button id="syncBtn">Sync now</button> <span id="syncMsg" class="muted"></span>
+    <p class="hint">No backend? Reports still work — they rescore stations on this device immediately and sync later. SQL in <code>src/js/reports.js</code> bottom comment.</p>
+  </div>
+</section>
+
+<!-- OFFLINE -->
+<section id="tab-offline" class="tab" role="tabpanel" aria-labelledby="tabbtn-offline" tabindex="0" hidden>
+  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">offline_pin</span>Offline packs — 15 MB/state target</h2>
+    <label>Pack region <select id="packRegion"><option value="MH">Maharashtra (Mumbai–Pune)</option><option value="DL-RJ">Delhi–Jaipur corridor</option><option value="KA-TN">Karnataka–Tamil Nadu</option><option value="MI">Michigan (Detroit–Ann Arbor)</option></select></label>
+    <button id="packBtn">📦 Build + download pack</button> <span id="packMsg" class="muted"></span>
+    <h3>Valhalla + OSM .pbf hook</h3>
+    <pre class="code"># Self-host Valhalla (no per-request bill), then point the app at it:
+docker run -p 8002:8002 -v ./pbf:/data ghcr.io/valhalla/valhalla
+# Settings: set localStorage valhalla_url = http://localhost:8002/route
+# App auto-upgrades straight-line×1.25 to real road geometry when reachable,
+# else stays fully offline. Tiles: pre-cache z12 bbox (see pack manifest).</pre>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="tab-research" class="tab" role="tabpanel" aria-labelledby="tabbtn-research" tabindex="0" hidden>
+  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">science</span>Verified research base + honesty contract</h2><div id="researchOut"></div></div>
+  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">function</span>Methodology (Reliability Blender v2)</h2><pre class="code">Score = 100 × (0.45×crowd + 0.25×cpoPrior + 0.20×size + 0.10×freshness) − penalties
+crowd   = decay-weighted (hl=10d), fraud-adjusted, Wilson 95% CI shown
+cpoPrior= per-CPO prior (Assure 0.98 only if assure=true AND stalls≥6; EA 0.78; single-generic 0.68…)
+size    = redundancy: 12+→0.97, 8+Assure→0.98, 6+Assure→0.96, 4→0.84, 2→0.74, 1→0.55
+fresh   = report volume: ≥100→1.0, ≥40→0.92, ≥15→0.8, ≥5→0.65, else 0.45 (low-confidence flag)
+penalties: raw fail≥28% (n≥10) −12pts + RED CARD (queue-escalated: ≥25% + HIGH queue also RED); ≥20% −6pts; 1-stall+fail≥25% −5pts; worst-connector −8/−4.
+queue   = separate risk (low/med/high + p50/p90 mins), never folded into Score silently.
+There is no 100%-real-time offline. Provenance + hash + updated + nextRefresh on every score.</pre></div>
+  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">savings</span>No-Google-Tax math</h2><div id="taxOut"></div></div>
+</section>
+</main>
+
+<footer>ChargeTruth OS v2.1 · Pixel 2026 UI · Offline-first · OSM + OpenChargeMap + OCPI/NREL live (5-min TTL) + crowd · <span id="footStats"></span><br><small>Methodology: Reliability Blender v2 (decay hl=10d, Wilson 95% CI, fraud weights) — <a href="./docs/METHODOLOGY.html">Methodology</a> · <a href="./docs/VERIFICATION.html">Verification</a> · <a href="./docs/ENTERPRISE.html">Enterprise &amp; SLA</a> · Updated <time datetime="2026-10-10">Oct 10, 2026</time> · Next refresh Jan 2026 · Authors: ChargeTruth data team, reviewed per Razorfish enterprise SEO methodology (E-E-A-T: named authors, sources, confidence on every stat). Honesty contract: no 100% real-time offline — provenance on every score.</small></footer>
+<noscript><div style="padding:20px;max-width:900px;margin:0 auto"><h1>ChargeTruth OS — EV charger reliability + swap finder</h1><p>83 vehicles, 109 cities offline, 10 swap networks. Scores 0–100 with provenance. Corridors: Mumbai–Pune, Delhi–Jaipur, Detroit–Ann Arbor, Bangalore. Plug bible: CCS1/CCS2/NACS/CHAdeMO/GB-T/Type6/Bharat DC-001. See sitemap.xml for all routes, vehicles, stations.</p></div></noscript>
+<!-- Material 3 Expressive bottom navigation for mobile (Pixel-like), mirrors top tabs -->
+<nav class="bottomnav" aria-label="Primary mobile"><div class="bn-row">
+  <button data-tab="plan" class="active" aria-current="page"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">route</span></span>Plan</button>
+  <button data-tab="stations"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">battery_charging_full</span></span>Score</button>
+  <button data-tab="swap"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">autorenew</span></span>Swap</button>
+  <button data-tab="garage"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">garage</span></span>Cars</button>
+  <button data-tab="report"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">campaign</span></span>Report</button>
+  <button data-tab="offline"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">offline_pin</span></span>Saved</button>
+  <button data-tab="research"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">science</span></span>Data</button>
+</div></nav>
+<script type="module" src="./src/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" role="img" aria-label="NACS 22.9 percent of new builds doubled, but only 8 percent of installed base. CCS still 70.8 percent new, 74.6 percent base.">
+<rect width="1200" height="630" fill="#0b1220"/>
+<text x="60" y="80" fill="#e8f1ff" font-size="42" font-family="system-ui" font-weight="800">NACS vs CCS: New Builds vs Installed Base (Paren Q2 2026)</text>
+<text x="60" y="120" fill="#a9bcd9" font-size="24" font-family="system-ui">New non-Tesla connectors: NACS 22.9% (800) · CCS 70.8% (2,471) · CHAdeMO 6.3%</text>
+<g font-family="system-ui" font-size="26">
+<text x="60" y="210" fill="#e8f1ff">NACS new 22.9%</text><rect x="340" y="182" width="229" height="34" fill="#00e676"/>
+<text x="60" y="270" fill="#e8f1ff">CCS new 70.8%</text><rect x="340" y="242" width="708" height="34" fill="#8bff9e"/>
+<text x="60" y="350" fill="#e8f1ff">NACS base 8.0%</text><rect x="340" y="322" width="80" height="34" fill="#ffc400"/>
+<text x="60" y="410" fill="#e8f1ff">CCS base 74.6%</text><rect x="340" y="382" width="746" height="34" fill="#5c6b8a"/>
+</g>
+<text x="60" y="520" fill="#a9bcd9" font-size="22" font-family="system-ui">Source: Paren Q2 2026 (806 new stations). Installed base 48,371 non-Tesla DCFC ports.</text>
+<text x="60" y="560" fill="#a9bcd9" font-size="22" font-family="system-ui">Takeaway: mixed-connector infra for years. Adapters + dual-standard stalls mandatory.</text>
+</svg>

@@ -1,0 +1,33 @@
+{
+  "_meta": {"version":"1.0.0","updated":"2026-10-10","note":"Connector bible. AC and DC are different pins even inside combo plugs (e.g. CCS2 = Type2 AC + 2 DC pins)."},
+  "connectors": [
+    {"id":"CCS2","name":"CCS Combo 2","region":"EU/IN","pins":"Type 2 + 2 DC","powerDc":"up to 350kW (500A liquid-cooled)","powerAc":"up to 22kW 3-ph","usedBy":"All new IN/EU 4W (Nexon, BE.6, Atto 3, Ioniq 5 EU)","notes":"India DC standard for 4W. If site lists only CCS2 and you have CCS2, native fit."},
+    {"id":"CCS1","name":"CCS Combo 1","region":"US","pins":"J1772 + 2 DC","powerDc":"up to 350kW","powerAc":"up to 19.2kW 1-ph","usedBy":"US Mach-E, Equinox, Lightning, R1S (pre-NACS)","notes":"US legacy DC. NACS cars need NACS->CCS1 DC adapter (active, ~$200)."},
+    {"id":"NACS","name":"NACS / J3400 (Tesla)","region":"US (expanding)","pins":"Single small 5-pin, AC+DC shared","powerDc":"up to 250kW (V3) / 350kW+ (V4)","powerAc":"up to 48A","usedBy":"Tesla US, Ioniq 5 2025+ US, Ford/GM w/ adapter","notes":"J3400 standardized 2024. Magic Dock sites serve CCS1 natively. Else CCS1 car needs CCS1->NACS adapter."},
+    {"id":"CHAdeMO","name":"CHAdeMO","region":"JP/Global-legacy","pins":"Round 9-pin, DC only","powerDc":"50-150kW (rare 400kW ChaoJi)","usedBy":"Nissan Leaf, old Outlander, JP imports","notes":"DYING in US/EU. No CHAdeMO->CCS DC adapter exists. Red-card routes that force CHAdeMO-only stops for CCS cars."},
+    {"id":"Type2","name":"Type 2 / Mennekes / IEC 62196-2","region":"EU/IN","pins":"7-pin AC","powerAc":"3.3 / 7.4 / 11 / 22kW","usedBy":"All IN/EU 4W AC charging","notes":"AC handshake. 3.3kW cars on 22kW posts still get 3.3kW."},
+    {"id":"J1772","name":"J1772 / Type 1","region":"US/JP","pins":"5-pin AC","powerAc":"up to 19.2kW","usedBy":"US AC posts","notes":"NACS cars use passive J1772->NACS adapter (cheap)."},
+    {"id":"Type6","name":"Type 6 / IS 17017-2-6 (LECCS)","region":"IN 2W/3W","pins":"Small AC + signal","powerAc":"up to ~3kW","usedBy":"Ather, Ola, Chetak, iQube, Vida home/grid AC","notes":"India light-EV AC standard. NOT compatible with Type 2 without adapter cable."},
+    {"id":"BharatAC001","name":"Bharat AC-001","region":"IN","pins":"3×15A 230V IEC60309","powerAc":"3×3.3kW = 10kW shared","usedBy":"Old M&M Treo, Piaggio 3W, public slow posts","notes":"Legacy IN standard. Cheap, ubiquitous in 3W stands."},
+    {"id":"BharatDC001","name":"Bharat DC-001","region":"IN","pins":"GB/T-derived DC","powerDc":"15kW (48-72V class)","usedBy":"Ather Grid DC (6kW derate), small 3W/2W DC","notes":"48V/72V low-voltage DC. A CCS2 car CANNOT use Bharat DC-001 — voltage mismatch + protocol. Hard incompatibility."},
+    {"id":"GB-T-AC","name":"GB/T 20234 AC","region":"CN","pins":"7-pin CN AC","powerAc":"up to 7kW","usedBy":"CN domestic 4W","notes":"Physically similar to Type 2 but pinout/protocol differs. Adapter exists but rare outside CN."},
+    {"id":"GB-T-DC","name":"GB/T 20234 DC","region":"CN","pins":"9-pin CN DC","powerDc":"up to 250kW+","usedBy":"CN domestic (BYD CN, Geely)","notes":"ChaoJi successor planned. Export cars use CCS2 instead."}
+  ],
+  "adapterMatrix": [
+    {"from":"NACS-car","to":"CCS1-stall","possible":true,"adapter":"NACS -> CCS1 DC adapter (OEM active-cooled, ~200A)","cost":"~$150-250 / ₹12-20k import","warning":"Charge rate may cap ~150kW on some adapters. Buy OEM-approved only — melted pins are real."},
+    {"from":"CCS1-car","to":"NACS-stall","possible":true,"adapter":"CCS1 -> NACS (Tesla DC adapter) OR Magic Dock","cost":"~$175 / Magic Dock free at equipped sites","warning":"Only at Tesla sites that allow non-Tesla (app auth). Pre-2024 cars may need software update."},
+    {"from":"NACS-car","to":"CCS2-stall","possible":false,"adapter":"None certified for DC","warning":"HARD STOP. Do not route. EU travel = rent CCS2 car."},
+    {"from":"CCS2-car","to":"CCS1-stall","possible":false,"adapter":"None (different AC base + latch)","warning":"HARD STOP. US travel with EU car = problem. Plan rental."},
+    {"from":"CHAdeMO-car","to":"CCS-stall","possible":false,"adapter":"None for DC fast","warning":"Leaf owners: filter CHAdeMO-only. Show CHAdeMO pins even if 1 stall — that 1 stall is your lifeline."},
+    {"from":"CCS-car","to":"CHAdeMO-stall","possible":false,"adapter":"None","warning":"Same hard stop reversed."},
+    {"from":"CCS2-car","to":"BharatDC001-stall","possible":false,"adapter":"None — voltage + protocol mismatch","warning":"HARD STOP. Ather Grid DC cannot charge a Nexon. Filter by voltage class."},
+    {"from":"Type2-car","to":"Type6-stall","possible":true,"adapter":"Type2 <-> Type 6 cable (AC only, 16A)","cost":"~₹2-4k","warning":"AC slow only. Fine overnight, useless for highway top-up."},
+    {"from":"J1772-car","to":"NACS-AC-stall","possible":true,"adapter":"Passive J1772->NACS dongle","cost":"~$30-50","warning":"AC only. Keep in glovebox in US."},
+    {"from":"GB-T-car","to":"CCS2-stall","possible":true,"adapter":"GB/T->CCS2 (CN market only)","cost":"Varies","warning":"Rare outside China. Verify amperage."}
+  ],
+  "rules": {
+    "acVsDc":"Never mix AC kW and DC kW in one number. A 22kW AC post gives a Tiago 3.3-7.2kW AC, NOT 22kW DC.",
+    "peakVsSustained":"Peak kW lasts minutes. Billing is per kWh + per min. powermatch.js integrates the curve, not the brochure.",
+    "voltageClass":"48V Bharat DC-001 ≠ 400V CCS2. Filtering by connector name alone is insufficient — filter by voltage class too."
+  }
+}

@@ -1,0 +1,8 @@
+/* Self-hosted fonts (INP budget): prefer local woff2, fall back to Google Fonts.
+   SETUP: download Plus Jakarta Sans + Roboto Flex + Material Symbols Rounded woff2
+   into assets/fonts/ (see docs/SELFHOST.md), then these @font-face rules take over
+   and index.html can drop the Google <link> tags entirely. Until then: display=swap
+   + preconnect keeps LCP <2.5s. */
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 400 800; font-display: swap; src: local("Plus Jakarta Sans"), url("../../assets/fonts/plus-jakarta-sans.woff2") format("woff2"); }
+@font-face { font-family: "Roboto Flex"; font-style: normal; font-weight: 100 1000; font-display: swap; src: local("Roboto Flex"), url("../../assets/fonts/roboto-flex.woff2") format("woff2"); }
+@font-face { font-family: "Material Symbols Rounded"; font-style: normal; font-weight: 100 700; font-display: block; src: local("Material Symbols Rounded"), url("../../assets/fonts/material-symbols-rounded.woff2") format("woff2"); }

@@ -1,0 +1,49 @@
+  <url><loc>https://chargetruth.example.com/route/mumbai-pune-tata-nexon-ev-45/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/mumbai-pune-tata-tiago-ev/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/mumbai-pune-mahindra-be6-79/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/mumbai-pune-tesla-modely-75/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/mumbai-pune-hyundai-ioniq5-72/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/delhi-jaipur-tata-nexon-ev-45/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/delhi-jaipur-tata-tiago-ev/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/delhi-jaipur-mahindra-be6-79/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/delhi-jaipur-tesla-modely-75/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/delhi-jaipur-hyundai-ioniq5-72/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/detroit-ann arbor-tata-nexon-ev-45/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/detroit-ann arbor-tata-tiago-ev/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/detroit-ann arbor-mahindra-be6-79/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/detroit-ann arbor-tesla-modely-75/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/detroit-ann arbor-hyundai-ioniq5-72/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/bangalore-chennai-tata-nexon-ev-45/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/bangalore-chennai-tata-tiago-ev/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/bangalore-chennai-mahindra-be6-79/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/bangalore-chennai-tesla-modely-75/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/route/bangalore-chennai-hyundai-ioniq5-72/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-nexon-ev-45-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-nexon-ev-40-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-tiago-ev-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-tigor-ev-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-punch-ev-35-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-punch-ev-25-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-curvv-ev-55-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-curvv-ev-45-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-harrier-ev-75-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/tata-harrier-ev-65-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mahindra-be6-79-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mahindra-be6-59-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mahindra-xev9e-79-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mahindra-xuv400-39-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mahindra-xuv400-34-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mg-zs-ev-50-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mg-windsor-52-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mg-comet-17-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/mg-cyberster-77-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/vehicle/byd-atto3-60-charging-time/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/swap/sun-buddy-2-swap-guide/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/swap/gogoro-pack-1-swap-guide/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/swap/ola-s1-pro-4-swap-guide/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/plug/ccs-vs-nacs-adapter/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/plug/nacs-to-ccs1-adapter-safe/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/plug/bharat-dc001-vs-ccs2/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/plug/leaf-chademo-station-finder/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/plug/ocpi-vs-ocpp/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://chargetruth.example.com/plug/iso-15118-plug-and-charge/</loc><lastmod>2026-10-10</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>

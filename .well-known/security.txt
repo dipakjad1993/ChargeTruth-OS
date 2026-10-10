@@ -1,0 +1,4 @@
+Contact: mailto:security@chargetruth.example.com
+Expires: 2027-10-10T00:00:00.000Z
+Preferred-Languages: en
+Policy: https://chargetruth.example.com/docs/ENTERPRISE.html#security

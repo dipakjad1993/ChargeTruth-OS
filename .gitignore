@@ -1,0 +1,21 @@
+# deps
+node_modules/
+# builds / caches
+.DS_Store
+Thumbs.db
+*.log
+.npm/
+# local env / keys — NEVER commit API keys (OCM_KEY, NREL, Supabase keys)
+.env
+.env.*
+*.pem
+*.key
+# OS / editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+# temp packs / tiles (large binaries stay out of git; CI rebuilds them)
+*.mbtiles
+*.pbf
+tiles/
+pbf/

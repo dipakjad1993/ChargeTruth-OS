@@ -1,0 +1,881 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "count": 109,
+    "note": "Local OSM-style gazetteer excerpt. No autocomplete API. Format: name, state, country, lat, lon, pop. Search is substring + population-ranked in gazetteer.js."
+  },
+  "cities": [
+    {
+      "n": "Mumbai",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 19.076,
+      "lon": 72.8777,
+      "pop": 12478447
+    },
+    {
+      "n": "Pune",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 18.5204,
+      "lon": 73.8567,
+      "pop": 3124458
+    },
+    {
+      "n": "Lonavala",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 18.7546,
+      "lon": 73.4062,
+      "pop": 60000
+    },
+    {
+      "n": "Navi Mumbai",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 19.033,
+      "lon": 73.0297,
+      "pop": 1119077
+    },
+    {
+      "n": "Thane",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 19.2183,
+      "lon": 72.9781,
+      "pop": 1841488
+    },
+    {
+      "n": "Nashik",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 19.9975,
+      "lon": 73.7898,
+      "pop": 1486053
+    },
+    {
+      "n": "Nagpur",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 21.1458,
+      "lon": 79.0882,
+      "pop": 2405665
+    },
+    {
+      "n": "Aurangabad",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 19.8762,
+      "lon": 75.3433,
+      "pop": 1175116
+    },
+    {
+      "n": "Kolhapur",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 16.705,
+      "lon": 74.2433,
+      "pop": 549236
+    },
+    {
+      "n": "Satara",
+      "s": "Maharashtra",
+      "c": "IN",
+      "lat": 17.6805,
+      "lon": 74.0183,
+      "pop": 120000
+    },
+    {
+      "n": "Delhi",
+      "s": "Delhi",
+      "c": "IN",
+      "lat": 28.6139,
+      "lon": 77.209,
+      "pop": 11034555
+    },
+    {
+      "n": "New Delhi",
+      "s": "Delhi",
+      "c": "IN",
+      "lat": 28.6139,
+      "lon": 77.209,
+      "pop": 257803
+    },
+    {
+      "n": "Gurgaon",
+      "s": "Haryana",
+      "c": "IN",
+      "lat": 28.4595,
+      "lon": 77.0266,
+      "pop": 876969
+    },
+    {
+      "n": "Noida",
+      "s": "Uttar Pradesh",
+      "c": "IN",
+      "lat": 28.5355,
+      "lon": 77.391,
+      "pop": 637272
+    },
+    {
+      "n": "Faridabad",
+      "s": "Haryana",
+      "c": "IN",
+      "lat": 28.4089,
+      "lon": 77.3178,
+      "pop": 1411999
+    },
+    {
+      "n": "Jaipur",
+      "s": "Rajasthan",
+      "c": "IN",
+      "lat": 26.9124,
+      "lon": 75.7873,
+      "pop": 3073350
+    },
+    {
+      "n": "Neemrana",
+      "s": "Rajasthan",
+      "c": "IN",
+      "lat": 27.9889,
+      "lon": 76.396,
+      "pop": 35000
+    },
+    {
+      "n": "Behror",
+      "s": "Rajasthan",
+      "c": "IN",
+      "lat": 27.8868,
+      "lon": 76.2908,
+      "pop": 28000
+    },
+    {
+      "n": "Dharuhera",
+      "s": "Haryana",
+      "c": "IN",
+      "lat": 28.2167,
+      "lon": 76.7833,
+      "pop": 30000
+    },
+    {
+      "n": "Bengaluru",
+      "s": "Karnataka",
+      "c": "IN",
+      "lat": 12.9716,
+      "lon": 77.5946,
+      "pop": 8440150
+    },
+    {
+      "n": "Bangalore",
+      "s": "Karnataka",
+      "c": "IN",
+      "lat": 12.9716,
+      "lon": 77.5946,
+      "pop": 8440150
+    },
+    {
+      "n": "Mysuru",
+      "s": "Karnataka",
+      "c": "IN",
+      "lat": 12.2958,
+      "lon": 76.6394,
+      "pop": 920550
+    },
+    {
+      "n": "Tumakuru",
+      "s": "Karnataka",
+      "c": "IN",
+      "lat": 13.3392,
+      "lon": 77.1008,
+      "pop": 300000
+    },
+    {
+      "n": "Hosur",
+      "s": "Tamil Nadu",
+      "c": "IN",
+      "lat": 12.7409,
+      "lon": 77.8253,
+      "pop": 230000
+    },
+    {
+      "n": "Chennai",
+      "s": "Tamil Nadu",
+      "c": "IN",
+      "lat": 13.0827,
+      "lon": 80.2707,
+      "pop": 4646732
+    },
+    {
+      "n": "Vellore",
+      "s": "Tamil Nadu",
+      "c": "IN",
+      "lat": 12.9165,
+      "lon": 79.1325,
+      "pop": 504079
+    },
+    {
+      "n": "Krishnagiri",
+      "s": "Tamil Nadu",
+      "c": "IN",
+      "lat": 12.5186,
+      "lon": 78.2137,
+      "pop": 200000
+    },
+    {
+      "n": "Coimbatore",
+      "s": "Tamil Nadu",
+      "c": "IN",
+      "lat": 11.0168,
+      "lon": 76.9558,
+      "pop": 1050721
+    },
+    {
+      "n": "Salem",
+      "s": "Tamil Nadu",
+      "c": "IN",
+      "lat": 11.6643,
+      "lon": 78.146,
+      "pop": 829267
+    },
+    {
+      "n": "Madurai",
+      "s": "Tamil Nadu",
+      "c": "IN",
+      "lat": 9.9252,
+      "lon": 78.1198,
+      "pop": 1017865
+    },
+    {
+      "n": "Hyderabad",
+      "s": "Telangana",
+      "c": "IN",
+      "lat": 17.385,
+      "lon": 78.4867,
+      "pop": 6809970
+    },
+    {
+      "n": "Secunderabad",
+      "s": "Telangana",
+      "c": "IN",
+      "lat": 17.4399,
+      "lon": 78.4983,
+      "pop": 1200000
+    },
+    {
+      "n": "Vijayawada",
+      "s": "Andhra Pradesh",
+      "c": "IN",
+      "lat": 16.5062,
+      "lon": 80.648,
+      "pop": 1048240
+    },
+    {
+      "n": "Visakhapatnam",
+      "s": "Andhra Pradesh",
+      "c": "IN",
+      "lat": 17.6868,
+      "lon": 83.2185,
+      "pop": 1730320
+    },
+    {
+      "n": "Guntur",
+      "s": "Andhra Pradesh",
+      "c": "IN",
+      "lat": 16.3067,
+      "lon": 80.4365,
+      "pop": 651382
+    },
+    {
+      "n": "Kochi",
+      "s": "Kerala",
+      "c": "IN",
+      "lat": 9.9312,
+      "lon": 76.2673,
+      "pop": 601574
+    },
+    {
+      "n": "Thiruvananthapuram",
+      "s": "Kerala",
+      "c": "IN",
+      "lat": 8.5241,
+      "lon": 76.9366,
+      "pop": 788271
+    },
+    {
+      "n": "Thrissur",
+      "s": "Kerala",
+      "c": "IN",
+      "lat": 10.5276,
+      "lon": 76.2144,
+      "pop": 315596
+    },
+    {
+      "n": "Kolkata",
+      "s": "West Bengal",
+      "c": "IN",
+      "lat": 22.5726,
+      "lon": 88.3639,
+      "pop": 4486679
+    },
+    {
+      "n": "Howrah",
+      "s": "West Bengal",
+      "c": "IN",
+      "lat": 22.5892,
+      "lon": 88.3103,
+      "pop": 1077075
+    },
+    {
+      "n": "Durgapur",
+      "s": "West Bengal",
+      "c": "IN",
+      "lat": 23.55,
+      "lon": 87.32,
+      "pop": 566517
+    },
+    {
+      "n": "Bhubaneswar",
+      "s": "Odisha",
+      "c": "IN",
+      "lat": 20.2961,
+      "lon": 85.8245,
+      "pop": 837737
+    },
+    {
+      "n": "Cuttack",
+      "s": "Odisha",
+      "c": "IN",
+      "lat": 20.4625,
+      "lon": 85.883,
+      "pop": 606007
+    },
+    {
+      "n": "Ahmedabad",
+      "s": "Gujarat",
+      "c": "IN",
+      "lat": 23.0225,
+      "lon": 72.5714,
+      "pop": 5570585
+    },
+    {
+      "n": "Surat",
+      "s": "Gujarat",
+      "c": "IN",
+      "lat": 21.1702,
+      "lon": 72.8311,
+      "pop": 4467797
+    },
+    {
+      "n": "Vadodara",
+      "s": "Gujarat",
+      "c": "IN",
+      "lat": 22.3072,
+      "lon": 73.1812,
+      "pop": 1666703
+    },
+    {
+      "n": "Anand",
+      "s": "Gujarat",
+      "c": "IN",
+      "lat": 22.5645,
+      "lon": 72.9289,
+      "pop": 200000
+    },
+    {
+      "n": "Nadiad",
+      "s": "Gujarat",
+      "c": "IN",
+      "lat": 22.6939,
+      "lon": 72.8616,
+      "pop": 225000
+    },
+    {
+      "n": "Indore",
+      "s": "Madhya Pradesh",
+      "c": "IN",
+      "lat": 22.7196,
+      "lon": 75.8577,
+      "pop": 1960631
+    },
+    {
+      "n": "Bhopal",
+      "s": "Madhya Pradesh",
+      "c": "IN",
+      "lat": 23.2599,
+      "lon": 77.4126,
+      "pop": 1798218
+    },
+    {
+      "n": "Dewas",
+      "s": "Madhya Pradesh",
+      "c": "IN",
+      "lat": 22.9623,
+      "lon": 76.0508,
+      "pop": 289000
+    },
+    {
+      "n": "Lucknow",
+      "s": "Uttar Pradesh",
+      "c": "IN",
+      "lat": 26.8467,
+      "lon": 80.9462,
+      "pop": 2817105
+    },
+    {
+      "n": "Kanpur",
+      "s": "Uttar Pradesh",
+      "c": "IN",
+      "lat": 26.4499,
+      "lon": 80.3319,
+      "pop": 2767031
+    },
+    {
+      "n": "Agra",
+      "s": "Uttar Pradesh",
+      "c": "IN",
+      "lat": 27.1767,
+      "lon": 78.0081,
+      "pop": 1585704
+    },
+    {
+      "n": "Mathura",
+      "s": "Uttar Pradesh",
+      "c": "IN",
+      "lat": 27.4924,
+      "lon": 77.6737,
+      "pop": 441894
+    },
+    {
+      "n": "Varanasi",
+      "s": "Uttar Pradesh",
+      "c": "IN",
+      "lat": 25.3176,
+      "lon": 82.9739,
+      "pop": 1198491
+    },
+    {
+      "n": "Patna",
+      "s": "Bihar",
+      "c": "IN",
+      "lat": 25.5941,
+      "lon": 85.1376,
+      "pop": 1684222
+    },
+    {
+      "n": "Ranchi",
+      "s": "Jharkhand",
+      "c": "IN",
+      "lat": 23.3441,
+      "lon": 85.3096,
+      "pop": 1073427
+    },
+    {
+      "n": "Guwahati",
+      "s": "Assam",
+      "c": "IN",
+      "lat": 26.1445,
+      "lon": 91.7362,
+      "pop": 962334
+    },
+    {
+      "n": "Shillong",
+      "s": "Meghalaya",
+      "c": "IN",
+      "lat": 25.5788,
+      "lon": 91.8933,
+      "pop": 143229
+    },
+    {
+      "n": "Chandigarh",
+      "s": "Chandigarh",
+      "c": "IN",
+      "lat": 30.7333,
+      "lon": 76.7794,
+      "pop": 960787
+    },
+    {
+      "n": "Ludhiana",
+      "s": "Punjab",
+      "c": "IN",
+      "lat": 30.901,
+      "lon": 75.8573,
+      "pop": 1613878
+    },
+    {
+      "n": "Amritsar",
+      "s": "Punjab",
+      "c": "IN",
+      "lat": 31.634,
+      "lon": 74.8723,
+      "pop": 1132383
+    },
+    {
+      "n": "Shimla",
+      "s": "Himachal Pradesh",
+      "c": "IN",
+      "lat": 31.1048,
+      "lon": 77.1734,
+      "pop": 169578
+    },
+    {
+      "n": "Dehradun",
+      "s": "Uttarakhand",
+      "c": "IN",
+      "lat": 30.3165,
+      "lon": 78.0322,
+      "pop": 569578
+    },
+    {
+      "n": "Panaji",
+      "s": "Goa",
+      "c": "IN",
+      "lat": 15.4909,
+      "lon": 73.8278,
+      "pop": 40000
+    },
+    {
+      "n": "Mangalore",
+      "s": "Karnataka",
+      "c": "IN",
+      "lat": 15.4909,
+      "lon": 73.8278,
+      "pop": 499487
+    },
+    {
+      "n": "Hubli",
+      "s": "Karnataka",
+      "c": "IN",
+      "lat": 15.3647,
+      "lon": 75.124,
+      "pop": 943788
+    },
+    {
+      "n": "Belgaum",
+      "s": "Karnataka",
+      "c": "IN",
+      "lat": 15.8497,
+      "lon": 74.4977,
+      "pop": 488157
+    },
+    {
+      "n": "Detroit",
+      "s": "Michigan",
+      "c": "US",
+      "lat": 42.3314,
+      "lon": -83.0458,
+      "pop": 639111
+    },
+    {
+      "n": "Ann Arbor",
+      "s": "Michigan",
+      "c": "US",
+      "lat": 42.2808,
+      "lon": -83.743,
+      "pop": 123851
+    },
+    {
+      "n": "Dearborn",
+      "s": "Michigan",
+      "c": "US",
+      "lat": 42.3223,
+      "lon": -83.1763,
+      "pop": 109976
+    },
+    {
+      "n": "Lansing",
+      "s": "Michigan",
+      "c": "US",
+      "lat": 42.7325,
+      "lon": -84.5555,
+      "pop": 112644
+    },
+    {
+      "n": "Chicago",
+      "s": "Illinois",
+      "c": "US",
+      "lat": 41.8781,
+      "lon": -87.6298,
+      "pop": 2693976
+    },
+    {
+      "n": "Gary",
+      "s": "Indiana",
+      "c": "US",
+      "lat": 41.5934,
+      "lon": -87.3464,
+      "pop": 69093
+    },
+    {
+      "n": "Kalamazoo",
+      "s": "Michigan",
+      "c": "US",
+      "lat": 42.2917,
+      "lon": -85.5872,
+      "pop": 73470
+    },
+    {
+      "n": "Cleveland",
+      "s": "Ohio",
+      "c": "US",
+      "lat": 41.4993,
+      "lon": -81.6944,
+      "pop": 372624
+    },
+    {
+      "n": "Toledo",
+      "s": "Ohio",
+      "c": "US",
+      "lat": 41.6528,
+      "lon": -83.5379,
+      "pop": 270871
+    },
+    {
+      "n": "Columbus",
+      "s": "Ohio",
+      "c": "US",
+      "lat": 39.9612,
+      "lon": -82.9988,
+      "pop": 905748
+    },
+    {
+      "n": "New York",
+      "s": "New York",
+      "c": "US",
+      "lat": 40.7128,
+      "lon": -74.006,
+      "pop": 8336817
+    },
+    {
+      "n": "Newark",
+      "s": "New Jersey",
+      "c": "US",
+      "lat": 40.7357,
+      "lon": -74.1724,
+      "pop": 311549
+    },
+    {
+      "n": "Philadelphia",
+      "s": "Pennsylvania",
+      "c": "US",
+      "lat": 39.9526,
+      "lon": -75.1652,
+      "pop": 1576251
+    },
+    {
+      "n": "Washington DC",
+      "s": "District of Columbia",
+      "c": "US",
+      "lat": 38.9072,
+      "lon": -77.0369,
+      "pop": 689545
+    },
+    {
+      "n": "Baltimore",
+      "s": "Maryland",
+      "c": "US",
+      "lat": 39.2904,
+      "lon": -76.6122,
+      "pop": 585708
+    },
+    {
+      "n": "Boston",
+      "s": "Massachusetts",
+      "c": "US",
+      "lat": 42.3601,
+      "lon": -71.0589,
+      "pop": 675647
+    },
+    {
+      "n": "Los Angeles",
+      "s": "California",
+      "c": "US",
+      "lat": 34.0522,
+      "lon": -118.2437,
+      "pop": 3898747
+    },
+    {
+      "n": "Barstow",
+      "s": "California",
+      "c": "US",
+      "lat": 34.8958,
+      "lon": -117.0173,
+      "pop": 23000
+    },
+    {
+      "n": "Las Vegas",
+      "s": "Nevada",
+      "c": "US",
+      "lat": 36.1699,
+      "lon": -115.1398,
+      "pop": 641903
+    },
+    {
+      "n": "San Francisco",
+      "s": "California",
+      "c": "US",
+      "lat": 37.7749,
+      "lon": -122.4194,
+      "pop": 873965
+    },
+    {
+      "n": "San Jose",
+      "s": "California",
+      "c": "US",
+      "lat": 37.3382,
+      "lon": -121.8863,
+      "pop": 1013240
+    },
+    {
+      "n": "Fresno",
+      "s": "California",
+      "c": "US",
+      "lat": 36.7378,
+      "lon": -119.7871,
+      "pop": 542107
+    },
+    {
+      "n": "Seattle",
+      "s": "Washington",
+      "c": "US",
+      "lat": 47.6062,
+      "lon": -122.3321,
+      "pop": 737015
+    },
+    {
+      "n": "Portland",
+      "s": "Oregon",
+      "c": "US",
+      "lat": 45.5152,
+      "lon": -122.6784,
+      "pop": 652503
+    },
+    {
+      "n": "Austin",
+      "s": "Texas",
+      "c": "US",
+      "lat": 30.2672,
+      "lon": -97.7431,
+      "pop": 961855
+    },
+    {
+      "n": "Dallas",
+      "s": "Texas",
+      "c": "US",
+      "lat": 32.7767,
+      "lon": -96.797,
+      "pop": 1304379
+    },
+    {
+      "n": "Houston",
+      "s": "Texas",
+      "c": "US",
+      "lat": 29.7604,
+      "lon": -95.3698,
+      "pop": 2304580
+    },
+    {
+      "n": "Miami",
+      "s": "Florida",
+      "c": "US",
+      "lat": 25.7617,
+      "lon": -80.1918,
+      "pop": 442241
+    },
+    {
+      "n": "Orlando",
+      "s": "Florida",
+      "c": "US",
+      "lat": 28.5383,
+      "lon": -81.3792,
+      "pop": 307573
+    },
+    {
+      "n": "Atlanta",
+      "s": "Georgia",
+      "c": "US",
+      "lat": 33.749,
+      "lon": -84.388,
+      "pop": 498715
+    },
+    {
+      "n": "Denver",
+      "s": "Colorado",
+      "c": "US",
+      "lat": 39.7392,
+      "lon": -104.9903,
+      "pop": 715522
+    },
+    {
+      "n": "Singapore",
+      "s": "Singapore",
+      "c": "SG",
+      "lat": 1.3521,
+      "lon": 103.8198,
+      "pop": 5685807
+    },
+    {
+      "n": "Jakarta",
+      "s": "Java",
+      "c": "ID",
+      "lat": -6.2088,
+      "lon": 106.8456,
+      "pop": 10562088
+    },
+    {
+      "n": "Bangkok",
+      "s": "Bangkok",
+      "c": "TH",
+      "lat": 13.7563,
+      "lon": 100.5018,
+      "pop": 10539000
+    },
+    {
+      "n": "Manila",
+      "s": "Metro Manila",
+      "c": "PH",
+      "lat": 14.5995,
+      "lon": 120.9842,
+      "pop": 13923452
+    },
+    {
+      "n": "Taipei",
+      "s": "Taiwan",
+      "c": "TW",
+      "lat": 25.033,
+      "lon": 121.5654,
+      "pop": 2646204
+    },
+    {
+      "n": "Taoyuan",
+      "s": "Taiwan",
+      "c": "TW",
+      "lat": 24.9937,
+      "lon": 121.2969,
+      "pop": 2280000
+    },
+    {
+      "n": "Ho Chi Minh City",
+      "s": "South",
+      "c": "VN",
+      "lat": 10.8231,
+      "lon": 106.6297,
+      "pop": 9000000
+    },
+    {
+      "n": "Hanoi",
+      "s": "North",
+      "c": "VN",
+      "lat": 21.0278,
+      "lon": 105.8342,
+      "pop": 8000000
+    },
+    {
+      "n": "Kuala Lumpur",
+      "s": "Kuala Lumpur",
+      "c": "MY",
+      "lat": 3.139,
+      "lon": 101.6869,
+      "pop": 1800000
+    }
+  ]
+}

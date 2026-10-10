@@ -1,0 +1,2039 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "updated": "2026-10-10",
+    "count": 83,
+    "sources": [
+      "OEM spec sheets",
+      "EV-database style aggregation",
+      "CPO plug lists",
+      "user correction: max kW is DC peak; sustained differs \u2014 see chargeCurve"
+    ],
+    "disclaimer": "Specs change by model year / variant / software lock. Verify against VIN plate before tow-critical trips. maxKwDc = PEAK; sustainedKw() in powermatch.js derates by SoC curve.",
+    "fields": [
+      "id",
+      "name",
+      "class",
+      "market",
+      "batteryKwh",
+      "usableKwh",
+      "maxKwAc",
+      "maxKwDc",
+      "plugAc",
+      "plugDc",
+      "swap",
+      "effKwhPer100km",
+      "curveId",
+      "v2x",
+      "notes"
+    ]
+  },
+  "vehicles": [
+    {
+      "id": "tata-nexon-ev-45",
+      "name": "Tata Nexon.ev 45",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 45,
+      "usableKwh": 43,
+      "maxKwAc": 7.2,
+      "maxKwDc": 60,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "tata-60kw",
+      "v2x": false,
+      "notes": "Real DC peak ~55-60kW, 10-80% ~56 min. 350kW stall gives you 60kW max \u2014 power-match filter hides hype."
+    },
+    {
+      "id": "tata-nexon-ev-40",
+      "name": "Tata Nexon.ev 40.5",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 40.5,
+      "usableKwh": 38.5,
+      "maxKwAc": 7.2,
+      "maxKwDc": 50,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.2,
+      "curveId": "tata-50kw",
+      "v2x": false,
+      "notes": "Older pack caps ~50kW."
+    },
+    {
+      "id": "tata-tiago-ev",
+      "name": "Tata Tiago.ev LR",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 24,
+      "usableKwh": 22.5,
+      "maxKwAc": 7.2,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 12.5,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "Classic power-match case: 25kW max. 350kW stall = 25kW sadness. Plan 10-80% ~58 min."
+    },
+    {
+      "id": "tata-tigor-ev",
+      "name": "Tata Tigor.ev",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 26,
+      "usableKwh": 24.5,
+      "maxKwAc": 7.2,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 12.8,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "Fleet favourite; same 25kW ceiling."
+    },
+    {
+      "id": "tata-punch-ev-35",
+      "name": "Tata Punch.ev 35",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 35,
+      "usableKwh": 33,
+      "maxKwAc": 7.2,
+      "maxKwDc": 50,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 13.8,
+      "curveId": "tata-50kw",
+      "v2x": false,
+      "notes": "10-80% ~56 min at 50kW."
+    },
+    {
+      "id": "tata-punch-ev-25",
+      "name": "Tata Punch.ev 25",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 25,
+      "usableKwh": 23.5,
+      "maxKwAc": 3.3,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 13.2,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "Base AC 3.3kW \u2014 home overnight only."
+    },
+    {
+      "id": "tata-curvv-ev-55",
+      "name": "Tata Curvv.ev 55",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 55,
+      "usableKwh": 52,
+      "maxKwAc": 7.2,
+      "maxKwDc": 70,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.8,
+      "curveId": "tata-70kw",
+      "v2x": false,
+      "notes": "1.2C peak; 10-80% ~45 min on 120kW+ stall."
+    },
+    {
+      "id": "tata-curvv-ev-45",
+      "name": "Tata Curvv.ev 45",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 45,
+      "usableKwh": 43,
+      "maxKwAc": 7.2,
+      "maxKwDc": 60,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "tata-60kw",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "tata-harrier-ev-75",
+      "name": "Tata Harrier.ev 75 AWD",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 75,
+      "usableKwh": 71,
+      "maxKwAc": 7.2,
+      "maxKwDc": 120,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18.5,
+      "curveId": "120kw-flat",
+      "v2x": true,
+      "notes": "V2L/V2V capable. 120kW peak, 10-80% ~40 min."
+    },
+    {
+      "id": "tata-harrier-ev-65",
+      "name": "Tata Harrier.ev 65",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 65,
+      "usableKwh": 62,
+      "maxKwAc": 7.2,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18.0,
+      "curveId": "100kw-flat",
+      "v2x": true,
+      "notes": ""
+    },
+    {
+      "id": "mahindra-be6-79",
+      "name": "Mahindra BE.6 79 Pack One Above",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 79,
+      "usableKwh": 76,
+      "maxKwAc": 11,
+      "maxKwDc": 175,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.5,
+      "curveId": "175kw-inglo",
+      "v2x": false,
+      "notes": "INGLO platform, 175kW peak, 20-80% ~20 min on 200kW+ stall."
+    },
+    {
+      "id": "mahindra-be6-59",
+      "name": "Mahindra BE.6 59",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 59,
+      "usableKwh": 56,
+      "maxKwAc": 11,
+      "maxKwDc": 140,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.0,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "mahindra-xev9e-79",
+      "name": "Mahindra XEV 9e 79",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 79,
+      "usableKwh": 76,
+      "maxKwAc": 11,
+      "maxKwDc": 175,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18.2,
+      "curveId": "175kw-inglo",
+      "v2x": false,
+      "notes": "SUV coupe sibling of BE.6."
+    },
+    {
+      "id": "mahindra-xuv400-39",
+      "name": "Mahindra XUV400 39.4",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 39.4,
+      "usableKwh": 37,
+      "maxKwAc": 7.2,
+      "maxKwDc": 50,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.8,
+      "curveId": "tata-50kw",
+      "v2x": false,
+      "notes": "50kW cap; needs 50kW+ stall, no benefit from 350kW."
+    },
+    {
+      "id": "mahindra-xuv400-34",
+      "name": "Mahindra XUV400 34.5",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 34.5,
+      "usableKwh": 32.5,
+      "maxKwAc": 3.3,
+      "maxKwDc": 50,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "tata-50kw",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "mg-zs-ev-50",
+      "name": "MG ZS EV 50.3 Excite Pro",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 50.3,
+      "usableKwh": 47.5,
+      "maxKwAc": 7.4,
+      "maxKwDc": 75,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "75kw-flat",
+      "v2x": false,
+      "notes": "75kW peak."
+    },
+    {
+      "id": "mg-windsor-52",
+      "name": "MG Windsor 52.9",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 52.9,
+      "usableKwh": 50,
+      "maxKwAc": 7.4,
+      "maxKwDc": 60,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.0,
+      "curveId": "tata-60kw",
+      "v2x": false,
+      "notes": "BaaS variant available \u2014 battery-as-service changes swap-vs-charge ROI."
+    },
+    {
+      "id": "mg-comet-17",
+      "name": "MG Comet 17.3",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 17.3,
+      "usableKwh": 16,
+      "maxKwAc": 3.3,
+      "maxKwDc": 0,
+      "plugAc": "Type2",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 11.0,
+      "curveId": "ac-only",
+      "v2x": false,
+      "notes": "AC-ONLY city car. DC planner must EXCLUDE it \u2014 red-card any DC-only route. 3.3kW = full charge ~7h."
+    },
+    {
+      "id": "mg-cyberster-77",
+      "name": "MG Cyberster 77",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 77,
+      "usableKwh": 74,
+      "maxKwAc": 11,
+      "maxKwDc": 144,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 19.5,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "byd-atto3-60",
+      "name": "BYD Atto 3 60.48",
+      "class": "4W",
+      "market": "IN-GLOBAL",
+      "batteryKwh": 60.48,
+      "usableKwh": 57.5,
+      "maxKwAc": 7,
+      "maxKwDc": 88,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.8,
+      "curveId": "byd-88kw",
+      "v2x": true,
+      "notes": "Blade LFP, V2L. 88kW peak, flat to 60%."
+    },
+    {
+      "id": "byd-seal-82",
+      "name": "BYD Seal 82.5",
+      "class": "4W",
+      "market": "IN-GLOBAL",
+      "batteryKwh": 82.5,
+      "usableKwh": 79,
+      "maxKwAc": 7,
+      "maxKwDc": 150,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.8,
+      "curveId": "150kw-flat",
+      "v2x": true,
+      "notes": "800V-ish curve, 10-80% ~37 min."
+    },
+    {
+      "id": "byd-emax7-71",
+      "name": "BYD eMax 7 71.8",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 71.8,
+      "usableKwh": 68,
+      "maxKwAc": 7,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "hyundai-creta-ev-51",
+      "name": "Hyundai Creta Electric 51.4 LR",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 51.4,
+      "usableKwh": 49,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "hyundai-creta-ev-42",
+      "name": "Hyundai Creta Electric 42",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 42,
+      "usableKwh": 40,
+      "maxKwAc": 11,
+      "maxKwDc": 70,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.2,
+      "curveId": "tata-70kw",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "hyundai-ioniq5-72",
+      "name": "Hyundai Ioniq 5 72.6",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 72.6,
+      "usableKwh": 69,
+      "maxKwAc": 11,
+      "maxKwDc": 233,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18.5,
+      "curveId": "egmp-230kw",
+      "v2x": true,
+      "notes": "E-GMP 800V. One of few cars that USES 350kW stalls: 10-80% ~18 min. Needs CCS2 350A+ stall."
+    },
+    {
+      "id": "kia-ev6-77",
+      "name": "Kia EV6 77.4 GT-Line",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 77.4,
+      "usableKwh": 74,
+      "maxKwAc": 11,
+      "maxKwDc": 233,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18.8,
+      "curveId": "egmp-230kw",
+      "v2x": true,
+      "notes": "Same 800V curve as Ioniq 5."
+    },
+    {
+      "id": "kia-ev9-99",
+      "name": "Kia EV9 99.8",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 99.8,
+      "usableKwh": 96,
+      "maxKwAc": 11,
+      "maxKwDc": 210,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 22.5,
+      "curveId": "egmp-210kw",
+      "v2x": true,
+      "notes": "7-seater, heavy \u2014 temp/load planner matters."
+    },
+    {
+      "id": "maruti-evitarra-61",
+      "name": "Maruti e Vitara 61",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 61,
+      "usableKwh": 58,
+      "maxKwAc": 7.4,
+      "maxKwDc": 120,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "120kw-flat",
+      "v2x": false,
+      "notes": "eAxle Heartect-e, 2025+ launch."
+    },
+    {
+      "id": "maruti-evitarra-49",
+      "name": "Maruti e Vitara 49",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 49,
+      "usableKwh": 46.5,
+      "maxKwAc": 7.4,
+      "maxKwDc": 90,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.0,
+      "curveId": "byd-88kw",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "toyota-urbancruiser-ev-61",
+      "name": "Toyota Urban Cruiser EV 61",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 61,
+      "usableKwh": 58,
+      "maxKwAc": 7.4,
+      "maxKwDc": 120,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "120kw-flat",
+      "v2x": false,
+      "notes": "Rebadged e Vitara."
+    },
+    {
+      "id": "tesla-model3-60",
+      "name": "Tesla Model 3 RWD 60 (LFP)",
+      "class": "4W",
+      "market": "US-GLOBAL",
+      "batteryKwh": 60,
+      "usableKwh": 57.5,
+      "maxKwAc": 11,
+      "maxKwDc": 170,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 15.0,
+      "curveId": "tesla-170kw",
+      "v2x": false,
+      "notes": "US = NACS native. India/EU imports may be CCS2. Adapter logic: NACS car at CCS1 site needs NACS->CCS1 adapter (DC, active-cooled)."
+    },
+    {
+      "id": "tesla-modely-75",
+      "name": "Tesla Model Y LR 75",
+      "class": "4W",
+      "market": "US-GLOBAL",
+      "batteryKwh": 75,
+      "usableKwh": 72,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 17.0,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "notes": "250kW peak on V3 Supercharger; falls to ~100kW by 50% SoC."
+    },
+    {
+      "id": "tesla-modely-ccs2",
+      "name": "Tesla Model Y (CCS2, EU/IN grey)",
+      "class": "4W",
+      "market": "EU-IN",
+      "batteryKwh": 75,
+      "usableKwh": 72,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.0,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "notes": "CCS2 variant \u2014 no adapter needed at CCS2 sites."
+    },
+    {
+      "id": "ford-mache-91",
+      "name": "Ford Mustang Mach-E ER 91",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 91,
+      "usableKwh": 88,
+      "maxKwAc": 10.5,
+      "maxKwDc": 150,
+      "plugAc": "J1772",
+      "plugDc": "CCS1",
+      "swap": null,
+      "effKwhPer100km": 20.5,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "notes": "US CCS1; needs NACS->CCS1 adapter at Tesla-only sites pre-Magic Dock."
+    },
+    {
+      "id": "ford-f150-131",
+      "name": "Ford F-150 Lightning ER 131",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 131,
+      "usableKwh": 125,
+      "maxKwAc": 11.3,
+      "maxKwDc": 175,
+      "plugAc": "J1772",
+      "plugDc": "CCS1",
+      "swap": null,
+      "effKwhPer100km": 32.0,
+      "curveId": "175kw-inglo",
+      "v2x": true,
+      "notes": "V2H Intelligent Backup Power. Heavy + tow derate huge \u2014 load input matters."
+    },
+    {
+      "id": "chevy-equinox-85",
+      "name": "Chevy Equinox EV 85",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 85,
+      "usableKwh": 81,
+      "maxKwAc": 11.5,
+      "maxKwDc": 150,
+      "plugAc": "J1772",
+      "plugDc": "CCS1",
+      "swap": null,
+      "effKwhPer100km": 19.5,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "notes": "Ultium curve, conservative taper."
+    },
+    {
+      "id": "hyundai-ioniq5-usa",
+      "name": "Hyundai Ioniq 5 (US, NACS 2025+)",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 84,
+      "usableKwh": 80,
+      "maxKwAc": 11,
+      "maxKwDc": 233,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 19.0,
+      "curveId": "egmp-230kw",
+      "v2x": true,
+      "notes": "2025+ US builds ship NACS port. Needs CCS1 adapter at legacy EA sites."
+    },
+    {
+      "id": "rivian-r1s-135",
+      "name": "Rivian R1S Max 135",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 135,
+      "usableKwh": 129,
+      "maxKwAc": 11.5,
+      "maxKwDc": 220,
+      "plugAc": "J1772",
+      "plugDc": "CCS1",
+      "swap": null,
+      "effKwhPer100km": 28.0,
+      "curveId": "rivian-220kw",
+      "v2x": false,
+      "notes": "Adventure network CCS1; NACS adapter rollout 2024+."
+    },
+    {
+      "id": "nissan-leaf-40",
+      "name": "Nissan Leaf 40 (CHAdeMO)",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 40,
+      "usableKwh": 37,
+      "maxKwAc": 6.6,
+      "maxKwDc": 50,
+      "plugAc": "J1772-Type1",
+      "plugDc": "CHAdeMO",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "chademo-50kw",
+      "v2x": true,
+      "notes": "CHAdeMO dying in US/EU. Red-card CHAdeMO-only routing; show adapter impossibility (no CHAdeMO->CCS adapter exists for DC)."
+    },
+    {
+      "id": "nissan-ariya-87",
+      "name": "Nissan Ariya 87",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 87,
+      "usableKwh": 84,
+      "maxKwAc": 7.2,
+      "maxKwDc": 130,
+      "plugAc": "J1772",
+      "plugDc": "CCS1",
+      "swap": null,
+      "effKwhPer100km": 20.0,
+      "curveId": "120kw-flat",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "vinfast-vf8-87",
+      "name": "VinFast VF 8 87.7",
+      "class": "4W",
+      "market": "IN-US",
+      "batteryKwh": 87.7,
+      "usableKwh": 84,
+      "maxKwAc": 11,
+      "maxKwDc": 175,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 21.0,
+      "curveId": "175kw-inglo",
+      "v2x": false,
+      "notes": "India plant (Thoothukudi); CCS2 in IN, CCS1/NACS in US by year."
+    },
+    {
+      "id": "citroen-ec3-29",
+      "name": "Citroen eC3 29.2",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 29.2,
+      "usableKwh": 27.5,
+      "maxKwAc": 3.3,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 13.5,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "No AC fast; 3.3kW home. DC capped 25kW."
+    },
+    {
+      "id": "tata-ace-ev-21",
+      "name": "Tata Ace EV (3W cargo)",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 21.3,
+      "usableKwh": 20,
+      "maxKwAc": 3.3,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 14.0,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "Last-mile cargo; swap variant pilots exist."
+    },
+    {
+      "id": "mahindra-treo-8",
+      "name": "Mahindra Treo Plus 8 (3W)",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 10.24,
+      "usableKwh": 9.5,
+      "maxKwAc": 3.3,
+      "maxKwDc": 0,
+      "plugAc": "BharatAC001",
+      "plugDc": null,
+      "swap": "SunMobility",
+      "effKwhPer100km": 9.0,
+      "curveId": "ac-only",
+      "v2x": false,
+      "notes": "Swap-compatible via Sun Mobility in some fleets."
+    },
+    {
+      "id": "mahindra-zeo-21",
+      "name": "Mahindra Zeo 21.3 (3W)",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 21.3,
+      "usableKwh": 20,
+      "maxKwAc": 3.3,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 13.0,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "piaggio-ape-etec-8",
+      "name": "Piaggio Ape E-Tech 8",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 8,
+      "usableKwh": 7.4,
+      "maxKwAc": 3,
+      "maxKwDc": 0,
+      "plugAc": "BharatAC001",
+      "plugDc": null,
+      "swap": "SunMobility",
+      "effKwhPer100km": 8.5,
+      "curveId": "ac-only",
+      "v2x": false,
+      "notes": "Sun swap network primary for 3W fleets."
+    },
+    {
+      "id": "bajaj-goego-8",
+      "name": "Bajaj GoGo P7012 8.5",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 8.5,
+      "usableKwh": 8,
+      "maxKwAc": 3,
+      "maxKwDc": 0,
+      "plugAc": "BharatAC001",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 8.2,
+      "curveId": "ac-only",
+      "v2x": false,
+      "notes": "Fixed battery; slow AC."
+    },
+    {
+      "id": "ola-s1-pro-4",
+      "name": "Ola S1 Pro Gen2 4",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 4,
+      "usableKwh": 3.8,
+      "maxKwAc": 0.75,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": "OlaHypercharger-Swap",
+      "effKwhPer100km": 3.2,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Type 6 (IS 17017-2-6) + Ola Hypercharger. Swap rollout + fast-charge hybrid."
+    },
+    {
+      "id": "ola-s1-x-3",
+      "name": "Ola S1 X 3",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3,
+      "usableKwh": 2.8,
+      "maxKwAc": 0.75,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": "OlaHypercharger-Swap",
+      "effKwhPer100km": 3.0,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "ola-roadster-6",
+      "name": "Ola Roadster 6",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 6,
+      "usableKwh": 5.6,
+      "maxKwAc": 1,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 3.8,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Motorcycle; Bharat DC-001 public where available."
+    },
+    {
+      "id": "ather-rizta-3",
+      "name": "Ather Rizta 3.7",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3.7,
+      "usableKwh": 3.5,
+      "maxKwAc": 0.9,
+      "maxKwDc": 6,
+      "plugAc": "Type6",
+      "plugDc": "BharatDC001",
+      "swap": null,
+      "effKwhPer100km": 3.4,
+      "curveId": "ather-dc6kw",
+      "v2x": false,
+      "notes": "Ather Grid: 6kW Bharat DC-001 + LECCS Type 6. 0-80% ~4h home, ~1h Grid DC."
+    },
+    {
+      "id": "ather-450x-3",
+      "name": "Ather 450X 3.7",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3.7,
+      "usableKwh": 3.5,
+      "maxKwAc": 0.9,
+      "maxKwDc": 6,
+      "plugAc": "Type6",
+      "plugDc": "BharatDC001",
+      "swap": null,
+      "effKwhPer100km": 3.6,
+      "curveId": "ather-dc6kw",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "bajaj-chetak-3",
+      "name": "Bajaj Chetak 3.5 (2024+)",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3.5,
+      "usableKwh": 3.2,
+      "maxKwAc": 0.8,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 3.3,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Onboard AC only; needs Type 6 outlet."
+    },
+    {
+      "id": "tvs-iqube-3",
+      "name": "TVS iQube 3.4",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3.4,
+      "usableKwh": 3.2,
+      "maxKwAc": 0.9,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 3.3,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "hero-vida-3",
+      "name": "Hero Vida V1 Pro 3.94",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3.94,
+      "usableKwh": 3.7,
+      "maxKwAc": 1.2,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": "Vida-Swap",
+      "effKwhPer100km": 3.5,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Removable batteries \u2014 dual-mode charge or swap."
+    },
+    {
+      "id": "bounce-infinity-2",
+      "name": "Bounce Infinity E1 2 (swap)",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 2,
+      "usableKwh": 1.9,
+      "maxKwAc": 0.6,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": "Bounce",
+      "effKwhPer100km": 2.8,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Swap-first design."
+    },
+    {
+      "id": "yuma-swap-2",
+      "name": "Yuma (Magenta) swap 2W",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 2,
+      "usableKwh": 1.9,
+      "maxKwAc": 0.6,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": "Yuma",
+      "effKwhPer100km": 2.8,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Ex-Magna/Yulu network."
+    },
+    {
+      "id": "sun-buddy-2",
+      "name": "Sun Mobility Buddy (2W swap pack)",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 2.2,
+      "usableKwh": 2.1,
+      "maxKwAc": 0,
+      "maxKwDc": 0,
+      "plugAc": null,
+      "plugDc": null,
+      "swap": "SunMobility",
+      "effKwhPer100km": 2.8,
+      "curveId": "swap-only",
+      "v2x": false,
+      "notes": "SWAP-ONLY. No plug. Charge planner must route to swap cabins, not chargers."
+    },
+    {
+      "id": "gogoro-pack-1",
+      "name": "Gogoro Network pack (2-swap)",
+      "class": "2W",
+      "market": "IN-TW",
+      "batteryKwh": 3.4,
+      "usableKwh": 3.2,
+      "maxKwAc": 0,
+      "maxKwDc": 0,
+      "plugAc": null,
+      "plugDc": null,
+      "swap": "Gogoro",
+      "effKwhPer100km": 3.2,
+      "curveId": "swap-only",
+      "v2x": false,
+      "notes": "SWAP-ONLY. Two 1.7kWh packs. Delhi/Bengaluru/Mumbai pilots + Taiwan density playbook."
+    },
+    {
+      "id": "honda-activae-3",
+      "name": "Honda Activa e: 3 (2\u00c3\u20141.5 swap)",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3,
+      "usableKwh": 2.8,
+      "maxKwAc": 0,
+      "maxKwDc": 0,
+      "plugAc": null,
+      "plugDc": null,
+      "swap": "HondaPowerPack",
+      "effKwhPer100km": 3.2,
+      "curveId": "swap-only",
+      "v2x": false,
+      "notes": "Honda Power Pack Exchanger e: \u2014 swap-only."
+    },
+    {
+      "id": "honda-qc1-1",
+      "name": "Honda QC1 1.5 (fixed)",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 1.5,
+      "usableKwh": 1.4,
+      "maxKwAc": 0.33,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 2.8,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Fixed pack, home charge."
+    },
+    {
+      "id": "yamaha-aerox-ev",
+      "name": "Yamaha / Gogoro-partner 2W",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 3.4,
+      "usableKwh": 3.2,
+      "maxKwAc": 0,
+      "maxKwDc": 0,
+      "plugAc": null,
+      "plugDc": null,
+      "swap": "Gogoro",
+      "effKwhPer100km": 3.2,
+      "curveId": "swap-only",
+      "v2x": false,
+      "notes": "Gogoro-powered partner models."
+    },
+    {
+      "id": "catl-choco-2w",
+      "name": "CATL Choco-SEB 2W pack",
+      "class": "2W",
+      "market": "CN-IN",
+      "batteryKwh": 3,
+      "usableKwh": 2.8,
+      "maxKwAc": 0,
+      "maxKwDc": 0,
+      "plugAc": null,
+      "plugDc": null,
+      "swap": "CATL-Choco",
+      "effKwhPer100km": 3.0,
+      "curveId": "swap-only",
+      "v2x": false,
+      "notes": "Chocolate swap blocks; 2W + 4W variants."
+    },
+    {
+      "id": "nio-et5-100-swap",
+      "name": "NIO ET5 100 (Power Swap)",
+      "class": "4W",
+      "market": "CN-EU",
+      "batteryKwh": 100,
+      "usableKwh": 96,
+      "maxKwAc": 11,
+      "maxKwDc": 140,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": "NIO-Power",
+      "effKwhPer100km": 18.5,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "notes": "4W SWAP + plug. 3-min Power Swap + CCS2 fallback. Geely/Yiyi merged network (Sept 2026) expands cabin count."
+    },
+    {
+      "id": "geely-yiyi-swap",
+      "name": "Geely / Yiyi swap sedan",
+      "class": "4W",
+      "market": "CN",
+      "batteryKwh": 60,
+      "usableKwh": 57,
+      "maxKwAc": 7,
+      "maxKwDc": 90,
+      "plugAc": "GB-T-AC",
+      "plugDc": "GB-T-DC",
+      "swap": "Geely-Yiyi",
+      "effKwhPer100km": 16.5,
+      "curveId": "byd-88kw",
+      "v2x": false,
+      "notes": "GB/T ports + Yiyi swap. Merged NIO+Geely/Yiyi network Sept 2026."
+    },
+    {
+      "id": "byd-seal-gbt",
+      "name": "BYD Seal (GB/T, CN)",
+      "class": "4W",
+      "market": "CN",
+      "batteryKwh": 82.5,
+      "usableKwh": 79,
+      "maxKwAc": 7,
+      "maxKwDc": 150,
+      "plugAc": "GB-T-AC",
+      "plugDc": "GB-T-DC",
+      "swap": null,
+      "effKwhPer100km": 17.8,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "notes": "China GB/T variant \u2014 adapter logic differs from export CCS2."
+    },
+    {
+      "id": "wuling-mini-13",
+      "name": "Wuling Mini EV 13.9",
+      "class": "4W",
+      "market": "CN-SEA",
+      "batteryKwh": 13.9,
+      "usableKwh": 13,
+      "maxKwAc": 3.3,
+      "maxKwDc": 0,
+      "plugAc": "GB-T-AC",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 10.5,
+      "curveId": "ac-only",
+      "v2x": false,
+      "notes": "AC-only city box; SEA street-charging pattern."
+    },
+    {
+      "id": "vinfast-vf3-18",
+      "name": "VinFast VF 3 18.64",
+      "class": "4W",
+      "market": "SEA-IN",
+      "batteryKwh": 18.64,
+      "usableKwh": 17.5,
+      "maxKwAc": 3.3,
+      "maxKwDc": 30,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 12.0,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "Mini-SUV, CCS2 in export markets."
+    },
+    {
+      "id": "ather-el-3",
+      "name": "Ather EL platform (2026+)",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 4,
+      "usableKwh": 3.8,
+      "maxKwAc": 1.2,
+      "maxKwDc": 8,
+      "plugAc": "Type6",
+      "plugDc": "BharatDC001",
+      "swap": null,
+      "effKwhPer100km": 3.2,
+      "curveId": "ather-dc6kw",
+      "v2x": false,
+      "notes": "EL + Rizta-Z platform, cost-down."
+    },
+    {
+      "id": "ola-s1gen3-4",
+      "name": "Ola S1 Gen3 4",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 4,
+      "usableKwh": 3.8,
+      "maxKwAc": 1,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": "OlaHypercharger-Swap",
+      "effKwhPer100km": 3.0,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Gen3: chain drive + in-house 4680 Bharat cell (pilot)."
+    },
+    {
+      "id": "simple-one-5",
+      "name": "Simple One 5",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 5,
+      "usableKwh": 4.7,
+      "maxKwAc": 0.9,
+      "maxKwDc": 6,
+      "plugAc": "Type6",
+      "plugDc": "BharatDC001",
+      "swap": null,
+      "effKwhPer100km": 3.0,
+      "curveId": "ather-dc6kw",
+      "v2x": false,
+      "notes": "Fixed + portable pack combo."
+    },
+    {
+      "id": "river-indie-4",
+      "name": "River Indie 4",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 4,
+      "usableKwh": 3.8,
+      "maxKwAc": 0.75,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 3.4,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "SUV-scooter, 14-inch wheels."
+    },
+    {
+      "id": "zeeho-ae8-3",
+      "name": "Zeeho AE8 3.9 (CFMoto)",
+      "class": "2W",
+      "market": "SEA",
+      "batteryKwh": 3.9,
+      "usableKwh": 3.7,
+      "maxKwAc": 1,
+      "maxKwDc": 0,
+      "plugAc": "Type2",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 3.5,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "SEA Type 2 2W pattern."
+    },
+    {
+      "id": "yadea-keeness-3",
+      "name": "Yadea Keeness 3.2",
+      "class": "2W",
+      "market": "SEA",
+      "batteryKwh": 3.2,
+      "usableKwh": 3.0,
+      "maxKwAc": 0.8,
+      "maxKwDc": 0,
+      "plugAc": "Type2",
+      "plugDc": null,
+      "swap": "Yadea-Swap",
+      "effKwhPer100km": 3.2,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "alpar-3w-9",
+      "name": "Alpar / Euler HiLoad 13 (3W cargo)",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 13,
+      "usableKwh": 12.3,
+      "maxKwAc": 3.3,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 12.5,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "Euler HiLoad EV: 13kWh, CCS2 fast."
+    },
+    {
+      "id": "euler-hiload-12",
+      "name": "Euler HiLoad EV 12.4",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 12.4,
+      "usableKwh": 11.7,
+      "maxKwAc": 3.3,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 12.5,
+      "curveId": "tiago-25kw",
+      "v2x": false,
+      "notes": "3.5-hr AC, 30-min DC claim."
+    },
+    {
+      "id": "etrio-touro-10",
+      "name": "Etrio Touro 10.75 (3W)",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 10.75,
+      "usableKwh": 10,
+      "maxKwAc": 3.3,
+      "maxKwDc": 0,
+      "plugAc": "BharatAC001",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 10.0,
+      "curveId": "ac-only",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "montra-super-auto-10",
+      "name": "Montra Super Auto 10",
+      "class": "3W",
+      "market": "IN",
+      "batteryKwh": 10,
+      "usableKwh": 9.4,
+      "maxKwAc": 3.3,
+      "maxKwDc": 0,
+      "plugAc": "BharatAC001",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 9.5,
+      "curveId": "ac-only",
+      "v2x": false,
+      "notes": "Murugappa Group 3W."
+    },
+    {
+      "id": "tvs-x-4",
+      "name": "TVS X 4.44",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 4.44,
+      "usableKwh": 4.2,
+      "maxKwAc": 0.9,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 3.6,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": "Naked e-moto."
+    },
+    {
+      "id": "ultraviolette-f77-10",
+      "name": "Ultraviolette F77 10.3",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 10.3,
+      "usableKwh": 9.8,
+      "maxKwAc": 1.5,
+      "maxKwDc": 9,
+      "plugAc": "Type6",
+      "plugDc": "BharatDC001",
+      "swap": null,
+      "effKwhPer100km": 4.5,
+      "curveId": "ather-dc6kw",
+      "v2x": false,
+      "notes": "Performance e-moto, 9kW DC boost mode."
+    },
+    {
+      "id": "orxa-mantis-8",
+      "name": "Orxa Mantis 8.9",
+      "class": "2W",
+      "market": "IN",
+      "batteryKwh": 8.9,
+      "usableKwh": 8.4,
+      "maxKwAc": 1.3,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": null,
+      "swap": null,
+      "effKwhPer100km": 4.2,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "bmw-ix1-66",
+      "name": "BMW iX1 66.5",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 66.5,
+      "usableKwh": 63,
+      "maxKwAc": 11,
+      "maxKwDc": 130,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 19.0,
+      "curveId": "120kw-flat",
+      "v2x": false,
+      "notes": ""
+    },
+    {
+      "id": "volvo-ex40-78",
+      "name": "Volvo EX40 78",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 78,
+      "usableKwh": 75,
+      "maxKwAc": 11,
+      "maxKwDc": 200,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 20.0,
+      "curveId": "egmp-210kw",
+      "v2x": false,
+      "notes": ""
+    }
+  ],
+  "curves": {
+    "tata-60kw": {
+      "peakKw": 60,
+      " sustainedNote": "60 to 40%, 40 by 70%, 22 by 85%",
+      "points": [
+        [
+          10,
+          60
+        ],
+        [
+          40,
+          55
+        ],
+        [
+          60,
+          42
+        ],
+        [
+          70,
+          38
+        ],
+        [
+          80,
+          25
+        ],
+        [
+          90,
+          12
+        ],
+        [
+          100,
+          6
+        ]
+      ]
+    },
+    "tata-50kw": {
+      "peakKw": 50,
+      "points": [
+        [
+          10,
+          50
+        ],
+        [
+          50,
+          45
+        ],
+        [
+          70,
+          32
+        ],
+        [
+          80,
+          22
+        ],
+        [
+          90,
+          10
+        ],
+        [
+          100,
+          5
+        ]
+      ]
+    },
+    "tata-70kw": {
+      "peakKw": 70,
+      "points": [
+        [
+          10,
+          70
+        ],
+        [
+          40,
+          65
+        ],
+        [
+          60,
+          50
+        ],
+        [
+          75,
+          35
+        ],
+        [
+          80,
+          28
+        ],
+        [
+          90,
+          12
+        ],
+        [
+          100,
+          6
+        ]
+      ]
+    },
+    "tiago-25kw": {
+      "peakKw": 25,
+      "points": [
+        [
+          10,
+          25
+        ],
+        [
+          60,
+          24
+        ],
+        [
+          75,
+          18
+        ],
+        [
+          80,
+          15
+        ],
+        [
+          90,
+          8
+        ],
+        [
+          100,
+          4
+        ]
+      ]
+    },
+    "120kw-flat": {
+      "peakKw": 120,
+      "points": [
+        [
+          10,
+          120
+        ],
+        [
+          45,
+          115
+        ],
+        [
+          60,
+          95
+        ],
+        [
+          75,
+          60
+        ],
+        [
+          80,
+          45
+        ],
+        [
+          90,
+          20
+        ],
+        [
+          100,
+          8
+        ]
+      ]
+    },
+    "100kw-flat": {
+      "peakKw": 100,
+      "points": [
+        [
+          10,
+          100
+        ],
+        [
+          50,
+          95
+        ],
+        [
+          70,
+          65
+        ],
+        [
+          80,
+          40
+        ],
+        [
+          90,
+          18
+        ],
+        [
+          100,
+          7
+        ]
+      ]
+    },
+    "75kw-flat": {
+      "peakKw": 75,
+      "points": [
+        [
+          10,
+          75
+        ],
+        [
+          55,
+          72
+        ],
+        [
+          70,
+          50
+        ],
+        [
+          80,
+          35
+        ],
+        [
+          90,
+          15
+        ],
+        [
+          100,
+          6
+        ]
+      ]
+    },
+    "140kw-flat": {
+      "peakKw": 140,
+      "points": [
+        [
+          10,
+          140
+        ],
+        [
+          45,
+          135
+        ],
+        [
+          60,
+          110
+        ],
+        [
+          75,
+          70
+        ],
+        [
+          80,
+          55
+        ],
+        [
+          90,
+          25
+        ],
+        [
+          100,
+          9
+        ]
+      ]
+    },
+    "150kw-flat": {
+      "peakKw": 150,
+      "points": [
+        [
+          10,
+          150
+        ],
+        [
+          40,
+          148
+        ],
+        [
+          55,
+          120
+        ],
+        [
+          70,
+          85
+        ],
+        [
+          80,
+          60
+        ],
+        [
+          90,
+          25
+        ],
+        [
+          100,
+          9
+        ]
+      ]
+    },
+    "175kw-inglo": {
+      "peakKw": 175,
+      "points": [
+        [
+          10,
+          175
+        ],
+        [
+          30,
+          175
+        ],
+        [
+          50,
+          140
+        ],
+        [
+          65,
+          100
+        ],
+        [
+          80,
+          60
+        ],
+        [
+          90,
+          28
+        ],
+        [
+          100,
+          10
+        ]
+      ]
+    },
+    "byd-88kw": {
+      "peakKw": 88,
+      "points": [
+        [
+          10,
+          88
+        ],
+        [
+          60,
+          85
+        ],
+        [
+          70,
+          60
+        ],
+        [
+          80,
+          40
+        ],
+        [
+          90,
+          18
+        ],
+        [
+          100,
+          7
+        ]
+      ]
+    },
+    "egmp-230kw": {
+      "peakKw": 233,
+      "points": [
+        [
+          10,
+          230
+        ],
+        [
+          50,
+          230
+        ],
+        [
+          60,
+          190
+        ],
+        [
+          72,
+          140
+        ],
+        [
+          80,
+          110
+        ],
+        [
+          90,
+          45
+        ],
+        [
+          100,
+          12
+        ]
+      ]
+    },
+    "egmp-210kw": {
+      "peakKw": 210,
+      "points": [
+        [
+          10,
+          208
+        ],
+        [
+          55,
+          200
+        ],
+        [
+          70,
+          140
+        ],
+        [
+          80,
+          100
+        ],
+        [
+          90,
+          40
+        ],
+        [
+          100,
+          11
+        ]
+      ]
+    },
+    "tesla-170kw": {
+      "peakKw": 170,
+      "points": [
+        [
+          10,
+          170
+        ],
+        [
+          30,
+          150
+        ],
+        [
+          50,
+          110
+        ],
+        [
+          70,
+          70
+        ],
+        [
+          80,
+          50
+        ],
+        [
+          90,
+          22
+        ],
+        [
+          100,
+          8
+        ]
+      ]
+    },
+    "tesla-250kw": {
+      "peakKw": 250,
+      "points": [
+        [
+          10,
+          250
+        ],
+        [
+          25,
+          240
+        ],
+        [
+          40,
+          170
+        ],
+        [
+          55,
+          120
+        ],
+        [
+          70,
+          80
+        ],
+        [
+          80,
+          55
+        ],
+        [
+          90,
+          25
+        ],
+        [
+          100,
+          9
+        ]
+      ]
+    },
+    "rivian-220kw": {
+      "peakKw": 220,
+      "points": [
+        [
+          10,
+          220
+        ],
+        [
+          40,
+          200
+        ],
+        [
+          60,
+          150
+        ],
+        [
+          75,
+          90
+        ],
+        [
+          80,
+          65
+        ],
+        [
+          90,
+          28
+        ],
+        [
+          100,
+          10
+        ]
+      ]
+    },
+    "chademo-50kw": {
+      "peakKw": 50,
+      "points": [
+        [
+          10,
+          48
+        ],
+        [
+          60,
+          45
+        ],
+        [
+          80,
+          22
+        ],
+        [
+          90,
+          12
+        ],
+        [
+          100,
+          5
+        ]
+      ]
+    },
+    "ac-only": {
+      "peakKw": 0,
+      "points": [
+        [
+          0,
+          3.3
+        ],
+        [
+          100,
+          3.3
+        ]
+      ]
+    },
+    "scooter-ac": {
+      "peakKw": 1,
+      "points": [
+        [
+          0,
+          0.9
+        ],
+        [
+          80,
+          0.9
+        ],
+        [
+          100,
+          0.3
+        ]
+      ]
+    },
+    "ather-dc6kw": {
+      "peakKw": 6,
+      "points": [
+        [
+          10,
+          6
+        ],
+        [
+          70,
+          5.5
+        ],
+        [
+          80,
+          4
+        ],
+        [
+          90,
+          2
+        ],
+        [
+          100,
+          1
+        ]
+      ]
+    },
+    "swap-only": {
+      "peakKw": 0,
+      "points": []
+    }
+  }
+}

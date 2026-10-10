@@ -1,0 +1,10 @@
+{
+ "state": "MH",
+ "updated": "2026-10-10T10:58:11.074Z",
+ "stations": 12,
+ "jsonKB": 5,
+ "tileCount": 4389,
+ "tileMB": 192.9,
+ "totalMBest": 192.9,
+ "verdict": "EXCEEDS 15MB — shrink bbox or drop zoom (do NOT promise 15MB)"
+}

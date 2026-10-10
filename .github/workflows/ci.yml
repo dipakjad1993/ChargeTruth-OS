@@ -1,0 +1,18 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm test
+      - run: node scripts/enterprise-check.js
+      - run: node scripts/cwv-budget.js
+      - run: node scripts/dedupe-pipeline.js --inputs data/stations.sample.geojson --out packs/merged.json
+      - run: node scripts/slice-sample.js
+      - run: node scripts/build-offline-pack.js --state MH --inputs packs/mh-src.json --out packs/mh.json
+      - run: node scripts/build-offline-pack.js --state MI --inputs packs/mi-src.json --out packs/mi.json
+      - run: node scripts/prerender-seo.js
+      - run: node --check src/js/reliability.js && node --check src/js/powermatch.js && node --check src/js/pluglogic.js && node --check src/js/trip-planner.js && node --check src/js/data-loader.js && node --check src/js/app.js

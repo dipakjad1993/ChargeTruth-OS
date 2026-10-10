@@ -1,0 +1,29 @@
+name: ingest-quarterly
+# Quarterly OCM + OSM refresh → dedupe → packs → prerender.
+# Manual dispatch anytime; scheduled Jan/Apr/Jul/Oct 5th 02:00 UTC (Paren/JDP quarter rhythm).
+# Requires repo secret OCM_KEY for high-QPS dump pulls (low-QPS works keyless).
+on:
+  schedule:
+    - cron: '0 2 5 1,4,7,10 *'
+  workflow_dispatch:
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node scripts/ingest-ocm.js --country IN --out data/stations.ocm-IN.json
+        env: { OCM_KEY: ${{ secrets.OCM_KEY }} }
+      - run: node scripts/ingest-ocm.js --country US --out data/stations.ocm-US.json
+        env: { OCM_KEY: ${{ secrets.OCM_KEY }} }
+      - run: node scripts/dedupe-pipeline.js --inputs data/stations.sample.geojson,data/stations.ocm-IN.json,data/stations.ocm-US.json --out packs/merged.json
+      - run: node scripts/slice-sample.js
+      - run: node scripts/build-offline-pack.js --state MH --inputs packs/mh-src.json --out packs/mh.json
+      - run: node scripts/build-offline-pack.js --state MI --inputs packs/mi-src.json --out packs/mi.json
+      - run: node scripts/prerender-seo.js
+      - run: node scripts/enterprise-check.js
+      - run: node scripts/cwv-budget.js
+      - run: npm test
+      - run: node scripts/indexnow-submit.js
+        env: { SITE_URL: ${{ vars.SITE_URL }}, INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }} }

@@ -1,0 +1,21 @@
+{
+  "_meta": {"version":"2.1.0","updated":"2026-10-10","nextRefresh":"2027-01-10","note":"CPO priors feed reliability.js. assure98 = ChargePoint Assure-style SLA (98% uptime guarantee program). JDP-2026 priors (IONNA/Mercedes/Rivian) normalized from JDP EVX 2026 scores 807/797/755 vs segment 666. Adjust quarterly from Paren/OCM."},
+  "cpos": [
+    {"id":"ionna","name":"IONNA","markets":["US"],"priorUptime":0.97,"stallsTypical":10,"notes":"JDP 2026 #1 (807/1000, first year eligible). OEM-backed, Alpitronic HYC400, destination sites. Highest non-Tesla prior. Re-verify 2027."},
+    {"id":"mercedes-hpc","name":"Mercedes-Benz Charging Network","markets":["US","EU"],"priorUptime":0.96,"stallsTypical":8,"notes":"JDP 2026 #2 (797/1000). Same HYC400 hardware family as IONNA. Premium location + payment ease."},
+    {"id":"rivian-ran","name":"Rivian Adventure Network","markets":["US"],"priorUptime":0.93,"stallsTypical":6,"notes":"JDP 2026 #3 (755/1000) vs segment 666. Adventure routing, lower stall counts — redundancy penalty still applies."},
+    {"id":"chargepoint-assure","name":"ChargePoint + Assure SLA","markets":["US","EU"],"priorUptime":0.98,"stallsTypical":8,"notes":"Assure = proactive monitoring + 4-hr response. Prior 0.98 only when site tagged assure=true AND stalls>=6. Else 0.82."},
+    {"id":"tesla-sc","name":"Tesla Supercharger","markets":["US","EU","IN-pilot"],"priorUptime":0.97,"stallsTypical":12,"notes":"Highest measured uptime globally (Tesla + Paren). NACS native; Magic Dock subset serves CCS1."},
+    {"id":"electrify-america","name":"Electrify America","markets":["US"],"priorUptime":0.78,"stallsTypical":6,"notes":"Historically lowest US uptime (derate + dispenser faults). 350kW hype, frequent 1-2 stalls down. Score penalizes."},
+    {"id":"evgo","name":"EVgo","markets":["US"],"priorUptime":0.85,"stallsTypical":4,"notes":"Urban 100-350kW; autocharge+ reliability mid."},
+    {"id":"tata-power","name":"Tata Power EZ Charge","markets":["IN"],"priorUptime":0.8,"stallsTypical":2,"notes":"Largest IN footprint; 2-stall sites = single-fault fragility. Score penalizes low stall count."},
+    {"id":"zeon","name":"Zeon Charging","markets":["IN-South/West"],"priorUptime":0.86,"stallsTypical":4,"notes":"Highway 60-120kW, better maintained South corridor."},
+    {"id":"statiq","name":"Statiq","markets":["IN-North/West"],"priorUptime":0.78,"stallsTypical":2,"notes":"Rapid rollout; maintenance lag in Tier-2."},
+    {"id":"jio-bp","name":"Jio-bp pulse","markets":["IN"],"priorUptime":0.84,"stallsTypical":4,"notes":"Fuel-station co-location = power + security + washrooms."},
+    {"id":"bpcl","name":"BPCL eDrive","markets":["IN-Highways"],"priorUptime":0.75,"stallsTypical":1,"notes":"Single 25-60kW highway posts; critical but fragile. Always plan B within 40km."},
+    {"id":"ather-grid","name":"Ather Grid","markets":["IN"],"priorUptime":0.88,"stallsTypical":2,"notes":"2W 6kW DC + Type 6 AC. High uptime, low power — correct for scooters, red-card for cars."},
+    {"id":"ola-hyper","name":"Ola Hypercharger","markets":["IN"],"priorUptime":0.7,"stallsTypical":6,"notes":"Fast rollout, uneven commissioning. Verify live before routing Ola 2W long trips."},
+    {"id":"nio-power-cpo","name":"NIO Power (CPO view)","markets":["CN","EU"],"priorUptime":0.96,"stallsTypical":8,"notes":"Robot swap + supervised charge bays."},
+    {"id":"generic-1stall","name":"Generic single-stall","markets":["ALL"],"priorUptime":0.68,"stallsTypical":1,"notes":"Prior for unknown 1-stall sites. Score formula heavily penalizes: one fault = 100% outage."}
+  ]
+}

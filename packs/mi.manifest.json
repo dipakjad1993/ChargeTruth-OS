@@ -1,0 +1,10 @@
+{
+ "state": "MI",
+ "updated": "2026-10-10T10:58:11.195Z",
+ "stations": 5,
+ "jsonKB": 2.8,
+ "tileCount": 289,
+ "tileMB": 12.7,
+ "totalMBest": 12.7,
+ "verdict": "WITHIN 15MB target"
+}

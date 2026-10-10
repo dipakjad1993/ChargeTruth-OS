@@ -1,0 +1,11 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reliability badge — ChargeTruth OS</title><link rel="stylesheet" href="./src/css/styles.css"></head><body><div id="badge" style="padding:16px"></div><script type="module">
+import { scoreStation } from './src/js/reliability.js';
+import { badgeHTML } from './src/js/enterprise.js';
+import { loadJSON } from './src/js/data-loader.js';
+const id = new URLSearchParams(location.search).get('station') || 'express-khandala-bpcl-25';
+const geo = await loadJSON('./data/stations.sample.geojson');
+const cpo = Object.fromEntries((await loadJSON('./data/cpo.json')).cpos.map((c) => [c.id, c]));
+const f = geo.features.find((x) => x.properties.id === id) || geo.features[0];
+const r = scoreStation(f, (cpo[f.properties.cpo]?.priorUptime) ?? 0.72);
+document.getElementById('badge').innerHTML = badgeHTML({ station: { ...f.properties }, result: r });
+</script></body></html>
