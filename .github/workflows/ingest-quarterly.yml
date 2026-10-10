@@ -14,9 +14,11 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: node scripts/ingest-ocm.js --country IN --out data/stations.ocm-IN.json
-        env: { OCM_KEY: ${{ secrets.OCM_KEY }} }
+        env:
+          OCM_KEY: ${{ secrets.OCM_KEY }}
       - run: node scripts/ingest-ocm.js --country US --out data/stations.ocm-US.json
-        env: { OCM_KEY: ${{ secrets.OCM_KEY }} }
+        env:
+          OCM_KEY: ${{ secrets.OCM_KEY }}
       - run: node scripts/dedupe-pipeline.js --inputs data/stations.sample.geojson,data/stations.ocm-IN.json,data/stations.ocm-US.json --out packs/merged.json
       - run: node scripts/slice-sample.js
       - run: node scripts/build-offline-pack.js --state MH --inputs packs/mh-src.json --out packs/mh.json
@@ -26,4 +28,6 @@ jobs:
       - run: node scripts/cwv-budget.js
       - run: npm test
       - run: node scripts/indexnow-submit.js
-        env: { SITE_URL: ${{ vars.SITE_URL }}, INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }} }
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
