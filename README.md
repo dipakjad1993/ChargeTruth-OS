@@ -64,6 +64,7 @@ manifest.webmanifest / sw.js → offline install + tile/station caching
 src/css/styles.css          → full design system
 src/js/
   data-loader.js            → loads data/*.json, OCM live w/ fallback
+  media.js                  → OEM links + Commons photos + free map-link schemes (new v2.2)
   gazetteer.js              → local OSM city search (no autocomplete API)
   reliability.js            → 0–100 Uptime Blender (the money feature)
   powermatch.js             → real session time via charging curves
@@ -75,7 +76,8 @@ src/js/
   offline-pack.js           → 15 MB state pack builder/reader
   app.js                    → wires all tabs + renders outputs
 data/
-  vehicles.json             → 80+ vehicles: max kW, plug, curve, swap compat
+  vehicles.json             → 154 vehicles (IN/US/EU/CN/SEA): max kW, plug, curve, swap compat, official OEM page link (143/154 HEAD-verified Oct 2026, rest flagged), Commons photo lookup
+  v2h-batteries.json        → 8 buyable home batteries (Powerwall 3, FranklinWH, EcoFlow, BLUETTI, Anker, Enphase, LG, Generac) with official buy/info URLs
   plugs.json                → connector bible + adapter warnings
   swap-networks.json        → swap networks + pricing + rush heuristics
   cpo.json                  → CPO reliability priors (incl. ChargePoint Assure 98%)
@@ -99,10 +101,12 @@ docs/
 
 ## Core outputs (what the user sees)
 
-1. **Route with 2 optimal stops (not 6)** — each with Score, kW you'll ACTUALLY get, mins to add, queue risk, price/kWh.
-2. **Red card:** "Avoid this station — 34% fail rate last 30d."
-3. **Swap plan for 2W:** "Swap at Station #4 and #9, 4 mins total, Rs 156."
-4. **Offline pack download:** 15 MB for the entire state.
+1. **Route with 2 optimal stops (not 6)** — each with Score, kW you'll ACTUALLY get, mins to add, queue risk, price/kWh, **plus exact GPS coords + Google Maps / OSM / street-photo links** so you reach the real stall, not a same-name station across town.
+2. **Vehicle picker with 154 worldwide models** (grouped by market) — selecting one shows a real photo (Wikimedia Commons, credited) + the **official OEM model page link**. No hotlinked OEM images (they bot-block and rot); no invented URLs (143/154 HEAD-verified, rest flagged `unverified`).
+3. **V2H tab with buyable batteries** — 8 home batteries (Powerwall 3, FranklinWH aPower 2, EcoFlow DELTA Pro Ultra, BLUETTI EP900, Anker Solix F3800, Enphase 5P, LG Home 8, Generac PWRcell 2) with specs, indicative pricing, and official buy/info URLs. No affiliates.
+4. **Red card:** "Avoid this station — 34% fail rate last 30d."
+5. **Swap plan for 2W:** "Swap at Station #4 and #9, 4 mins total, Rs 156."
+6. **Offline pack download:** 15 MB for the entire state.
 
 ## Business impact (modeled, not promised)
 
@@ -112,7 +116,7 @@ docs/
 
 ## No Google Tax
 
-Local OSM gazetteer (no Places Autocomplete), Valhalla + OSM .pbf routing abstraction (no Directions/Distance Matrix billing), OSM tiles cached in PWA (no Maps JS bill), crowd via free Supabase / Cloudflare D1. See `docs/NO-GOOGLE-TAX.md` for the $15k-before-10k-users math.
+Local OSM gazetteer (no Places Autocomplete), Valhalla + OSM .pbf routing abstraction (no Directions/Distance Matrix billing), OSM tiles cached in PWA (no Maps JS bill), crowd via free Supabase / Cloudflare D1. **Station "Google Maps ↗" links are free `maps/search` URL schemes, not billable Maps Platform API calls** — the $0-marginal claim stands. See `docs/NO-GOOGLE-TAX.md` for the $15k-before-10k-users math.
 
 ## Safety note
 

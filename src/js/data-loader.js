@@ -11,11 +11,11 @@ export async function loadJSON(path) {
   return r.json();
 }
 export async function loadAll() {
-  const [vehicles, plugs, swaps, cpo, cities, stations, research] = await Promise.all([
+  const [vehicles, plugs, swaps, cpo, cities, stations, research, v2h] = await Promise.all([
     loadJSON('./data/vehicles.json'), loadJSON('./data/plugs.json'),
     loadJSON('./data/swap-networks.json'), loadJSON('./data/cpo.json'),
     loadJSON('./data/cities.json'), loadJSON('./data/stations.sample.geojson'),
-    loadJSON('./data/research.json')
+    loadJSON('./data/research.json'), loadJSON('./data/v2h-batteries.json').catch(() => ({ batteries: [] }))
   ]);
   // Merge enterprise packs if present — deduped by station id (sample + merged overlap)
   try {
@@ -27,7 +27,7 @@ export async function loadAll() {
       }
     }
   } catch {}
-  return { vehicles, plugs, swaps, cpo, cities, stations, research };
+  return { vehicles, plugs, swaps, cpo, cities, stations, research, v2h };
 }
 export function flattenStations(geojson) {
   return (geojson.features || []).map((f) => ({ ...f.properties, lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0] }));

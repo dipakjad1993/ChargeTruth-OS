@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "updated": "2026-10-10",
+    "note": "Buyable home batteries for the V2H/V2G safe-stop tab. Specs + prices are INDICATIVE (Oct 2026) — always verify on the linked official page before buying. No affiliate links; all URLs are official OEM/product pages (HEAD-checked).",
+    "fields": ["id", "name", "brand", "capacityKwh", "powerKw", "chemistry", "priceNote", "url", "buyUrl", "notes"]
+  },
+  "batteries": [
+    {
+      "id": "tesla-powerwall-3",
+      "name": "Tesla Powerwall 3",
+      "brand": "Tesla",
+      "capacityKwh": 13.5,
+      "powerKw": 11.5,
+      "chemistry": "LFP",
+      "priceNote": "Indicative ≈ US$9k–15k installed — verify on Tesla page",
+      "url": "https://www.tesla.com/powerwall",
+      "buyUrl": "https://www.tesla.com/powerwall",
+      "notes": "The V2H reference point: whole-home backup with integrated solar inverter. Pairs with any EV + rooftop solar."
+    },
+    {
+      "id": "franklinwh-apower-2",
+      "name": "FranklinWH aPower 2",
+      "brand": "FranklinWH",
+      "capacityKwh": 15,
+      "powerKw": 10,
+      "chemistry": "LFP",
+      "priceNote": "Indicative ≈ US$10k–16k installed — verify on FranklinWH page",
+      "url": "https://www.franklinwh.com/apower-2",
+      "buyUrl": "https://www.franklinwh.com/",
+      "notes": "15 kWh modular home battery with smart aGate energy management. Buy via certified installer (dealer locator on site)."
+    },
+    {
+      "id": "ecoflow-delta-pro-ultra",
+      "name": "EcoFlow DELTA Pro Ultra",
+      "brand": "EcoFlow",
+      "capacityKwh": 6,
+      "powerKw": 7.2,
+      "chemistry": "LFP",
+      "priceNote": "Indicative ≈ US$5k base (stackable to 90 kWh) — verify on EcoFlow page",
+      "url": "https://www.ecoflow.com/us/delta-pro-ultra",
+      "buyUrl": "https://www.ecoflow.com/us/delta-pro-ultra",
+      "notes": "Stackable 6 kWh base (to 90 kWh). Buy direct from EcoFlow store. Good V2H companion for apartments/row houses."
+    },
+    {
+      "id": "bluetti-ep900",
+      "name": "BLUETTI EP900 + B500",
+      "brand": "BLUETTI",
+      "capacityKwh": 9.9,
+      "powerKw": 9,
+      "chemistry": "LFP",
+      "priceNote": "Indicative ≈ US$8k+ (2-cube starter) — verify on BLUETTI page",
+      "url": "https://www.bluettipower.com/products/ep900-home-battery-backup",
+      "buyUrl": "https://www.bluettipower.com/products/ep900-home-battery-backup",
+      "notes": "Modular 9 kW backup (9.9–39.6 kWh with B500 cubes). Buy direct. Works with existing solar or grid-tied."
+    },
+    {
+      "id": "anker-solix-f3800",
+      "name": "Anker Solix F3800",
+      "brand": "Anker Solix",
+      "capacityKwh": 3.84,
+      "powerKw": 6,
+      "chemistry": "LFP",
+      "priceNote": "Indicative ≈ US$3.5k (stackable) — verify on Anker page",
+      "url": "https://www.ankersolix.com/",
+      "buyUrl": "https://www.ankersolix.com/",
+      "notes": "Portable 6 kW / 3.84 kWh power station, stackable with expansion batteries. Carry-it-to-the-car V2L alternative."
+    },
+    {
+      "id": "enphase-5p",
+      "name": "Enphase IQ Battery 5P",
+      "brand": "Enphase",
+      "capacityKwh": 5,
+      "powerKw": 3.84,
+      "chemistry": "LFP",
+      "priceNote": "Quote via installer — verify on Enphase page",
+      "url": "https://enphase.com/en-us/products-and-services/storage",
+      "buyUrl": "https://enphase.com/en-us/products-and-services/storage",
+      "notes": "5 kWh microinverter battery, 15-yr warranty class. Installer channel — find one on the Enphase site."
+    },
+    {
+      "id": "lg-ess-home-8",
+      "name": "LG ESS Home 8",
+      "brand": "LG",
+      "capacityKwh": 14.4,
+      "powerKw": 7.6,
+      "chemistry": "LFP",
+      "priceNote": "Quote via installer — verify on LG ESS page",
+      "url": "https://www.lgessbattery.com/",
+      "buyUrl": "https://www.lgessbattery.com/",
+      "notes": "14.4 kWh-class home battery for whole-home backup. Installer channel."
+    },
+    {
+      "id": "generac-pwrcell-2",
+      "name": "Generac PWRcell 2",
+      "brand": "Generac",
+      "capacityKwh": 18,
+      "powerKw": 9,
+      "chemistry": "LFP",
+      "priceNote": "Quote via dealer — verify on Generac page",
+      "url": "https://www.generac.com/products/clean-energy/pwrcell-2",
+      "buyUrl": "https://www.generac.com/products/clean-energy/pwrcell-2",
+      "notes": "Up to 18 kWh modular storage with 9 kW-class output. Dealer network purchase."
+    }
+  ]
+}

@@ -10,6 +10,7 @@ import { v2hPlan } from './v2h.js';
 import { submitReport, pendingCount, syncReports } from './reports.js';
 import { buildPack, downloadPack } from './offline-pack.js';
 import { siteUrl, isPlaceholderDomain, initAnalytics } from './site-config.js';
+import { mapsLinks, stopLocationHTML, oemLinkHTML, paintVehiclePhoto } from './media.js';
 import { pilotStats, pilotGate } from './pilot.js';
 import { redCardEvalStats } from './enterprise.js';
 
@@ -58,8 +59,11 @@ async function boot() {
     s._failRate = r.failRate30d; s._queue = r.queue; s._prov = r.provenance;
     s._penalties = r.penalties; s._advice = r.advice;
   }
-  // vehicle selects
-  const opts = DB.vehicles.vehicles.map((v) => `<option value="${v.id}">${v.name} · ${v.maxKwDc}kW DC · ${v.plugDc || v.swap || v.plugAc}</option>`).join('');
+  // vehicle selects (grouped by market so 150+ models stay navigable)
+  const groups = {};
+  for (const v of DB.vehicles.vehicles) { (groups[v.market || 'GLOBAL'] ||= []).push(v); }
+  const opt = (v) => `<option value="${v.id}">${v.name} · ${v.maxKwDc}kW DC · ${v.plugDc || v.swap || v.plugAc}</option>`;
+  const opts = Object.keys(groups).sort().map((m) => `<optgroup label="${m} — ${groups[m].length} models">${groups[m].map(opt).join('')}</optgroup>`).join('');
   $('vSelect').innerHTML = opts;
   $('swapVSelect').innerHTML = DB.vehicles.vehicles.filter((v) => v.class !== '4W').map((v) => `<option value="${v.id}">${v.name} · ${v.swap || v.plugAc || ''}</option>`).join('');
   $('plugFilter').innerHTML = `<option value="">All compatible with my vehicle</option>` +
@@ -163,7 +167,11 @@ function bindSearch() {
 function renderVehicleCard() {
   const v = SEL.vehicle;
   const pm = powerMatchSummary({ vehicle: v, stationKw: 120, soc: 20 });
-  $('vCard').innerHTML = `<b>${v.name}</b> · ${v.batteryKwh}kWh (${v.usableKwh} usable) · <b>${v.maxKwAc}kW AC / ${v.maxKwDc}kW DC</b> · plugs ${v.plugAc || '—'}/${v.plugDc || '—'}${v.swap ? ` · swap <b>${v.swap}</b>` : ''}${v.v2x ? ' · <span class="tag">V2H ✓</span>' : ''}<br><span class="muted">${v.notes || ''}</span><br><span class="muted">Example: on a 120kW stall you get <b>${pm.youGetKw}kW</b>. ${pm.message}</span>`;
+  $('vCard').innerHTML = `<b>${v.name}</b> · ${v.batteryKwh}kWh (${v.usableKwh} usable) · <b>${v.maxKwAc}kW AC / ${v.maxKwDc}kW DC</b> · plugs ${v.plugAc || '—'}/${v.plugDc || '—'}${v.swap ? ` · swap <b>${v.swap}</b>` : ''}${v.v2x ? ' · <span class="tag">V2H ✓</span>' : ''}<br>`
+    + `<img class="vphoto" id="vPhoto" alt="" hidden><div class="photocap" id="vPhotoCap"></div>`
+    + `<div>${oemLinkHTML(v)}</div>`
+    + `<span class="muted">${v.notes || ''}</span><br><span class="muted">Example: on a 120kW stall you get <b>${pm.youGetKw}kW</b>. ${pm.message}</span>`;
+  paintVehiclePhoto($('vPhoto'), $('vPhotoCap'), v);
 }
 
 async function doPlan() {
@@ -213,11 +221,16 @@ async function doPlan() {
       <table><tr><th>kW you'll get</th><th>Mins to add</th><th>Energy</th><th>Queue</th><th>Price</th></tr>
       <tr><td><b>${kw} kW</b> (of ${s.stationKw})</td><td>${mins}${typeof mins === 'number' ? ' min' : ''}</td><td>${s.kwhToAdd} kWh</td><td>${s._queue.level} — ${s._queue.label}</td><td>${priceBoth(s)}</td></tr></table>
       <div class="muted">Plug: ${fit.label} · Provenance: ${s._prov} · ${s._advice}${s._penalties?.length ? ' · Penalties: ' + s._penalties.join('; ') : ''}</div>
+      ${stopLocationHTML(s)}
     </div>`;
   }
   // Red-carded corridor alternatives (stations to avoid explicitly)
   const avoided = ST.filter((s) => s._red && !s.swap).slice(0, 3);
-  if (avoided.length) html += `<h3>Explicitly avoided on this corridor</h3>` + avoided.map((s) => `<div class="redcard">⛔ ${s.name} — ${((s._failRate || 0) * 100).toFixed(0)}% fail (${s._penalties?.[0] || 'low score'})</div>`).join('');
+  if (avoided.length) html += `<h3>Explicitly avoided on this corridor</h3>` + avoided.map((s) => {
+    const m = (s.lat != null && s.lon != null) ? mapsLinks(s.lat, s.lon) : null;
+    const loc = m ? ` · 📍 ${m.coords} <a href="${m.gmaps}" target="_blank" rel="noopener">Maps ↗</a>` : '';
+    return `<div class="redcard">⛔ ${s.name} — ${((s._failRate || 0) * 100).toFixed(0)}% fail (${s._penalties?.[0] || 'low score'})${loc}</div>`;
+  }).join('');
   $('planOut').innerHTML = html;
   renderV2H();
 }
@@ -245,6 +258,7 @@ function renderStations() {
       <div class="chips">${(s.plugs || []).map((p) => `<span class="tag">${p}</span>`).join('')}<span class="tag">${top}kW max</span><span class="tag">${priceBoth(s)}</span>${v ? `<span class="tag">you get ${kw}kW</span>` : ''}${payTags}</div>
       ${s._red ? `<div class="redcard">⛔ Avoid — ${((s._failRate || 0) * 100).toFixed(0)}% fail last 30d</div>` : ''}
       <div class="prov"><span class="material-symbols-rounded" aria-hidden="true">verified</span><span>Queue ${s._queue.level} · ${s._prov} · ${s._advice}</span></div>
+      ${stopLocationHTML(s)}
     </div>`;
   }).join('') || '<p class="muted">No compatible stations — check plug filter (hard-stop logic working as intended).</p>';
 }
@@ -274,7 +288,7 @@ function renderGarage(q) {
   q = (q || '').toLowerCase();
   const list = DB.vehicles.vehicles.filter((v) => !q || (v.name + v.id + (v.plugDc || '') + (v.swap || '')).toLowerCase().includes(q));
   $('vTable').innerHTML = `<div class="vrow muted"><b>Model</b><span>DC peak</span><span>Plug / Swap</span><span>Battery</span></div>` +
-    list.map((v) => `<div class="vrow"><b>${v.name}</b><span>${v.maxKwDc}kW</span><span>${v.plugDc || v.swap || v.plugAc}</span><span>${v.batteryKwh}kWh</span></div>`).join('');
+    list.map((v) => `<div class="vrow"><b>${v.oemUrl ? `<a href="${v.oemUrl}" target="_blank" rel="noopener">${v.name} ↗</a>` : v.name}</b><span>${v.maxKwDc}kW</span><span>${v.plugDc || v.swap || v.plugAc}</span><span>${v.batteryKwh}kWh</span></div>`).join('');
 }
 
 function renderResearch() {
@@ -290,7 +304,16 @@ function renderV2H() {
   const v = SEL.vehicle;
   if (!v) return;
   const r = v2hPlan({ vehicle: v });
-  $('v2hOut').innerHTML = r.eligible ? `<p>${r.plan}</p><p class="muted">${r.warnings.join(' · ')}</p>` : `<p class="muted">${r.reason}</p>`;
+  let html = r.eligible ? `<p>${r.plan}</p><p class="muted">${r.warnings.join(' · ')}</p>` : `<p class="muted">${r.reason}</p>`;
+  const batts = DB.v2h?.batteries || [];
+  if (batts.length) {
+    html += `<h3>Buyable home batteries (work with any EV)</h3><p class="muted">Prices indicative Oct 2026 — verify on the official page before buying. No affiliate links; photos on OEM pages.</p>` +
+      batts.map((b) => `<div class="st"><div class="st-head"><span class="st-name">${b.name}</span><span class="tag">${b.capacityKwh}kWh · ${b.powerKw}kW · ${b.chemistry}</span></div>`
+        + `<div>${b.notes}</div><div class="muted">${b.priceNote}</div>`
+        + `<div><a href="${b.buyUrl}" target="_blank" rel="noopener">Buy / official page ↗</a>`
+        + (b.buyUrl !== b.url ? ` · <a href="${b.url}" target="_blank" rel="noopener">product info ↗</a>` : '') + `</div></div>`).join('');
+  }
+  $('v2hOut').innerHTML = html;
 }
 
 function updateNet() {

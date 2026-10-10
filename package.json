@@ -1,7 +1,7 @@
 {
   "name": "chargetruth-os",
-  "version": "2.1.0",
-  "description": "ChargeTruth OS v2.1 — Charger Reliability + Swap Interop Navigator. Hybrid OCPI/NREL live + offline packs. No Google Tax.",
+  "version": "2.2.0",
+  "description": "ChargeTruth OS v2.2 — Charger Reliability + Swap Interop Navigator. 154 vehicles with OEM links, V2H battery catalog, exact-station map links. Hybrid OCPI/NREL live + offline packs. No Google Tax.",
   "type": "module",
   "scripts": {
     "dev": "npx serve -l 5173 .",

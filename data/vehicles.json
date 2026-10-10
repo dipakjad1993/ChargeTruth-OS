@@ -1,13 +1,13 @@
 {
   "_meta": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "updated": "2026-10-10",
-    "count": 83,
+    "count": 154,
     "sources": [
       "OEM spec sheets",
       "EV-database style aggregation",
       "CPO plug lists",
-      "user correction: max kW is DC peak; sustained differs \u2014 see chargeCurve"
+      "user correction: max kW is DC peak; sustained differs — see chargeCurve"
     ],
     "disclaimer": "Specs change by model year / variant / software lock. Verify against VIN plate before tow-critical trips. maxKwDc = PEAK; sustainedKw() in powermatch.js derates by SoC curve.",
     "fields": [
@@ -25,7 +25,10 @@
       "effKwhPer100km",
       "curveId",
       "v2x",
-      "notes"
+      "notes",
+      "oemUrl",
+      "oemVerified",
+      "imageQuery"
     ]
   },
   "vehicles": [
@@ -44,7 +47,10 @@
       "effKwhPer100km": 15.5,
       "curveId": "tata-60kw",
       "v2x": false,
-      "notes": "Real DC peak ~55-60kW, 10-80% ~56 min. 350kW stall gives you 60kW max \u2014 power-match filter hides hype."
+      "notes": "Real DC peak ~55-60kW, 10-80% ~56 min. 350kW stall gives you 60kW max — power-match filter hides hype.",
+      "oemUrl": "https://ev.tatamotors.com/nexon/ev.html",
+      "oemVerified": true,
+      "imageQuery": "Tata Nexon.ev 45"
     },
     {
       "id": "tata-nexon-ev-40",
@@ -61,7 +67,10 @@
       "effKwhPer100km": 15.2,
       "curveId": "tata-50kw",
       "v2x": false,
-      "notes": "Older pack caps ~50kW."
+      "notes": "Older pack caps ~50kW.",
+      "oemUrl": "https://ev.tatamotors.com/nexon/ev.html",
+      "oemVerified": true,
+      "imageQuery": "Tata Nexon.ev 40.5"
     },
     {
       "id": "tata-tiago-ev",
@@ -78,7 +87,10 @@
       "effKwhPer100km": 12.5,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "Classic power-match case: 25kW max. 350kW stall = 25kW sadness. Plan 10-80% ~58 min."
+      "notes": "Classic power-match case: 25kW max. 350kW stall = 25kW sadness. Plan 10-80% ~58 min.",
+      "oemUrl": "https://ev.tatamotors.com/tiago/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Tiago.ev LR"
     },
     {
       "id": "tata-tigor-ev",
@@ -95,7 +107,10 @@
       "effKwhPer100km": 12.8,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "Fleet favourite; same 25kW ceiling."
+      "notes": "Fleet favourite; same 25kW ceiling.",
+      "oemUrl": "https://ev.tatamotors.com/tigor/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Tigor.ev"
     },
     {
       "id": "tata-punch-ev-35",
@@ -112,7 +127,10 @@
       "effKwhPer100km": 13.8,
       "curveId": "tata-50kw",
       "v2x": false,
-      "notes": "10-80% ~56 min at 50kW."
+      "notes": "10-80% ~56 min at 50kW.",
+      "oemUrl": "https://ev.tatamotors.com/punch/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Punch.ev 35"
     },
     {
       "id": "tata-punch-ev-25",
@@ -129,7 +147,10 @@
       "effKwhPer100km": 13.2,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "Base AC 3.3kW \u2014 home overnight only."
+      "notes": "Base AC 3.3kW — home overnight only.",
+      "oemUrl": "https://ev.tatamotors.com/punch/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Punch.ev 25"
     },
     {
       "id": "tata-curvv-ev-55",
@@ -146,7 +167,10 @@
       "effKwhPer100km": 15.8,
       "curveId": "tata-70kw",
       "v2x": false,
-      "notes": "1.2C peak; 10-80% ~45 min on 120kW+ stall."
+      "notes": "1.2C peak; 10-80% ~45 min on 120kW+ stall.",
+      "oemUrl": "https://ev.tatamotors.com/curvv/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Curvv.ev 55"
     },
     {
       "id": "tata-curvv-ev-45",
@@ -163,7 +187,10 @@
       "effKwhPer100km": 15.5,
       "curveId": "tata-60kw",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://ev.tatamotors.com/curvv/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Curvv.ev 45"
     },
     {
       "id": "tata-harrier-ev-75",
@@ -180,7 +207,10 @@
       "effKwhPer100km": 18.5,
       "curveId": "120kw-flat",
       "v2x": true,
-      "notes": "V2L/V2V capable. 120kW peak, 10-80% ~40 min."
+      "notes": "V2L/V2V capable. 120kW peak, 10-80% ~40 min.",
+      "oemUrl": "https://ev.tatamotors.com/harrier/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Harrier.ev 75 AWD"
     },
     {
       "id": "tata-harrier-ev-65",
@@ -194,10 +224,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 18.0,
+      "effKwhPer100km": 18,
       "curveId": "100kw-flat",
       "v2x": true,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://ev.tatamotors.com/harrier/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Harrier.ev 65"
     },
     {
       "id": "mahindra-be6-79",
@@ -214,7 +247,10 @@
       "effKwhPer100km": 17.5,
       "curveId": "175kw-inglo",
       "v2x": false,
-      "notes": "INGLO platform, 175kW peak, 20-80% ~20 min on 200kW+ stall."
+      "notes": "INGLO platform, 175kW peak, 20-80% ~20 min on 200kW+ stall.",
+      "oemUrl": "https://www.mahindraelectricsuv.com/esuv/be-6/MBE6.html",
+      "oemVerified": true,
+      "imageQuery": "Mahindra BE.6 79 Pack One Above"
     },
     {
       "id": "mahindra-be6-59",
@@ -228,10 +264,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 17.0,
+      "effKwhPer100km": 17,
       "curveId": "140kw-flat",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.mahindraelectricsuv.com/esuv/be-6/MBE6.html",
+      "oemVerified": true,
+      "imageQuery": "Mahindra BE.6 59"
     },
     {
       "id": "mahindra-xev9e-79",
@@ -248,7 +287,10 @@
       "effKwhPer100km": 18.2,
       "curveId": "175kw-inglo",
       "v2x": false,
-      "notes": "SUV coupe sibling of BE.6."
+      "notes": "SUV coupe sibling of BE.6.",
+      "oemUrl": "https://www.mahindraelectricsuv.com/esuv/xev-9e/MXV9.html",
+      "oemVerified": true,
+      "imageQuery": "Mahindra XEV 9e 79"
     },
     {
       "id": "mahindra-xuv400-39",
@@ -265,7 +307,10 @@
       "effKwhPer100km": 15.8,
       "curveId": "tata-50kw",
       "v2x": false,
-      "notes": "50kW cap; needs 50kW+ stall, no benefit from 350kW."
+      "notes": "50kW cap; needs 50kW+ stall, no benefit from 350kW.",
+      "oemUrl": "https://www.mahindraelectricsuv.com/",
+      "oemVerified": true,
+      "imageQuery": "Mahindra XUV400 39.4"
     },
     {
       "id": "mahindra-xuv400-34",
@@ -282,7 +327,10 @@
       "effKwhPer100km": 15.5,
       "curveId": "tata-50kw",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.mahindraelectricsuv.com/",
+      "oemVerified": true,
+      "imageQuery": "Mahindra XUV400 34.5"
     },
     {
       "id": "mg-zs-ev-50",
@@ -299,7 +347,10 @@
       "effKwhPer100km": 16.5,
       "curveId": "75kw-flat",
       "v2x": false,
-      "notes": "75kW peak."
+      "notes": "75kW peak.",
+      "oemUrl": "https://www.mgmotor.co.in/vehicles/mgzsev-electric-car-in-india",
+      "oemVerified": true,
+      "imageQuery": "MG ZS EV 50.3 Excite Pro"
     },
     {
       "id": "mg-windsor-52",
@@ -313,10 +364,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 15.0,
+      "effKwhPer100km": 15,
       "curveId": "tata-60kw",
       "v2x": false,
-      "notes": "BaaS variant available \u2014 battery-as-service changes swap-vs-charge ROI."
+      "notes": "BaaS variant available — battery-as-service changes swap-vs-charge ROI.",
+      "oemUrl": "https://www.mgmotor.co.in/vehicles/windsor-ev-electric-car-in-india",
+      "oemVerified": true,
+      "imageQuery": "MG Windsor 52.9"
     },
     {
       "id": "mg-comet-17",
@@ -330,10 +384,13 @@
       "plugAc": "Type2",
       "plugDc": null,
       "swap": null,
-      "effKwhPer100km": 11.0,
+      "effKwhPer100km": 11,
       "curveId": "ac-only",
       "v2x": false,
-      "notes": "AC-ONLY city car. DC planner must EXCLUDE it \u2014 red-card any DC-only route. 3.3kW = full charge ~7h."
+      "notes": "AC-ONLY city car. DC planner must EXCLUDE it — red-card any DC-only route. 3.3kW = full charge ~7h.",
+      "oemUrl": "https://www.mgmotor.co.in/vehicles/mgcometev-electric-car-in-india",
+      "oemVerified": true,
+      "imageQuery": "MG Comet 17.3"
     },
     {
       "id": "mg-cyberster-77",
@@ -350,7 +407,10 @@
       "effKwhPer100km": 19.5,
       "curveId": "140kw-flat",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.mgmotor.co.in/vehicles/mgcyberster-electric-car-in-india",
+      "oemVerified": true,
+      "imageQuery": "MG Cyberster 77"
     },
     {
       "id": "byd-atto3-60",
@@ -367,7 +427,10 @@
       "effKwhPer100km": 16.8,
       "curveId": "byd-88kw",
       "v2x": true,
-      "notes": "Blade LFP, V2L. 88kW peak, flat to 60%."
+      "notes": "Blade LFP, V2L. 88kW peak, flat to 60%.",
+      "oemUrl": "https://www.byd.com/en",
+      "oemVerified": true,
+      "imageQuery": "BYD Atto 3 60.48"
     },
     {
       "id": "byd-seal-82",
@@ -384,7 +447,10 @@
       "effKwhPer100km": 17.8,
       "curveId": "150kw-flat",
       "v2x": true,
-      "notes": "800V-ish curve, 10-80% ~37 min."
+      "notes": "800V-ish curve, 10-80% ~37 min.",
+      "oemUrl": "https://www.byd.com/en",
+      "oemVerified": true,
+      "imageQuery": "BYD Seal 82.5"
     },
     {
       "id": "byd-emax7-71",
@@ -401,7 +467,10 @@
       "effKwhPer100km": 18.5,
       "curveId": "100kw-flat",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.byd.com/en",
+      "oemVerified": true,
+      "imageQuery": "BYD eMax 7 71.8"
     },
     {
       "id": "hyundai-creta-ev-51",
@@ -418,7 +487,10 @@
       "effKwhPer100km": 15.5,
       "curveId": "100kw-flat",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.hyundai.com/in/en/find-a-car/creta-electric/highlights",
+      "oemVerified": true,
+      "imageQuery": "Hyundai Creta Electric 51.4 LR"
     },
     {
       "id": "hyundai-creta-ev-42",
@@ -435,7 +507,10 @@
       "effKwhPer100km": 15.2,
       "curveId": "tata-70kw",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.hyundai.com/in/en/find-a-car/creta-electric/highlights",
+      "oemVerified": true,
+      "imageQuery": "Hyundai Creta Electric 42"
     },
     {
       "id": "hyundai-ioniq5-72",
@@ -452,7 +527,10 @@
       "effKwhPer100km": 18.5,
       "curveId": "egmp-230kw",
       "v2x": true,
-      "notes": "E-GMP 800V. One of few cars that USES 350kW stalls: 10-80% ~18 min. Needs CCS2 350A+ stall."
+      "notes": "E-GMP 800V. One of few cars that USES 350kW stalls: 10-80% ~18 min. Needs CCS2 350A+ stall.",
+      "oemUrl": "https://www.hyundai.com/in/en/find-a-car/ioniq-5/highlights",
+      "oemVerified": true,
+      "imageQuery": "Hyundai Ioniq 5 72.6"
     },
     {
       "id": "kia-ev6-77",
@@ -469,7 +547,10 @@
       "effKwhPer100km": 18.8,
       "curveId": "egmp-230kw",
       "v2x": true,
-      "notes": "Same 800V curve as Ioniq 5."
+      "notes": "Same 800V curve as Ioniq 5.",
+      "oemUrl": "https://www.kia.com/us/en/ev6",
+      "oemVerified": true,
+      "imageQuery": "Kia EV6 77.4 GT-Line"
     },
     {
       "id": "kia-ev9-99",
@@ -486,7 +567,10 @@
       "effKwhPer100km": 22.5,
       "curveId": "egmp-210kw",
       "v2x": true,
-      "notes": "7-seater, heavy \u2014 temp/load planner matters."
+      "notes": "7-seater, heavy — temp/load planner matters.",
+      "oemUrl": "https://www.kia.com/us/en/ev9",
+      "oemVerified": true,
+      "imageQuery": "Kia EV9 99.8"
     },
     {
       "id": "maruti-evitarra-61",
@@ -496,14 +580,17 @@
       "batteryKwh": 61,
       "usableKwh": 58,
       "maxKwAc": 7.4,
-      "maxKwDc": 120,
+      "maxKwDc": 80,
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
       "effKwhPer100km": 16.5,
-      "curveId": "120kw-flat",
+      "curveId": "75kw-flat",
       "v2x": false,
-      "notes": "eAxle Heartect-e, 2025+ launch."
+      "notes": "Heartect-e LFP. ~80kW DC peak, 20-80% ~34 min. Made-in-India, exported to 100+ countries.",
+      "oemUrl": "https://www.nexaexperience.com/e-vitara",
+      "oemVerified": true,
+      "imageQuery": "Maruti e Vitara 61"
     },
     {
       "id": "maruti-evitarra-49",
@@ -513,31 +600,37 @@
       "batteryKwh": 49,
       "usableKwh": 46.5,
       "maxKwAc": 7.4,
-      "maxKwDc": 90,
+      "maxKwDc": 80,
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 16.0,
-      "curveId": "byd-88kw",
+      "effKwhPer100km": 16,
+      "curveId": "75kw-flat",
       "v2x": false,
-      "notes": ""
+      "notes": "Heartect-e LFP. ~80kW DC peak, 20-80% ~34 min. Made-in-India, exported to 100+ countries.",
+      "oemUrl": "https://www.nexaexperience.com/e-vitara",
+      "oemVerified": true,
+      "imageQuery": "Maruti e Vitara 49"
     },
     {
       "id": "toyota-urbancruiser-ev-61",
-      "name": "Toyota Urban Cruiser EV 61",
+      "name": "Toyota Urban Cruiser Ebella",
       "class": "4W",
       "market": "IN",
       "batteryKwh": 61,
       "usableKwh": 58,
       "maxKwAc": 7.4,
-      "maxKwDc": 120,
+      "maxKwDc": 80,
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
       "effKwhPer100km": 16.5,
-      "curveId": "120kw-flat",
+      "curveId": "75kw-flat",
       "v2x": false,
-      "notes": "Rebadged e Vitara."
+      "notes": "Rebadged Maruti e Vitara (LFP 49/61). ~80kW DC peak — 120kW stall gives you 80. BaaS variant available.",
+      "oemUrl": "https://www.toyotabharat.com/showroom/urbancruiser-ebella",
+      "oemVerified": true,
+      "imageQuery": "Toyota Urban Cruiser Ebella"
     },
     {
       "id": "tesla-model3-60",
@@ -551,10 +644,13 @@
       "plugAc": "NACS",
       "plugDc": "NACS",
       "swap": null,
-      "effKwhPer100km": 15.0,
+      "effKwhPer100km": 15,
       "curveId": "tesla-170kw",
       "v2x": false,
-      "notes": "US = NACS native. India/EU imports may be CCS2. Adapter logic: NACS car at CCS1 site needs NACS->CCS1 adapter (DC, active-cooled)."
+      "notes": "US = NACS native. India/EU imports may be CCS2. Adapter logic: NACS car at CCS1 site needs NACS->CCS1 adapter (DC, active-cooled).",
+      "oemUrl": "https://www.tesla.com/model3",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model 3 RWD 60"
     },
     {
       "id": "tesla-modely-75",
@@ -568,10 +664,13 @@
       "plugAc": "NACS",
       "plugDc": "NACS",
       "swap": null,
-      "effKwhPer100km": 17.0,
+      "effKwhPer100km": 17,
       "curveId": "tesla-250kw",
       "v2x": false,
-      "notes": "250kW peak on V3 Supercharger; falls to ~100kW by 50% SoC."
+      "notes": "250kW peak on V3 Supercharger; falls to ~100kW by 50% SoC.",
+      "oemUrl": "https://www.tesla.com/modely",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model Y LR 75"
     },
     {
       "id": "tesla-modely-ccs2",
@@ -585,10 +684,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 17.0,
+      "effKwhPer100km": 17,
       "curveId": "tesla-250kw",
       "v2x": false,
-      "notes": "CCS2 variant \u2014 no adapter needed at CCS2 sites."
+      "notes": "CCS2 variant — no adapter needed at CCS2 sites.",
+      "oemUrl": "https://www.tesla.com/modely",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model Y"
     },
     {
       "id": "ford-mache-91",
@@ -605,7 +707,10 @@
       "effKwhPer100km": 20.5,
       "curveId": "150kw-flat",
       "v2x": false,
-      "notes": "US CCS1; needs NACS->CCS1 adapter at Tesla-only sites pre-Magic Dock."
+      "notes": "US CCS1; needs NACS->CCS1 adapter at Tesla-only sites pre-Magic Dock.",
+      "oemUrl": "https://www.ford.com/suvs/mach-e",
+      "oemVerified": true,
+      "imageQuery": "Ford Mustang Mach-E ER 91"
     },
     {
       "id": "ford-f150-131",
@@ -619,10 +724,13 @@
       "plugAc": "J1772",
       "plugDc": "CCS1",
       "swap": null,
-      "effKwhPer100km": 32.0,
+      "effKwhPer100km": 32,
       "curveId": "175kw-inglo",
       "v2x": true,
-      "notes": "V2H Intelligent Backup Power. Heavy + tow derate huge \u2014 load input matters."
+      "notes": "V2H Intelligent Backup Power. Heavy + tow derate huge — load input matters.",
+      "oemUrl": "https://www.ford.com/trucks/f150/f150-lightning",
+      "oemVerified": true,
+      "imageQuery": "Ford F-150 Lightning ER 131"
     },
     {
       "id": "chevy-equinox-85",
@@ -639,7 +747,10 @@
       "effKwhPer100km": 19.5,
       "curveId": "150kw-flat",
       "v2x": false,
-      "notes": "Ultium curve, conservative taper."
+      "notes": "Ultium curve, conservative taper.",
+      "oemUrl": "https://www.chevrolet.com/electric/equinox-ev",
+      "oemVerified": true,
+      "imageQuery": "Chevy Equinox EV 85"
     },
     {
       "id": "hyundai-ioniq5-usa",
@@ -653,10 +764,13 @@
       "plugAc": "NACS",
       "plugDc": "NACS",
       "swap": null,
-      "effKwhPer100km": 19.0,
+      "effKwhPer100km": 19,
       "curveId": "egmp-230kw",
       "v2x": true,
-      "notes": "2025+ US builds ship NACS port. Needs CCS1 adapter at legacy EA sites."
+      "notes": "2025+ US builds ship NACS port. Needs CCS1 adapter at legacy EA sites.",
+      "oemUrl": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-5",
+      "oemVerified": true,
+      "imageQuery": "Hyundai Ioniq 5"
     },
     {
       "id": "rivian-r1s-135",
@@ -670,10 +784,13 @@
       "plugAc": "J1772",
       "plugDc": "CCS1",
       "swap": null,
-      "effKwhPer100km": 28.0,
+      "effKwhPer100km": 28,
       "curveId": "rivian-220kw",
       "v2x": false,
-      "notes": "Adventure network CCS1; NACS adapter rollout 2024+."
+      "notes": "Adventure network CCS1; NACS adapter rollout 2024+.",
+      "oemUrl": "https://www.rivian.com/r1s",
+      "oemVerified": true,
+      "imageQuery": "Rivian R1S Max 135"
     },
     {
       "id": "nissan-leaf-40",
@@ -690,7 +807,10 @@
       "effKwhPer100km": 16.5,
       "curveId": "chademo-50kw",
       "v2x": true,
-      "notes": "CHAdeMO dying in US/EU. Red-card CHAdeMO-only routing; show adapter impossibility (no CHAdeMO->CCS adapter exists for DC)."
+      "notes": "CHAdeMO dying in US/EU. Red-card CHAdeMO-only routing; show adapter impossibility (no CHAdeMO->CCS adapter exists for DC).",
+      "oemUrl": "https://www.nissanusa.com/vehicles/electric-cars/leaf",
+      "oemVerified": true,
+      "imageQuery": "Nissan Leaf 40"
     },
     {
       "id": "nissan-ariya-87",
@@ -704,10 +824,13 @@
       "plugAc": "J1772",
       "plugDc": "CCS1",
       "swap": null,
-      "effKwhPer100km": 20.0,
+      "effKwhPer100km": 20,
       "curveId": "120kw-flat",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.nissanusa.com/vehicles/electric-cars/ariya",
+      "oemVerified": true,
+      "imageQuery": "Nissan Ariya 87"
     },
     {
       "id": "vinfast-vf8-87",
@@ -721,10 +844,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 21.0,
+      "effKwhPer100km": 21,
       "curveId": "175kw-inglo",
       "v2x": false,
-      "notes": "India plant (Thoothukudi); CCS2 in IN, CCS1/NACS in US by year."
+      "notes": "India plant (Thoothukudi); CCS2 in IN, CCS1/NACS in US by year.",
+      "oemUrl": "https://www.vinfast.com/vf-8",
+      "oemVerified": true,
+      "imageQuery": "VinFast VF 8 87.7"
     },
     {
       "id": "citroen-ec3-29",
@@ -741,7 +867,10 @@
       "effKwhPer100km": 13.5,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "No AC fast; 3.3kW home. DC capped 25kW."
+      "notes": "No AC fast; 3.3kW home. DC capped 25kW.",
+      "oemUrl": "https://www.citroen.co.uk/models/e-c3",
+      "oemVerified": true,
+      "imageQuery": "Citroen eC3 29.2"
     },
     {
       "id": "tata-ace-ev-21",
@@ -755,10 +884,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 14.0,
+      "effKwhPer100km": 14,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "Last-mile cargo; swap variant pilots exist."
+      "notes": "Last-mile cargo; swap variant pilots exist.",
+      "oemUrl": "https://ev.tatamotors.com/ace/ev.html",
+      "oemVerified": false,
+      "imageQuery": "Tata Ace EV"
     },
     {
       "id": "mahindra-treo-8",
@@ -772,10 +904,13 @@
       "plugAc": "BharatAC001",
       "plugDc": null,
       "swap": "SunMobility",
-      "effKwhPer100km": 9.0,
+      "effKwhPer100km": 9,
       "curveId": "ac-only",
       "v2x": false,
-      "notes": "Swap-compatible via Sun Mobility in some fleets."
+      "notes": "Swap-compatible via Sun Mobility in some fleets.",
+      "oemUrl": "https://www.mahindra.com/",
+      "oemVerified": true,
+      "imageQuery": "Mahindra Treo Plus 8"
     },
     {
       "id": "mahindra-zeo-21",
@@ -789,10 +924,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 13.0,
+      "effKwhPer100km": 13,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.mahindra.com/",
+      "oemVerified": true,
+      "imageQuery": "Mahindra Zeo 21.3"
     },
     {
       "id": "piaggio-ape-etec-8",
@@ -809,7 +947,10 @@
       "effKwhPer100km": 8.5,
       "curveId": "ac-only",
       "v2x": false,
-      "notes": "Sun swap network primary for 3W fleets."
+      "notes": "Sun swap network primary for 3W fleets.",
+      "oemUrl": "https://www.piaggio.com/",
+      "oemVerified": true,
+      "imageQuery": "Piaggio Ape E-Tech 8"
     },
     {
       "id": "bajaj-goego-8",
@@ -826,7 +967,10 @@
       "effKwhPer100km": 8.2,
       "curveId": "ac-only",
       "v2x": false,
-      "notes": "Fixed battery; slow AC."
+      "notes": "Fixed battery; slow AC.",
+      "oemUrl": "https://www.bajajauto.com/",
+      "oemVerified": true,
+      "imageQuery": "Bajaj GoGo P7012 8.5"
     },
     {
       "id": "ola-s1-pro-4",
@@ -843,7 +987,10 @@
       "effKwhPer100km": 3.2,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Type 6 (IS 17017-2-6) + Ola Hypercharger. Swap rollout + fast-charge hybrid."
+      "notes": "Type 6 (IS 17017-2-6) + Ola Hypercharger. Swap rollout + fast-charge hybrid.",
+      "oemUrl": "https://www.olaelectric.com/s1-pro",
+      "oemVerified": true,
+      "imageQuery": "Ola S1 Pro Gen2 4"
     },
     {
       "id": "ola-s1-x-3",
@@ -857,10 +1004,13 @@
       "plugAc": "Type6",
       "plugDc": null,
       "swap": "OlaHypercharger-Swap",
-      "effKwhPer100km": 3.0,
+      "effKwhPer100km": 3,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.olaelectric.com/s1-x",
+      "oemVerified": true,
+      "imageQuery": "Ola S1 X 3"
     },
     {
       "id": "ola-roadster-6",
@@ -877,7 +1027,10 @@
       "effKwhPer100km": 3.8,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Motorcycle; Bharat DC-001 public where available."
+      "notes": "Motorcycle; Bharat DC-001 public where available.",
+      "oemUrl": "https://www.olaelectric.com/roadster",
+      "oemVerified": true,
+      "imageQuery": "Ola Roadster 6"
     },
     {
       "id": "ather-rizta-3",
@@ -894,7 +1047,10 @@
       "effKwhPer100km": 3.4,
       "curveId": "ather-dc6kw",
       "v2x": false,
-      "notes": "Ather Grid: 6kW Bharat DC-001 + LECCS Type 6. 0-80% ~4h home, ~1h Grid DC."
+      "notes": "Ather Grid: 6kW Bharat DC-001 + LECCS Type 6. 0-80% ~4h home, ~1h Grid DC.",
+      "oemUrl": "https://www.atherenergy.com/rizta",
+      "oemVerified": true,
+      "imageQuery": "Ather Rizta 3.7"
     },
     {
       "id": "ather-450x-3",
@@ -911,7 +1067,10 @@
       "effKwhPer100km": 3.6,
       "curveId": "ather-dc6kw",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.atherenergy.com/450x",
+      "oemVerified": true,
+      "imageQuery": "Ather 450X 3.7"
     },
     {
       "id": "bajaj-chetak-3",
@@ -928,7 +1087,10 @@
       "effKwhPer100km": 3.3,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Onboard AC only; needs Type 6 outlet."
+      "notes": "Onboard AC only; needs Type 6 outlet.",
+      "oemUrl": "https://www.chetak.com/",
+      "oemVerified": true,
+      "imageQuery": "Bajaj Chetak 3.5"
     },
     {
       "id": "tvs-iqube-3",
@@ -945,7 +1107,10 @@
       "effKwhPer100km": 3.3,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.tvsmotor.com/iqube-electric",
+      "oemVerified": true,
+      "imageQuery": "TVS iQube 3.4"
     },
     {
       "id": "hero-vida-3",
@@ -962,7 +1127,10 @@
       "effKwhPer100km": 3.5,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Removable batteries \u2014 dual-mode charge or swap."
+      "notes": "Removable batteries — dual-mode charge or swap.",
+      "oemUrl": "https://www.vidaworld.com/",
+      "oemVerified": true,
+      "imageQuery": "Hero Vida V1 Pro 3.94"
     },
     {
       "id": "bounce-infinity-2",
@@ -979,7 +1147,10 @@
       "effKwhPer100km": 2.8,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Swap-first design."
+      "notes": "Swap-first design.",
+      "oemUrl": "https://bounceinfinity.com/",
+      "oemVerified": true,
+      "imageQuery": "Bounce Infinity E1 2"
     },
     {
       "id": "yuma-swap-2",
@@ -996,7 +1167,10 @@
       "effKwhPer100km": 2.8,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Ex-Magna/Yulu network."
+      "notes": "Ex-Magna/Yulu network.",
+      "oemUrl": "https://www.yumaenergy.com/",
+      "oemVerified": true,
+      "imageQuery": "Yuma  swap 2W"
     },
     {
       "id": "sun-buddy-2",
@@ -1013,7 +1187,10 @@
       "effKwhPer100km": 2.8,
       "curveId": "swap-only",
       "v2x": false,
-      "notes": "SWAP-ONLY. No plug. Charge planner must route to swap cabins, not chargers."
+      "notes": "SWAP-ONLY. No plug. Charge planner must route to swap cabins, not chargers.",
+      "oemUrl": "https://www.sunmobility.com/",
+      "oemVerified": true,
+      "imageQuery": "Sun Mobility Buddy"
     },
     {
       "id": "gogoro-pack-1",
@@ -1030,11 +1207,14 @@
       "effKwhPer100km": 3.2,
       "curveId": "swap-only",
       "v2x": false,
-      "notes": "SWAP-ONLY. Two 1.7kWh packs. Delhi/Bengaluru/Mumbai pilots + Taiwan density playbook."
+      "notes": "SWAP-ONLY. Two 1.7kWh packs. Delhi/Bengaluru/Mumbai pilots + Taiwan density playbook.",
+      "oemUrl": "https://www.gogoro.com/",
+      "oemVerified": true,
+      "imageQuery": "Gogoro Network pack"
     },
     {
       "id": "honda-activae-3",
-      "name": "Honda Activa e: 3 (2\u00c3\u20141.5 swap)",
+      "name": "Honda Activa e: 3 (2Ã—1.5 swap)",
       "class": "2W",
       "market": "IN",
       "batteryKwh": 3,
@@ -1047,7 +1227,10 @@
       "effKwhPer100km": 3.2,
       "curveId": "swap-only",
       "v2x": false,
-      "notes": "Honda Power Pack Exchanger e: \u2014 swap-only."
+      "notes": "Honda Power Pack Exchanger e: — swap-only.",
+      "oemUrl": "https://www.honda2wheelersindia.com/",
+      "oemVerified": true,
+      "imageQuery": "Honda Activa e: 3"
     },
     {
       "id": "honda-qc1-1",
@@ -1064,7 +1247,10 @@
       "effKwhPer100km": 2.8,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Fixed pack, home charge."
+      "notes": "Fixed pack, home charge.",
+      "oemUrl": "https://www.honda2wheelersindia.com/qc1",
+      "oemVerified": true,
+      "imageQuery": "Honda QC1 1.5"
     },
     {
       "id": "yamaha-aerox-ev",
@@ -1081,7 +1267,10 @@
       "effKwhPer100km": 3.2,
       "curveId": "swap-only",
       "v2x": false,
-      "notes": "Gogoro-powered partner models."
+      "notes": "Gogoro-powered partner models.",
+      "oemUrl": "https://www.yamaha-motor-india.com/",
+      "oemVerified": true,
+      "imageQuery": "Yamaha / Gogoro-partner 2W"
     },
     {
       "id": "catl-choco-2w",
@@ -1095,10 +1284,13 @@
       "plugAc": null,
       "plugDc": null,
       "swap": "CATL-Choco",
-      "effKwhPer100km": 3.0,
+      "effKwhPer100km": 3,
       "curveId": "swap-only",
       "v2x": false,
-      "notes": "Chocolate swap blocks; 2W + 4W variants."
+      "notes": "Chocolate swap blocks; 2W + 4W variants.",
+      "oemUrl": "https://www.catl.com/en/",
+      "oemVerified": true,
+      "imageQuery": "CATL Choco-SEB 2W pack"
     },
     {
       "id": "nio-et5-100-swap",
@@ -1115,7 +1307,10 @@
       "effKwhPer100km": 18.5,
       "curveId": "140kw-flat",
       "v2x": false,
-      "notes": "4W SWAP + plug. 3-min Power Swap + CCS2 fallback. Geely/Yiyi merged network (Sept 2026) expands cabin count."
+      "notes": "4W SWAP + plug. 3-min Power Swap + CCS2 fallback. Geely/Yiyi merged network (Sept 2026) expands cabin count.",
+      "oemUrl": "https://www.nio.com/et5",
+      "oemVerified": true,
+      "imageQuery": "NIO ET5 100"
     },
     {
       "id": "geely-yiyi-swap",
@@ -1132,7 +1327,10 @@
       "effKwhPer100km": 16.5,
       "curveId": "byd-88kw",
       "v2x": false,
-      "notes": "GB/T ports + Yiyi swap. Merged NIO+Geely/Yiyi network Sept 2026."
+      "notes": "GB/T ports + Yiyi swap. Merged NIO+Geely/Yiyi network Sept 2026.",
+      "oemUrl": "https://www.geely.com/",
+      "oemVerified": true,
+      "imageQuery": "Geely / Yiyi swap sedan"
     },
     {
       "id": "byd-seal-gbt",
@@ -1149,7 +1347,10 @@
       "effKwhPer100km": 17.8,
       "curveId": "150kw-flat",
       "v2x": false,
-      "notes": "China GB/T variant \u2014 adapter logic differs from export CCS2."
+      "notes": "China GB/T variant — adapter logic differs from export CCS2.",
+      "oemUrl": "https://www.byd.com/en",
+      "oemVerified": true,
+      "imageQuery": "BYD Seal"
     },
     {
       "id": "wuling-mini-13",
@@ -1166,7 +1367,10 @@
       "effKwhPer100km": 10.5,
       "curveId": "ac-only",
       "v2x": false,
-      "notes": "AC-only city box; SEA street-charging pattern."
+      "notes": "AC-only city box; SEA street-charging pattern.",
+      "oemUrl": "https://www.wuling.com/",
+      "oemVerified": true,
+      "imageQuery": "Wuling Mini EV 13.9"
     },
     {
       "id": "vinfast-vf3-18",
@@ -1180,10 +1384,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 12.0,
+      "effKwhPer100km": 12,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "Mini-SUV, CCS2 in export markets."
+      "notes": "Mini-SUV, CCS2 in export markets.",
+      "oemUrl": "https://www.vinfast.com/vf-3",
+      "oemVerified": true,
+      "imageQuery": "VinFast VF 3 18.64"
     },
     {
       "id": "ather-el-3",
@@ -1200,7 +1407,10 @@
       "effKwhPer100km": 3.2,
       "curveId": "ather-dc6kw",
       "v2x": false,
-      "notes": "EL + Rizta-Z platform, cost-down."
+      "notes": "EL + Rizta-Z platform, cost-down.",
+      "oemUrl": "https://www.atherenergy.com/",
+      "oemVerified": true,
+      "imageQuery": "Ather EL platform"
     },
     {
       "id": "ola-s1gen3-4",
@@ -1214,10 +1424,13 @@
       "plugAc": "Type6",
       "plugDc": null,
       "swap": "OlaHypercharger-Swap",
-      "effKwhPer100km": 3.0,
+      "effKwhPer100km": 3,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Gen3: chain drive + in-house 4680 Bharat cell (pilot)."
+      "notes": "Gen3: chain drive + in-house 4680 Bharat cell (pilot).",
+      "oemUrl": "https://www.olaelectric.com/",
+      "oemVerified": true,
+      "imageQuery": "Ola S1 Gen3 4"
     },
     {
       "id": "simple-one-5",
@@ -1231,10 +1444,13 @@
       "plugAc": "Type6",
       "plugDc": "BharatDC001",
       "swap": null,
-      "effKwhPer100km": 3.0,
+      "effKwhPer100km": 3,
       "curveId": "ather-dc6kw",
       "v2x": false,
-      "notes": "Fixed + portable pack combo."
+      "notes": "Fixed + portable pack combo.",
+      "oemUrl": "https://www.simpleenergy.in/",
+      "oemVerified": true,
+      "imageQuery": "Simple One 5"
     },
     {
       "id": "river-indie-4",
@@ -1251,7 +1467,10 @@
       "effKwhPer100km": 3.4,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "SUV-scooter, 14-inch wheels."
+      "notes": "SUV-scooter, 14-inch wheels.",
+      "oemUrl": "https://www.rideriver.in/indie",
+      "oemVerified": true,
+      "imageQuery": "River Indie 4"
     },
     {
       "id": "zeeho-ae8-3",
@@ -1268,7 +1487,10 @@
       "effKwhPer100km": 3.5,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "SEA Type 2 2W pattern."
+      "notes": "SEA Type 2 2W pattern.",
+      "oemUrl": "https://www.cfmoto.com/",
+      "oemVerified": true,
+      "imageQuery": "Zeeho AE8 3.9"
     },
     {
       "id": "yadea-keeness-3",
@@ -1276,7 +1498,7 @@
       "class": "2W",
       "market": "SEA",
       "batteryKwh": 3.2,
-      "usableKwh": 3.0,
+      "usableKwh": 3,
       "maxKwAc": 0.8,
       "maxKwDc": 0,
       "plugAc": "Type2",
@@ -1285,7 +1507,10 @@
       "effKwhPer100km": 3.2,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.yadea.com/",
+      "oemVerified": true,
+      "imageQuery": "Yadea Keeness 3.2"
     },
     {
       "id": "alpar-3w-9",
@@ -1302,7 +1527,10 @@
       "effKwhPer100km": 12.5,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "Euler HiLoad EV: 13kWh, CCS2 fast."
+      "notes": "Euler HiLoad EV: 13kWh, CCS2 fast.",
+      "oemUrl": "",
+      "oemVerified": false,
+      "imageQuery": "Alpar / Euler HiLoad 13"
     },
     {
       "id": "euler-hiload-12",
@@ -1319,7 +1547,10 @@
       "effKwhPer100km": 12.5,
       "curveId": "tiago-25kw",
       "v2x": false,
-      "notes": "3.5-hr AC, 30-min DC claim."
+      "notes": "3.5-hr AC, 30-min DC claim.",
+      "oemUrl": "https://www.eulermotors.com/hiload-ev",
+      "oemVerified": true,
+      "imageQuery": "Euler HiLoad EV 12.4"
     },
     {
       "id": "etrio-touro-10",
@@ -1333,10 +1564,13 @@
       "plugAc": "BharatAC001",
       "plugDc": null,
       "swap": null,
-      "effKwhPer100km": 10.0,
+      "effKwhPer100km": 10,
       "curveId": "ac-only",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.etrio.in/",
+      "oemVerified": true,
+      "imageQuery": "Etrio Touro 10.75"
     },
     {
       "id": "montra-super-auto-10",
@@ -1353,7 +1587,10 @@
       "effKwhPer100km": 9.5,
       "curveId": "ac-only",
       "v2x": false,
-      "notes": "Murugappa Group 3W."
+      "notes": "Murugappa Group 3W.",
+      "oemUrl": "https://www.montraelectric.com/",
+      "oemVerified": true,
+      "imageQuery": "Montra Super Auto 10"
     },
     {
       "id": "tvs-x-4",
@@ -1370,7 +1607,10 @@
       "effKwhPer100km": 3.6,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": "Naked e-moto."
+      "notes": "Naked e-moto.",
+      "oemUrl": "https://www.tvsmotor.com/tvs-x",
+      "oemVerified": true,
+      "imageQuery": "TVS X 4.44"
     },
     {
       "id": "ultraviolette-f77-10",
@@ -1387,7 +1627,10 @@
       "effKwhPer100km": 4.5,
       "curveId": "ather-dc6kw",
       "v2x": false,
-      "notes": "Performance e-moto, 9kW DC boost mode."
+      "notes": "Performance e-moto, 9kW DC boost mode.",
+      "oemUrl": "https://www.ultraviolette.com/f77",
+      "oemVerified": true,
+      "imageQuery": "Ultraviolette F77 10.3"
     },
     {
       "id": "orxa-mantis-8",
@@ -1404,7 +1647,10 @@
       "effKwhPer100km": 4.2,
       "curveId": "scooter-ac",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.orxaenergies.com/mantis",
+      "oemVerified": true,
+      "imageQuery": "Orxa Mantis 8.9"
     },
     {
       "id": "bmw-ix1-66",
@@ -1418,10 +1664,13 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 19.0,
+      "effKwhPer100km": 19,
       "curveId": "120kw-flat",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.bmw.com/en/models/ix1",
+      "oemVerified": true,
+      "imageQuery": "BMW iX1 66.5"
     },
     {
       "id": "volvo-ex40-78",
@@ -1435,10 +1684,1433 @@
       "plugAc": "Type2",
       "plugDc": "CCS2",
       "swap": null,
-      "effKwhPer100km": 20.0,
+      "effKwhPer100km": 20,
       "curveId": "egmp-210kw",
       "v2x": false,
-      "notes": ""
+      "notes": "",
+      "oemUrl": "https://www.volvocars.com/us/cars/ex40-electric",
+      "oemVerified": true,
+      "imageQuery": "Volvo EX40 78"
+    },
+    {
+      "id": "tesla-model3-highland-60",
+      "name": "Tesla Model 3 RWD (Highland)",
+      "class": "4W",
+      "market": "US-GLOBAL",
+      "batteryKwh": 60,
+      "usableKwh": 57.5,
+      "maxKwAc": 11,
+      "maxKwDc": 170,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 14,
+      "curveId": "tesla-170kw",
+      "v2x": false,
+      "oemUrl": "https://www.tesla.com/model3",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model 3 Highland",
+      "notes": "LFP RWD. 10-80% ~27 min on 250kW. EU/Asia units ship CCS2 — same car, different inlet."
+    },
+    {
+      "id": "tesla-model3-lr-75",
+      "name": "Tesla Model 3 Long Range AWD",
+      "class": "4W",
+      "market": "US-GLOBAL",
+      "batteryKwh": 75,
+      "usableKwh": 72,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 14.5,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "oemUrl": "https://www.tesla.com/model3",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model 3 Long Range",
+      "notes": "NMC dual-motor. Holds 200kW+ to ~40%."
+    },
+    {
+      "id": "tesla-modely-juniper-75",
+      "name": "Tesla Model Y Long Range (Juniper)",
+      "class": "4W",
+      "market": "US-GLOBAL",
+      "batteryKwh": 75,
+      "usableKwh": 72,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "oemUrl": "https://www.tesla.com/modely",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model Y Juniper",
+      "notes": "2025 facelift. World best-seller; NACS in US, CCS2 in EU/IN."
+    },
+    {
+      "id": "tesla-modely-juniper-ccs2",
+      "name": "Tesla Model Y Long Range (Juniper, CCS2)",
+      "class": "4W",
+      "market": "EU-IN",
+      "batteryKwh": 75,
+      "usableKwh": 72,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "oemUrl": "https://www.tesla.com/modely",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model Y Juniper",
+      "notes": "EU/India inlet variant of Juniper. Same curve, CCS2 plug."
+    },
+    {
+      "id": "tesla-cybertruck-123",
+      "name": "Tesla Cybertruck AWD",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 123,
+      "usableKwh": 117,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 22,
+      "curveId": "tesla-250kw",
+      "v2x": true,
+      "oemUrl": "https://www.tesla.com/cybertruck",
+      "oemVerified": true,
+      "imageQuery": "Tesla Cybertruck",
+      "notes": "Powershare V2H (with Gateway). Heavy + thirsty — plan buffers generously."
+    },
+    {
+      "id": "tesla-models-100",
+      "name": "Tesla Model S AWD",
+      "class": "4W",
+      "market": "US-GLOBAL",
+      "batteryKwh": 100,
+      "usableKwh": 95,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 18,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "oemUrl": "https://www.tesla.com/models",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model S",
+      "notes": "Flagship sedan. 250kW peak, long taper."
+    },
+    {
+      "id": "tesla-modelx-100",
+      "name": "Tesla Model X AWD",
+      "class": "4W",
+      "market": "US-GLOBAL",
+      "batteryKwh": 100,
+      "usableKwh": 95,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "NACS",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 20,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "oemUrl": "https://www.tesla.com/modelx",
+      "oemVerified": true,
+      "imageQuery": "Tesla Model X",
+      "notes": "6-seat SUV. Same 250kW platform as S."
+    },
+    {
+      "id": "kia-ev3-81",
+      "name": "Kia EV3 Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 81.4,
+      "usableKwh": 78,
+      "maxKwAc": 11,
+      "maxKwDc": 128,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 14.5,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.kia.com/us/en/ev3",
+      "oemVerified": true,
+      "imageQuery": "Kia EV3",
+      "notes": "400V value pick. 128kW peak, 10-80% ~31 min."
+    },
+    {
+      "id": "kia-ev5-88",
+      "name": "Kia EV5 Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 88.1,
+      "usableKwh": 84,
+      "maxKwAc": 11,
+      "maxKwDc": 140,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.kia.com/uk/new-cars/ev5/",
+      "oemVerified": true,
+      "imageQuery": "Kia EV5",
+      "notes": "Family SUV. CN units use GB-T inlet instead of CCS2."
+    },
+    {
+      "id": "kia-niro-64",
+      "name": "Kia Niro EV",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 64.8,
+      "usableKwh": 61,
+      "maxKwAc": 11,
+      "maxKwDc": 80,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.kia.com/us/en/niro-ev",
+      "oemVerified": true,
+      "imageQuery": "Kia Niro EV",
+      "notes": "Modest 80kW DC — cheap used buy, slow highway charger."
+    },
+    {
+      "id": "kia-carens-clavis-51",
+      "name": "Kia Carens Clavis EV",
+      "class": "4W",
+      "market": "IN",
+      "batteryKwh": 51.4,
+      "usableKwh": 49,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.kia.com/in/carens-clavis-ev",
+      "oemVerified": true,
+      "imageQuery": "Kia Carens Clavis EV",
+      "notes": "India 7-seat MPV EV. 100kW DC peak."
+    },
+    {
+      "id": "hyundai-kona-65",
+      "name": "Hyundai Kona Electric Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 65.4,
+      "usableKwh": 62,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.hyundaiusa.com/us/en/vehicles/kona-electric",
+      "oemVerified": true,
+      "imageQuery": "Hyundai Kona Electric",
+      "notes": "100kW DC. US units use CCS1/NACS adapter path."
+    },
+    {
+      "id": "hyundai-ioniq9-110",
+      "name": "Hyundai Ioniq 9",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 110.3,
+      "usableKwh": 105,
+      "maxKwAc": 11,
+      "maxKwDc": 230,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 19,
+      "curveId": "egmp-230kw",
+      "v2x": false,
+      "oemUrl": "https://www.hyundaiusa.com/us/en/vehicles/ioniq-9",
+      "oemVerified": true,
+      "imageQuery": "Hyundai Ioniq 9",
+      "notes": "3-row 800V flagship. E-GMP curve, V2L onboard."
+    },
+    {
+      "id": "hyundai-inster-49",
+      "name": "Hyundai Inster Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 49,
+      "usableKwh": 46,
+      "maxKwAc": 11,
+      "maxKwDc": 85,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 13.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.hyundai.com/uk/en/models/inster.html",
+      "oemVerified": true,
+      "imageQuery": "Hyundai Inster",
+      "notes": "City crossover. 85kW DC, V2L standard."
+    },
+    {
+      "id": "vw-id3-58",
+      "name": "VW ID.3 Pro",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 58,
+      "usableKwh": 55,
+      "maxKwAc": 11,
+      "maxKwDc": 120,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15,
+      "curveId": "120kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.volkswagen.com/en/models/id3",
+      "oemVerified": true,
+      "imageQuery": "Volkswagen ID.3",
+      "notes": "120kW DC. EU staple, big used market."
+    },
+    {
+      "id": "vw-id4-77",
+      "name": "VW ID.4 Pro",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 77,
+      "usableKwh": 75,
+      "maxKwAc": 11,
+      "maxKwDc": 135,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.volkswagen.com/en/models/id4",
+      "oemVerified": true,
+      "imageQuery": "Volkswagen ID.4",
+      "notes": "135kW DC. US 2025+ units transitioning to NACS inlet."
+    },
+    {
+      "id": "vw-id7-86",
+      "name": "VW ID.7 Pro S",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 86,
+      "usableKwh": 84,
+      "maxKwAc": 11,
+      "maxKwDc": 200,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.volkswagen.com/en/models/id7",
+      "oemVerified": true,
+      "imageQuery": "Volkswagen ID.7",
+      "notes": "Aero sedan, 200kW DC, 700km WLTP claim."
+    },
+    {
+      "id": "skoda-enyaq-85",
+      "name": "Skoda Enyaq 85",
+      "class": "4W",
+      "market": "EU-IN",
+      "batteryKwh": 82,
+      "usableKwh": 77,
+      "maxKwAc": 11,
+      "maxKwDc": 135,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.skoda-auto.com/models/range/new-enyaq",
+      "oemVerified": true,
+      "imageQuery": "Skoda Enyaq",
+      "notes": "135kW DC. India launch spec mirrors EU 85."
+    },
+    {
+      "id": "skoda-elroq-85",
+      "name": "Skoda Elroq 85",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 82,
+      "usableKwh": 77,
+      "maxKwAc": 11,
+      "maxKwDc": 175,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "gen-175kw",
+      "v2x": false,
+      "oemUrl": "https://www.skoda-auto.com/models/range/elroq",
+      "oemVerified": true,
+      "imageQuery": "Skoda Elroq",
+      "notes": "175kW DC compact SUV. 10-80% ~28 min."
+    },
+    {
+      "id": "audi-q4-77",
+      "name": "Audi Q4 e-tron 45",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 77,
+      "usableKwh": 74,
+      "maxKwAc": 11,
+      "maxKwDc": 135,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.5,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.audi.com/en/audi-q4-sportback-e-tron-13912",
+      "oemVerified": true,
+      "imageQuery": "Audi Q4 e-tron",
+      "notes": "135kW DC. US units CCS1."
+    },
+    {
+      "id": "audi-q6-100",
+      "name": "Audi Q6 e-tron",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 100,
+      "usableKwh": 94.9,
+      "maxKwAc": 11,
+      "maxKwDc": 270,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18,
+      "curveId": "gen-350kw",
+      "v2x": false,
+      "oemUrl": "https://www.audiusa.com/en/models/electric-models/",
+      "oemVerified": true,
+      "imageQuery": "Audi Q6 e-tron",
+      "notes": "PPE 800V, 270kW peak. 10-80% ~21 min."
+    },
+    {
+      "id": "audi-a6-100",
+      "name": "Audi A6 Sportback e-tron",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 100,
+      "usableKwh": 94.9,
+      "maxKwAc": 11,
+      "maxKwDc": 270,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17,
+      "curveId": "gen-350kw",
+      "v2x": false,
+      "oemUrl": "https://www.audiusa.com/en/models/electric-models/",
+      "oemVerified": true,
+      "imageQuery": "Audi A6 e-tron",
+      "notes": "PPE sedan, 270kW peak. Slipperiest Audi EV."
+    },
+    {
+      "id": "porsche-taycan-105",
+      "name": "Porsche Taycan",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 105,
+      "usableKwh": 97,
+      "maxKwAc": 22,
+      "maxKwDc": 320,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 21,
+      "curveId": "gen-350kw",
+      "v2x": false,
+      "oemUrl": "https://www.porsche.com/international/models/taycan",
+      "oemVerified": true,
+      "imageQuery": "Porsche Taycan",
+      "notes": "320kW peak, repeatable launches + charging. 22kW AC option."
+    },
+    {
+      "id": "bmw-i4-83",
+      "name": "BMW i4 eDrive40",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 83.9,
+      "usableKwh": 81,
+      "maxKwAc": 11,
+      "maxKwDc": 210,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.bmw.com/en/models/i4",
+      "oemVerified": true,
+      "imageQuery": "BMW i4",
+      "notes": "210kW DC gran coupe. US units CCS1."
+    },
+    {
+      "id": "bmw-ix-108",
+      "name": "BMW iX xDrive50",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 108.8,
+      "usableKwh": 105,
+      "maxKwAc": 11,
+      "maxKwDc": 195,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 20,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.bmw.com/en/models/ix",
+      "oemVerified": true,
+      "imageQuery": "BMW iX",
+      "notes": "195kW DC flagship SUV."
+    },
+    {
+      "id": "bmw-ix3-108",
+      "name": "BMW iX3 (Neue Klasse)",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 108.7,
+      "usableKwh": 108,
+      "maxKwAc": 11,
+      "maxKwDc": 400,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.5,
+      "curveId": "gen-400kw",
+      "v2x": false,
+      "oemUrl": "https://www.bmw.com/en/models/ix3",
+      "oemVerified": true,
+      "imageQuery": "BMW iX3 Neue Klasse",
+      "notes": "800V Neue Klasse, 400kW peak — needs 400kW+ stall to shine."
+    },
+    {
+      "id": "mercedes-eqa-70",
+      "name": "Mercedes EQA 250+",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 70.5,
+      "usableKwh": 66,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.mercedes-benz.com/en/vehicles/eqa",
+      "oemVerified": true,
+      "imageQuery": "Mercedes EQA",
+      "notes": "100kW DC city SUV."
+    },
+    {
+      "id": "mercedes-eqe-90",
+      "name": "Mercedes EQE 350",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 90.6,
+      "usableKwh": 89,
+      "maxKwAc": 11,
+      "maxKwDc": 170,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.5,
+      "curveId": "tesla-170kw",
+      "v2x": false,
+      "oemUrl": "https://www.mercedes-benz.com/en/vehicles/eqe",
+      "oemVerified": true,
+      "imageQuery": "Mercedes EQE",
+      "notes": "170kW DC executive sedan."
+    },
+    {
+      "id": "mercedes-eqs-118",
+      "name": "Mercedes EQS 450+",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 118,
+      "usableKwh": 113,
+      "maxKwAc": 11,
+      "maxKwDc": 200,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18.5,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.mercedes-benz.com/en/vehicles/eqs",
+      "oemVerified": true,
+      "imageQuery": "Mercedes EQS",
+      "notes": "200kW DC luxury sedan. JDP 2026: Mercedes 797, top-3 network-adjacent brand."
+    },
+    {
+      "id": "mercedes-g580-116",
+      "name": "Mercedes G580 EQ",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 116,
+      "usableKwh": 112,
+      "maxKwAc": 11,
+      "maxKwDc": 200,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 28,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.mercedes-benz.com/en/vehicles/g-class-electric",
+      "oemVerified": true,
+      "imageQuery": "Mercedes G580 with EQ Technology",
+      "notes": "Electric G-wagen. Thirsty — plan like a truck, not a sedan."
+    },
+    {
+      "id": "volvo-ex30-69",
+      "name": "Volvo EX30 Twin",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 69,
+      "usableKwh": 64,
+      "maxKwAc": 11,
+      "maxKwDc": 153,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.volvocars.com/us/cars/ex30-electric",
+      "oemVerified": true,
+      "imageQuery": "Volvo EX30",
+      "notes": "153kW DC compact. Fast-charging value king."
+    },
+    {
+      "id": "volvo-ex90-111",
+      "name": "Volvo EX90 Twin",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 111,
+      "usableKwh": 107,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 20,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "oemUrl": "https://www.volvocars.com/us/cars/ex90-electric",
+      "oemVerified": true,
+      "imageQuery": "Volvo EX90",
+      "notes": "250kW DC 7-seater. Bidirectional-ready hardware (market-dependent activation)."
+    },
+    {
+      "id": "polestar2-82",
+      "name": "Polestar 2 Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 82,
+      "usableKwh": 79,
+      "maxKwAc": 11,
+      "maxKwDc": 205,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17.5,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.polestar.com/global/polestar-2",
+      "oemVerified": true,
+      "imageQuery": "Polestar 2",
+      "notes": "205kW DC. Google-native infotainment, CCS2 EU / CCS1 US."
+    },
+    {
+      "id": "polestar3-111",
+      "name": "Polestar 3 Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 111,
+      "usableKwh": 107,
+      "maxKwAc": 11,
+      "maxKwDc": 250,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 20.5,
+      "curveId": "tesla-250kw",
+      "v2x": false,
+      "oemUrl": "https://www.polestar.com/global/polestar-3",
+      "oemVerified": true,
+      "imageQuery": "Polestar 3",
+      "notes": "250kW DC SUV flagship."
+    },
+    {
+      "id": "polestar4-100",
+      "name": "Polestar 4 Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 100,
+      "usableKwh": 94,
+      "maxKwAc": 22,
+      "maxKwDc": 200,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.polestar.com/global/polestar-4",
+      "oemVerified": true,
+      "imageQuery": "Polestar 4",
+      "notes": "200kW DC coupe-SUV, 22kW AC."
+    },
+    {
+      "id": "renault-scenic-87",
+      "name": "Renault Scenic E-Tech Long Range",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 87,
+      "usableKwh": 84,
+      "maxKwAc": 22,
+      "maxKwDc": 150,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.renault.com/en/vehicles/scenic-e-tech-electric",
+      "oemVerified": true,
+      "imageQuery": "Renault Scenic E-Tech",
+      "notes": "150kW DC, 22kW AC. EU family favourite."
+    },
+    {
+      "id": "renault-megane-60",
+      "name": "Renault Megane E-Tech",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 60,
+      "usableKwh": 57,
+      "maxKwAc": 22,
+      "maxKwDc": 130,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.renault.com/en/vehicles/megane-e-tech-electric",
+      "oemVerified": true,
+      "imageQuery": "Renault Megane E-Tech",
+      "notes": "130kW DC hatch."
+    },
+    {
+      "id": "renault-r5-52",
+      "name": "Renault 5 E-Tech",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 52,
+      "usableKwh": 49,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 14,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.renault.com/en/vehicles/r5-e-tech-electric",
+      "oemVerified": true,
+      "imageQuery": "Renault 5 E-Tech",
+      "notes": "Retro city EV, 100kW DC, V2L/V2G-ready hardware."
+    },
+    {
+      "id": "alpine-a290-52",
+      "name": "Alpine A290",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 52,
+      "usableKwh": 49,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.alpinecars.com/",
+      "oemVerified": true,
+      "imageQuery": "Alpine A290",
+      "notes": "Hot-hatch twin of R5, 100kW DC."
+    },
+    {
+      "id": "peugeot-e208-51",
+      "name": "Peugeot E-208",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 51,
+      "usableKwh": 48,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 14.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.peugeot.co.uk/models/peugeot-208/electric.html",
+      "oemVerified": true,
+      "imageQuery": "Peugeot E-208",
+      "notes": "100kW DC supermini."
+    },
+    {
+      "id": "fiat-500e-42",
+      "name": "Fiat 500e",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 42,
+      "usableKwh": 37.3,
+      "maxKwAc": 11,
+      "maxKwDc": 85,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 13.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.fiat.com/500-electric",
+      "oemVerified": true,
+      "imageQuery": "Fiat 500e",
+      "notes": "85kW DC city icon. 10-80% ~35 min despite small pack."
+    },
+    {
+      "id": "jeep-avenger-54",
+      "name": "Jeep Avenger Electric",
+      "class": "4W",
+      "market": "EU-IN",
+      "batteryKwh": 54,
+      "usableKwh": 51,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.jeep.co.uk/jeep-avenger/electric",
+      "oemVerified": true,
+      "imageQuery": "Jeep Avenger Electric",
+      "notes": "100kW DC compact SUV."
+    },
+    {
+      "id": "mini-cooper-se-49",
+      "name": "Mini Cooper SE",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 49.2,
+      "usableKwh": 46.5,
+      "maxKwAc": 11,
+      "maxKwDc": 95,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 14,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.mini.co.uk/en_GB/home/range/all-electric-mini-cooper.html",
+      "oemVerified": true,
+      "imageQuery": "Mini Cooper SE",
+      "notes": "95kW DC. Go-kart, short legs — plan stops tighter."
+    },
+    {
+      "id": "mini-countryman-se-64",
+      "name": "Mini Countryman SE",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 66.5,
+      "usableKwh": 64,
+      "maxKwAc": 22,
+      "maxKwDc": 130,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.mini.co.uk/en_GB/home/range/all-electric-mini-countryman.html",
+      "oemVerified": true,
+      "imageQuery": "Mini Countryman SE",
+      "notes": "130kW DC family Mini."
+    },
+    {
+      "id": "smart-1-66",
+      "name": "Smart #1 Premium",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 66,
+      "usableKwh": 62,
+      "maxKwAc": 22,
+      "maxKwDc": 150,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.smart.com/en/models/smart-1",
+      "oemVerified": true,
+      "imageQuery": "Smart #1",
+      "notes": "150kW DC, 22kW AC. Geely-Mercedes JV."
+    },
+    {
+      "id": "ford-explorer-ev-77",
+      "name": "Ford Explorer EV (EU)",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 77,
+      "usableKwh": 75,
+      "maxKwAc": 11,
+      "maxKwDc": 135,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.ford.com/cars/explorer-electric",
+      "oemVerified": true,
+      "imageQuery": "Ford Explorer Electric",
+      "notes": "MEB-based EU Explorer, 135kW DC. Not the US Explorer."
+    },
+    {
+      "id": "ford-capri-ev-77",
+      "name": "Ford Capri EV",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 77,
+      "usableKwh": 75,
+      "maxKwAc": 11,
+      "maxKwDc": 135,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.ford.com/cars/capri-electric",
+      "oemVerified": true,
+      "imageQuery": "Ford Capri Electric",
+      "notes": "MEB coupe-SUV twin, 135kW DC."
+    },
+    {
+      "id": "ford-puma-gene-43",
+      "name": "Ford Puma Gen-E",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 43.6,
+      "usableKwh": 41,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 14,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.ford.com/cars/puma-gen-e",
+      "oemVerified": true,
+      "imageQuery": "Ford Puma Gen-E",
+      "notes": "100kW DC city crossover."
+    },
+    {
+      "id": "toyota-bz4x-71",
+      "name": "Toyota bZ4X",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 71.4,
+      "usableKwh": 64,
+      "maxKwAc": 6.6,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.toyota.com/bz4x",
+      "oemVerified": true,
+      "imageQuery": "Toyota bZ4X",
+      "notes": "Conservative ~100kW DC curve. US units CCS1. Twin: Subaru Solterra."
+    },
+    {
+      "id": "subaru-solterra-71",
+      "name": "Subaru Solterra",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 71.4,
+      "usableKwh": 64,
+      "maxKwAc": 6.6,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.subaru.com/vehicles/solterra",
+      "oemVerified": true,
+      "imageQuery": "Subaru Solterra",
+      "notes": "bZ4X twin, same ~100kW DC behaviour + X-Mode AWD."
+    },
+    {
+      "id": "lexus-rz-71",
+      "name": "Lexus RZ 450e",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 71.4,
+      "usableKwh": 64,
+      "maxKwAc": 6.6,
+      "maxKwDc": 150,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.lexus.com/models/rz",
+      "oemVerified": true,
+      "imageQuery": "Lexus RZ",
+      "notes": "150kW DC luxury twin of bZ4X."
+    },
+    {
+      "id": "honda-prologue-85",
+      "name": "Honda Prologue",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 85,
+      "usableKwh": 82,
+      "maxKwAc": 11,
+      "maxKwDc": 155,
+      "plugAc": "J1772",
+      "plugDc": "CCS1",
+      "swap": null,
+      "effKwhPer100km": 18,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.honda.com/vehicles/prologue",
+      "oemVerified": true,
+      "imageQuery": "Honda Prologue",
+      "notes": "GM-Ultium based, 155kW DC. 2025+ adds NACS port."
+    },
+    {
+      "id": "honda-eny1-68",
+      "name": "Honda e:Ny1",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 68.8,
+      "usableKwh": 62,
+      "maxKwAc": 11,
+      "maxKwDc": 78,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.honda.com/vehicles/eny1",
+      "oemVerified": true,
+      "imageQuery": "Honda e:Ny1",
+      "notes": "78kW DC compact SUV."
+    },
+    {
+      "id": "nissan-micra-52",
+      "name": "Nissan Micra EV",
+      "class": "4W",
+      "market": "EU",
+      "batteryKwh": 52,
+      "usableKwh": 49,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 13.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.nissan.com/models/micra-ev",
+      "oemVerified": true,
+      "imageQuery": "Nissan Micra EV",
+      "notes": "R5-platform city EV, 100kW DC."
+    },
+    {
+      "id": "chevy-blazer-102",
+      "name": "Chevrolet Blazer EV",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 102,
+      "usableKwh": 98,
+      "maxKwAc": 11,
+      "maxKwDc": 190,
+      "plugAc": "J1772",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 19,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.chevrolet.com/electric/blazer-ev",
+      "oemVerified": true,
+      "imageQuery": "Chevrolet Blazer EV",
+      "notes": "190kW DC. 2025+ ships NACS port."
+    },
+    {
+      "id": "chevy-silverado-200",
+      "name": "Chevrolet Silverado EV RST",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 205,
+      "usableKwh": 195,
+      "maxKwAc": 11,
+      "maxKwDc": 350,
+      "plugAc": "J1772",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 26,
+      "curveId": "gen-350kw",
+      "v2x": true,
+      "oemUrl": "https://www.chevrolet.com/electric/silverado-ev",
+      "oemVerified": true,
+      "imageQuery": "Chevrolet Silverado EV",
+      "notes": "~200kWh pack, 350kW DC, V2H capable. Plan like a truck."
+    },
+    {
+      "id": "rivian-r1t-141",
+      "name": "Rivian R1T Dual Max",
+      "class": "4W",
+      "market": "US",
+      "batteryKwh": 141,
+      "usableKwh": 135,
+      "maxKwAc": 11,
+      "maxKwDc": 220,
+      "plugAc": "J1772",
+      "plugDc": "NACS",
+      "swap": null,
+      "effKwhPer100km": 22,
+      "curveId": "rivian-220kw",
+      "v2x": false,
+      "oemUrl": "https://www.rivian.com/r1t",
+      "oemVerified": true,
+      "imageQuery": "Rivian R1T",
+      "notes": "220kW DC adventure truck. JDP 2026: Rivian 755, above segment."
+    },
+    {
+      "id": "lucid-air-118",
+      "name": "Lucid Air Pure",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 118,
+      "usableKwh": 112,
+      "maxKwAc": 22,
+      "maxKwDc": 300,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "gen-350kw",
+      "v2x": false,
+      "oemUrl": "https://www.lucidmotors.com/air",
+      "oemVerified": true,
+      "imageQuery": "Lucid Air",
+      "notes": "900V+, 300kW+ DC. Most efficient big sedan ever — range king."
+    },
+    {
+      "id": "xpeng-g6-87",
+      "name": "Xpeng G6 Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 87.5,
+      "usableKwh": 83,
+      "maxKwAc": 11,
+      "maxKwDc": 280,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 17,
+      "curveId": "gen-350kw",
+      "v2x": false,
+      "oemUrl": "https://www.xpeng.com/g6",
+      "oemVerified": true,
+      "imageQuery": "Xpeng G6",
+      "notes": "800V, 280kW peak. CN units use GB-T inlets."
+    },
+    {
+      "id": "xpeng-p7-82",
+      "name": "Xpeng P7",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 82.7,
+      "usableKwh": 79,
+      "maxKwAc": 11,
+      "maxKwDc": 175,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "gen-175kw",
+      "v2x": false,
+      "oemUrl": "https://www.xpeng.com/p7",
+      "oemVerified": true,
+      "imageQuery": "Xpeng P7",
+      "notes": "175kW DC sedan."
+    },
+    {
+      "id": "nio-el7-100",
+      "name": "NIO EL7 (100kWh swap)",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 100,
+      "usableKwh": 90,
+      "maxKwAc": 11,
+      "maxKwDc": 180,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": "NIO Power Swap",
+      "effKwhPer100km": 19,
+      "curveId": "gen-175kw",
+      "v2x": false,
+      "oemUrl": "https://www.nio.com/el7",
+      "oemVerified": true,
+      "imageQuery": "NIO EL7",
+      "notes": "Swap-primary: 3-min Power Swap; 180kW DC fallback."
+    },
+    {
+      "id": "zeekr-001-100",
+      "name": "Zeekr 001 Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 100,
+      "usableKwh": 95,
+      "maxKwAc": 11,
+      "maxKwDc": 200,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 18,
+      "curveId": "gen-200kw",
+      "v2x": false,
+      "oemUrl": "https://www.zeekr.com/001",
+      "oemVerified": true,
+      "imageQuery": "Zeekr 001",
+      "notes": "200kW DC shooting brake. CN units GB-T."
+    },
+    {
+      "id": "zeekr-x-69",
+      "name": "Zeekr X Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 69,
+      "usableKwh": 65,
+      "maxKwAc": 11,
+      "maxKwDc": 150,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.zeekr.com/x",
+      "oemVerified": true,
+      "imageQuery": "Zeekr X",
+      "notes": "150kW DC compact SUV."
+    },
+    {
+      "id": "mg4-77",
+      "name": "MG4 EV Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 77,
+      "usableKwh": 74,
+      "maxKwAc": 11,
+      "maxKwDc": 144,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "140kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.mg.co.uk/new-cars/mg4-ev",
+      "oemVerified": true,
+      "imageQuery": "MG4 Electric",
+      "notes": "144kW DC hatch. EU best-value award winner."
+    },
+    {
+      "id": "mg-s5-64",
+      "name": "MG S5 EV Long Range",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 64,
+      "usableKwh": 61,
+      "maxKwAc": 11,
+      "maxKwDc": 150,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 16,
+      "curveId": "150kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.mg.co.uk/new-cars/mgs5-ev",
+      "oemVerified": true,
+      "imageQuery": "MG S5 EV",
+      "notes": "ZS successor, 150kW DC."
+    },
+    {
+      "id": "vinfast-vf6-59",
+      "name": "VinFast VF6 Plus",
+      "class": "4W",
+      "market": "GLOBAL",
+      "batteryKwh": 59.6,
+      "usableKwh": 56,
+      "maxKwAc": 11,
+      "maxKwDc": 100,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 15.5,
+      "curveId": "100kw-flat",
+      "v2x": false,
+      "oemUrl": "https://www.vinfast.com/vf-6",
+      "oemVerified": true,
+      "imageQuery": "VinFast VF6",
+      "notes": "100kW DC compact SUV. IN launch 2025."
+    },
+    {
+      "id": "vespa-elettrica-4",
+      "name": "Vespa Elettrica",
+      "class": "2W",
+      "market": "EU-IN",
+      "batteryKwh": 4.2,
+      "usableKwh": 4,
+      "maxKwAc": 3,
+      "maxKwDc": 0,
+      "plugAc": "Type6",
+      "plugDc": "",
+      "swap": null,
+      "effKwhPer100km": 4.5,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "oemUrl": "https://www.vespa.com/en_EN/electric-range",
+      "oemVerified": true,
+      "imageQuery": "Vespa Elettrica electric scooter",
+      "notes": "AC-only city scooter. No DC inlet — overnight charging."
+    },
+    {
+      "id": "zero-srf-17",
+      "name": "Zero SR/F",
+      "class": "2W",
+      "market": "US-EU",
+      "batteryKwh": 17.3,
+      "usableKwh": 15,
+      "maxKwAc": 6.6,
+      "maxKwDc": 0,
+      "plugAc": "Type2",
+      "plugDc": "",
+      "swap": null,
+      "effKwhPer100km": 8,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "oemUrl": "https://www.zeromotorcycles.com/model/zero-srf",
+      "oemVerified": true,
+      "imageQuery": "Zero SR/F electric motorcycle",
+      "notes": "AC-only (6.6kW). Highway trips need long lunch stops."
+    },
+    {
+      "id": "livewire-one-15",
+      "name": "LiveWire One",
+      "class": "2W",
+      "market": "US",
+      "batteryKwh": 15.4,
+      "usableKwh": 14,
+      "maxKwAc": 1.4,
+      "maxKwDc": 20,
+      "plugAc": "J1772",
+      "plugDc": "CCS1",
+      "swap": null,
+      "effKwhPer100km": 8,
+      "curveId": "chademo-50kw",
+      "v2x": false,
+      "oemUrl": "https://www.livewire.com/one",
+      "oemVerified": true,
+      "imageQuery": "LiveWire One electric motorcycle",
+      "notes": "20kW DC fast-charge. Slow 1.4kW AC backup."
+    },
+    {
+      "id": "energica-ego-21",
+      "name": "Energica Ego+",
+      "class": "2W",
+      "market": "EU",
+      "batteryKwh": 21.5,
+      "usableKwh": 19,
+      "maxKwAc": 3,
+      "maxKwDc": 25,
+      "plugAc": "Type2",
+      "plugDc": "CCS2",
+      "swap": null,
+      "effKwhPer100km": 9,
+      "curveId": "chademo-50kw",
+      "v2x": false,
+      "oemUrl": "https://www.energica.com/models/ego",
+      "oemVerified": false,
+      "imageQuery": "Energica Ego electric motorcycle",
+      "notes": "25kW DC sportbike. Fastest-charging e-moto class."
+    },
+    {
+      "id": "bmw-ce04-8",
+      "name": "BMW CE 04",
+      "class": "2W",
+      "market": "GLOBAL",
+      "batteryKwh": 8.9,
+      "usableKwh": 8,
+      "maxKwAc": 6.9,
+      "maxKwDc": 0,
+      "plugAc": "Type2",
+      "plugDc": "",
+      "swap": null,
+      "effKwhPer100km": 7,
+      "curveId": "scooter-ac",
+      "v2x": false,
+      "oemUrl": "https://www.bmw.com/en/models/ce04",
+      "oemVerified": true,
+      "imageQuery": "BMW CE 04 electric scooter",
+      "notes": "AC-only maxi-scooter (6.9kW with quick-charge option)."
     }
   ],
   "curves": {
@@ -2034,6 +3706,138 @@
     "swap-only": {
       "peakKw": 0,
       "points": []
+    },
+    "gen-175kw": {
+      "peakKw": 175,
+      "points": [
+        [
+          10,
+          175
+        ],
+        [
+          40,
+          165
+        ],
+        [
+          60,
+          130
+        ],
+        [
+          75,
+          90
+        ],
+        [
+          80,
+          70
+        ],
+        [
+          90,
+          30
+        ],
+        [
+          100,
+          12
+        ]
+      ]
+    },
+    "gen-200kw": {
+      "peakKw": 200,
+      "points": [
+        [
+          10,
+          200
+        ],
+        [
+          40,
+          190
+        ],
+        [
+          60,
+          150
+        ],
+        [
+          75,
+          105
+        ],
+        [
+          80,
+          80
+        ],
+        [
+          90,
+          35
+        ],
+        [
+          100,
+          14
+        ]
+      ]
+    },
+    "gen-350kw": {
+      "peakKw": 350,
+      "points": [
+        [
+          10,
+          350
+        ],
+        [
+          30,
+          330
+        ],
+        [
+          50,
+          280
+        ],
+        [
+          65,
+          200
+        ],
+        [
+          80,
+          120
+        ],
+        [
+          90,
+          60
+        ],
+        [
+          100,
+          30
+        ]
+      ]
+    },
+    "gen-400kw": {
+      "peakKw": 400,
+      "points": [
+        [
+          10,
+          400
+        ],
+        [
+          30,
+          380
+        ],
+        [
+          50,
+          320
+        ],
+        [
+          65,
+          240
+        ],
+        [
+          80,
+          150
+        ],
+        [
+          90,
+          70
+        ],
+        [
+          100,
+          35
+        ]
+      ]
     }
   }
 }

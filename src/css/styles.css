@@ -157,3 +157,7 @@ a{color:var(--m3-tertiary);text-underline-offset:3px}
 @media(max-width:760px){.tabs{display:none}.bottomnav{display:block}.topbar-inner{padding:12px 16px 0}main{padding:16px 16px 160px}.card{padding:18px}.brand small{display:none}}
 @media (forced-colors:active){.tabs button.active,.bottomnav button.active .nav-indicator{forced-color-adjust:none}}
 @media print{.topbar,.tabs,.bottomnav,.skip-link{display:none}}
+/* ---- v2.2 vehicle media + stop location lines ---- */
+.vphoto{width:100%;max-height:230px;object-fit:cover;border-radius:var(--radius-m);margin:10px 0 4px;border:1px solid var(--m3-outline-variant)}
+.photocap{font-size:12px;color:var(--m3-on-surface-variant);margin-bottom:6px}
+.locline{font-size:12.5px;margin-top:8px;line-height:22px}
