@@ -60,50 +60,62 @@
 <header class="topbar">
   <div class="topbar-inner">
     <div class="brand"><span class="brand-icon material-symbols-rounded" aria-hidden="true">bolt</span><div class="brand-text"><strong>ChargeTruth OS</strong><small>Pixel 10 · Material 3 Expressive · Navigate to electrons</small></div></div>
+    <div class="modetoggle" role="group" aria-label="Vehicle mode">
+      <button id="mode4w" class="active" aria-pressed="true">4W ⚡</button>
+      <button id="mode2w" aria-pressed="false">2W 🔄</button>
+      <a id="savedLink" class="savedlink" href="./saved.html" title="Downloaded offline packs"><span class="material-symbols-rounded" aria-hidden="true">offline_pin</span><span class="savedlabel">Saved</span></a>
+    </div>
     <div class="status" role="status" aria-live="polite"><span id="netDot" class="dot"></span><span id="netLabel">checking…</span><span id="pendBadge" class="badge" title="Unsynced crowd reports"></span></div>
   </div>
   <nav class="tabs" role="tablist" aria-label="Primary">
     <button data-tab="plan" class="active" role="tab" aria-selected="true" aria-controls="tab-plan" id="tabbtn-plan"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">route</span></span><span class="nav-label">Plan Trip</span></button>
-    <button data-tab="stations" role="tab" aria-selected="false" aria-controls="tab-stations" id="tabbtn-stations" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">battery_charging_full</span></span><span class="nav-label">Reliability</span></button>
-    <button data-tab="swap" role="tab" aria-selected="false" aria-controls="tab-swap" id="tabbtn-swap" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">autorenew</span></span><span class="nav-label">Swap Finder</span></button>
-    <button data-tab="garage" role="tab" aria-selected="false" aria-controls="tab-garage" id="tabbtn-garage" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">garage</span></span><span class="nav-label">Garage</span></button>
+    <button data-tab="stations" role="tab" aria-selected="false" aria-controls="tab-stations" id="tabbtn-stations" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">battery_charging_full</span></span><span class="nav-label">Score</span></button>
     <button data-tab="report" role="tab" aria-selected="false" aria-controls="tab-report" id="tabbtn-report" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">campaign</span></span><span class="nav-label">Report</span></button>
-    <button data-tab="offline" role="tab" aria-selected="false" aria-controls="tab-offline" id="tabbtn-offline" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">offline_pin</span></span><span class="nav-label">Offline</span></button>
-    <button data-tab="research" role="tab" aria-selected="false" aria-controls="tab-research" id="tabbtn-research" tabindex="-1"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">science</span></span><span class="nav-label">Research</span></button>
   </nav>
 </header>
 
 <main id="main">
-<!-- PLAN -->
+<!-- PLAN : 3-step wizard -->
 <section id="tab-plan" class="tab active" role="tabpanel" aria-labelledby="tabbtn-plan" tabindex="0">
+  <ol class="wizardsteps" aria-label="Trip planner steps">
+    <li class="current">1 · Vehicle</li>
+    <li>2 · Route</li>
+    <li>3 · Electrons</li>
+  </ol>
   <div class="grid2">
     <div class="card">
       <h2><span class="material-symbols-rounded" aria-hidden="true">route</span>Trip inputs <span class="pill">offline gazetteer · no Google</span></h2>
-      <label>Vehicle <select id="vSelect"></select></label>
-      <div id="vCard" class="vcard"></div>
-      <div class="row">
-        <label>Start <input id="fromQ" placeholder="Mumbai" autocomplete="off"><div id="fromSug" class="sug"></div></label>
-        <label>End <input id="toQ" placeholder="Pune" autocomplete="off"><div id="toSug" class="sug"></div></label>
-      </div>
-      <div class="row3">
-        <label>SoC now % <input id="socNow" type="number" value="80" min="5" max="100"></label>
-        <label>Want % at arrival <input id="socWant" type="number" value="30" min="5" max="100"></label>
-        <label>Temp °C <input id="tempC" type="number" value="32"></label>
-      </div>
-      <div class="row3">
-        <label>Cargo kg <input id="cargoKg" type="number" value="100"></label>
-        <label>Speed kph <input id="speedKph" type="number" value="80"></label>
-        <label>Hour (swap rush) <input id="hourOf" type="number" value="12" min="0" max="23"></label>
-      </div>
-      <button id="planBtn" class="big">⚡ Plan my electrons</button>
-      <p class="hint">Safety: winter auto-reserve 15% below 0 °C. Never plans arrival &lt; reserve. MG Comet (AC-only) &amp; swap-only scooters get special routing.</p>
+      <fieldset class="wstep">
+        <legend>Step 1 — Vehicle</legend>
+        <label>Vehicle <select id="vSelect"></select></label>
+        <div id="vCard" class="vcard"></div>
+        <p class="hint">Full list with photos + OEM links: <a href="./garage.html">Garage →</a> · 2W swap rider? <a href="./swap.html" id="swapLink">Swap finder →</a></p>
+      </fieldset>
+      <fieldset class="wstep">
+        <legend>Step 2 — Route + battery</legend>
+        <div class="row">
+          <label>Start <input id="fromQ" placeholder="Mumbai" autocomplete="off"><div id="fromSug" class="sug"></div></label>
+          <label>End <input id="toQ" placeholder="Pune" autocomplete="off"><div id="toSug" class="sug"></div></label>
+        </div>
+        <div class="row3">
+          <label>SoC now % <input id="socNow" type="number" value="80" min="5" max="100"></label>
+          <label>Want % at arrival <input id="socWant" type="number" value="30" min="5" max="100"></label>
+          <label>Temp °C <input id="tempC" type="number" value="32"></label>
+        </div>
+        <div class="row3">
+          <label>Cargo kg <input id="cargoKg" type="number" value="100"></label>
+          <label>Speed kph <input id="speedKph" type="number" value="80"></label>
+          <label>Hour (swap rush) <input id="hourOf" type="number" value="12" min="0" max="23"></label>
+        </div>
+        <button id="planBtn" class="big">⚡ Plan my electrons</button>
+        <p class="hint">Safety: winter auto-reserve 15% below 0 °C. Never plans arrival &lt; reserve. MG Comet (AC-only) &amp; swap-only scooters get special routing.</p>
+      </fieldset>
     </div>
-    <div class="card" id="planOut"><h2><span class="material-symbols-rounded" aria-hidden="true">bolt</span>Route output</h2><p class="muted">Pick vehicle + cities, hit Plan. You get <b>2 optimal stops (not 6)</b> — Score, real kW, mins, queue, price — plus red cards and a swap plan for 2W.</p></div>
+    <div class="card" id="planOut"><h2><span class="material-symbols-rounded" aria-hidden="true">bolt</span>Step 3 — Route output</h2><p class="muted">Pick vehicle + cities, hit Plan. You get <b>2 optimal stops (not 6)</b> — Score, real kW, mins, queue, price — plus red cards and boarding-pass GPS + Maps links.</p><p class="hint">V2H / home-battery check moved out of the critical path: <a href="./research.html#v2h">V2H safe-stop →</a> · Offline for Ghats/winter: <a href="./saved.html">Saved packs →</a></p></div>
   </div>
-  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">home_battery</span>V2H / V2G safe-stop</h2><div id="v2hOut"></div></div>
 </section>
 
-<!-- STATIONS -->
+<!-- STATIONS : reliability bottom-sheet -->
 <section id="tab-stations" class="tab" role="tabpanel" aria-labelledby="tabbtn-stations" tabindex="0" hidden>
   <div class="card">
     <h2><span class="material-symbols-rounded" aria-hidden="true">battery_charging_full</span>Reliability explorer <span class="pill">0–100 blender</span></h2>
@@ -111,35 +123,12 @@
     <label>Sort <select id="sortSel"><option value="score">Score ↓</option><option value="power">Max kW ↓</option></select></label>
     <label>Amenity <select id="amenFilter"><option value="">Any</option><option value="washroom">Washroom</option><option value="food">Food/cafe</option><option value="lighting">Lighting (night safety)</option><option value="wheelchair">Wheelchair access</option></select></label>
     <label>Payment <select id="payFilter"><option value="">Any</option><option value="upi">UPI</option><option value="rfid">RFID</option><option value="app">App</option><option value="card">Card</option></select></label></div>
-    <p class="hint">Score = 45% crowd + 25% CPO prior + 20% size/redundancy + 10% freshness − penalties. <a href="#" id="methodLink">Methodology → Research tab</a></p>
+    <p class="hint">Score = 45% crowd + 25% CPO prior + 20% size/redundancy + 10% freshness − penalties. <a href="./research.html#methodology" id="methodLink">Methodology →</a> Auto-filtered to your selected vehicle.</p>
     <div id="stationList" class="stations"></div>
   </div>
 </section>
 
-<!-- SWAP -->
-<section id="tab-swap" class="tab" role="tabpanel" aria-labelledby="tabbtn-swap" tabindex="0" hidden>
-  <div class="grid2">
-    <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">autorenew</span>Swap finder <span class="pill">Gogoro · Sun · CATL · NIO+Geely · Ola</span></h2>
-      <label>2W/3W vehicle <select id="swapVSelect"></select></label>
-      <label>Trip km <input id="swapKm" type="number" value="60"></label>
-      <button id="swapBtn" class="big">🔄 Find swap cabins</button>
-      <div id="swapOut"></div>
-    </div>
-    <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">swap_horiz</span>Swap vs Charge ROI</h2>
-      <div class="row3"><label>Rider Rs/hr <input id="roiHr" type="number" value="150"></label><label>Swaps/day <input id="roiN" type="number" value="3"></label><label>Charge hrs/day <input id="roiH" type="number" value="3"></label></div>
-      <button id="roiBtn">Calculate ROI</button><div id="roiOut"></div>
-    </div>
-  </div>
-</section>
-
-<!-- GARAGE -->
-<section id="tab-garage" class="tab" role="tabpanel" aria-labelledby="tabbtn-garage" tabindex="0" hidden>
-  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">garage</span>Vehicle garage — <span id="vCount"></span> models</h2>
-  <input id="vSearch" placeholder="Search: nexon, leaf, ola, nio…">
-  <div id="vTable" class="vtable"></div></div>
-</section>
-
-<!-- REPORT -->
+<!-- REPORT : 1-tap -->
 <section id="tab-report" class="tab" role="tabpanel" aria-labelledby="tabbtn-report" tabindex="0" hidden>
   <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">campaign</span>1-tap report <span class="pill">stored locally · synced free</span></h2>
     <label>Station <select id="repStation"></select></label>
@@ -152,46 +141,27 @@
   </div>
 </section>
 
-<!-- OFFLINE -->
-<section id="tab-offline" class="tab" role="tabpanel" aria-labelledby="tabbtn-offline" tabindex="0" hidden>
-  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">offline_pin</span>Offline packs — 15 MB/state target</h2>
-    <label>Pack region <select id="packRegion"><option value="MH">Maharashtra (Mumbai–Pune)</option><option value="DL-RJ">Delhi–Jaipur corridor</option><option value="KA-TN">Karnataka–Tamil Nadu</option><option value="MI">Michigan (Detroit–Ann Arbor)</option></select></label>
-    <button id="packBtn">📦 Build + download pack</button> <span id="packMsg" class="muted"></span>
-    <h3>Valhalla + OSM .pbf hook</h3>
-    <pre class="code"># Self-host Valhalla (no per-request bill), then point the app at it:
-docker run -p 8002:8002 -v ./pbf:/data ghcr.io/valhalla/valhalla
-# Settings: set localStorage valhalla_url = http://localhost:8002/route
-# App auto-upgrades straight-line×1.25 to real road geometry when reachable,
-# else stays fully offline. Tiles: pre-cache z12 bbox (see pack manifest).</pre>
+<!-- Explore companions (lazy sub-pages, not tabs) -->
+<section class="card companions" aria-label="Explore more">
+  <h2><span class="material-symbols-rounded" aria-hidden="true">explore</span>Explore companions</h2>
+  <div class="complinks">
+    <a href="./garage.html">🚗 Garage — 154 vehicles</a>
+    <a href="./swap.html">🔄 Swap finder + ROI</a>
+    <a href="./saved.html">📦 Offline packs</a>
+    <a href="./research.html">🔬 Research + methodology + No-Google-Tax</a>
   </div>
-</section>
-
-<!-- RESEARCH -->
-<section id="tab-research" class="tab" role="tabpanel" aria-labelledby="tabbtn-research" tabindex="0" hidden>
-  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">science</span>Verified research base + honesty contract</h2><div id="researchOut"></div></div>
-  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">function</span>Methodology (Reliability Blender v2)</h2><pre class="code">Score = 100 × (0.45×crowd + 0.25×cpoPrior + 0.20×size + 0.10×freshness) − penalties
-crowd   = decay-weighted (hl=10d), fraud-adjusted, Wilson 95% CI shown
-cpoPrior= per-CPO prior (Assure 0.98 only if assure=true AND stalls≥6; EA 0.78; single-generic 0.68…)
-size    = redundancy: 12+→0.97, 8+Assure→0.98, 6+Assure→0.96, 4→0.84, 2→0.74, 1→0.55
-fresh   = report volume: ≥100→1.0, ≥40→0.92, ≥15→0.8, ≥5→0.65, else 0.45 (low-confidence flag)
-penalties: raw fail≥28% (n≥10) −12pts + RED CARD (queue-escalated: ≥25% + HIGH queue also RED); ≥20% −6pts; 1-stall+fail≥25% −5pts; worst-connector −8/−4.
-queue   = separate risk (low/med/high + p50/p90 mins), never folded into Score silently.
-There is no 100%-real-time offline. Provenance + hash + updated + nextRefresh on every score.</pre></div>
-  <div class="card"><h2><span class="material-symbols-rounded" aria-hidden="true">savings</span>No-Google-Tax math</h2><div id="taxOut"></div></div>
 </section>
 </main>
 
-<footer>ChargeTruth OS v2.2 · Pixel 2026 UI · Offline-first · OSM + OpenChargeMap + OCPI/NREL live (5-min TTL) + crowd · <span id="footStats"></span><br><small>Methodology: Reliability Blender v2 (decay hl=10d, Wilson 95% CI, fraud weights) — <a href="./docs/METHODOLOGY.html">Methodology</a> · <a href="./docs/VERIFICATION.html">Verification</a> · <a href="./docs/ENTERPRISE.html">Enterprise &amp; SLA</a> · Updated <time datetime="2026-10-10">Oct 10, 2026</time> · Next refresh Jan 2026 · Authors: ChargeTruth data team, reviewed per Razorfish enterprise SEO methodology (E-E-A-T: named authors, sources, confidence on every stat). Honesty contract: no 100% real-time offline — provenance on every score.</small></footer>
+<button id="reportFab" class="fab" aria-label="Report charger status">📣 Report</button>
+
+<footer>ChargeTruth OS v2.2 · Pixel 2026 UI · Offline-first · OSM + OpenChargeMap + OCPI/NREL live (5-min TTL) + crowd · <span id="footStats"></span><br><small>Methodology: Reliability Blender v2 (decay hl=10d, Wilson 95% CI, fraud weights) — <a href="./docs/METHODOLOGY.html">Methodology</a> · <a href="./docs/VERIFICATION.html">Verification</a> · <a href="./docs/ENTERPRISE.html">Enterprise &amp; SLA</a> · <a href="./garage.html">Garage</a> · <a href="./swap.html">Swap</a> · <a href="./saved.html">Saved packs</a> · <a href="./research.html">Research</a> · Updated <time datetime="2026-10-10">Oct 10, 2026</time> · Next refresh Jan 2026 · Authors: ChargeTruth data team, reviewed per Razorfish enterprise SEO methodology (E-E-A-T: named authors, sources, confidence on every stat). Honesty contract: no 100% real-time offline — provenance on every score.</small></footer>
 <noscript><div style="padding:20px;max-width:900px;margin:0 auto"><h1>ChargeTruth OS — EV charger reliability + swap finder</h1><p>154 vehicles, 109 cities offline, 10 swap networks. Scores 0–100 with provenance. Corridors: Mumbai–Pune, Delhi–Jaipur, Detroit–Ann Arbor, Bangalore. Plug bible: CCS1/CCS2/NACS/CHAdeMO/GB-T/Type6/Bharat DC-001. See sitemap.xml for all routes, vehicles, stations.</p></div></noscript>
-<!-- Material 3 Expressive bottom navigation for mobile (Pixel-like), mirrors top tabs -->
-<nav class="bottomnav" aria-label="Primary mobile"><div class="bn-row">
+<!-- Material 3 Expressive bottom navigation for mobile (Pixel-like), 3 core tabs only -->
+<nav class="bottomnav" aria-label="Primary mobile"><div class="bn-row bn3">
   <button data-tab="plan" class="active" aria-current="page"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">route</span></span>Plan</button>
   <button data-tab="stations"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">battery_charging_full</span></span>Score</button>
-  <button data-tab="swap"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">autorenew</span></span>Swap</button>
-  <button data-tab="garage"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">garage</span></span>Cars</button>
   <button data-tab="report"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">campaign</span></span>Report</button>
-  <button data-tab="offline"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">offline_pin</span></span>Saved</button>
-  <button data-tab="research"><span class="nav-indicator"><span class="material-symbols-rounded" aria-hidden="true">science</span></span>Data</button>
 </div></nav>
 <script type="module" src="./src/js/app.js"></script>
 </body>

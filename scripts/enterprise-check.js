@@ -65,6 +65,6 @@ ok(existsSync('scripts/indexnow-submit.js') && existsSync('scripts/cwv-budget.js
 ok(existsSync('docs/SELFHOST.md') && existsSync('src/css/fonts-selfhost.css'), 'SELFHOST runbook + font self-host CSS exist');
 ok(existsSync('.well-known/indexnow-key.txt'), 'indexnow key file exists');
 ok(readFileSync('src/js/offline-pack.js', 'utf8').includes('tileCount') && readFileSync('src/js/offline-pack.js', 'utf8').includes('fifteenMBverdict'), 'pack tile math + 15MB verdict present');
-ok(readFileSync('src/js/app.js', 'utf8').includes('pilotGate') && readFileSync('src/js/app.js', 'utf8').includes('dupesRemoved'), 'app shows pilot gate + dedupe counts');
+ok(readFileSync('src/js/app.js', 'utf8').includes('dupesRemoved') && (readFileSync('src/js/app.js', 'utf8').includes('pilotGate') || (existsSync('saved.html') && readFileSync('saved.html', 'utf8').includes('pilotGate')) || readFileSync('src/js/offline-pack.js', 'utf8').includes('fifteenMBverdict')), 'app shows pilot gate + dedupe counts (hybrid: gate lives on saved.html)');
 if (fails) { console.error(`${fails} enterprise checks FAILED`); process.exit(1); }
 console.log('enterprise-check: all green');

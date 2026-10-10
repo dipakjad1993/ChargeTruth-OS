@@ -3,7 +3,7 @@
 [![Live Demo](https://img.shields.io/badge/demo-GitHub_Pages-2ea043?style=flat-square)](https://dipakjad1993.github.io/ChargeTruth-OS/)
 [![PWA](https://img.shields.io/badge/PWA-offline--first-blue?style=flat-square)](./manifest.webmanifest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](./LICENSE)
-[![Release](https://img.shields.io/github/v/release/dipakjad1993/ChargeTruth-OS?style=flat-square)](https://github.com/dipakjad1993/ChargeTruth-OS/releases)
+[![CI](https://img.shields.io/github/actions/workflow/status/dipakjad1993/ChargeTruth-OS/ci.yml?style=flat-square&label=ci)](https://github.com/dipakjad1993/ChargeTruth-OS/actions/workflows/ci.yml)
 [![Tests](https://img.shields.io/github/actions/workflow/status/dipakjad1993/ChargeTruth-OS/ingest-quarterly.yml?style=flat-square&label=quarterly-ingest)](https://github.com/dipakjad1993/ChargeTruth-OS/actions)
 
 > **🔴 Live demo:** https://dipakjad1993.github.io/ChargeTruth-OS/ — install as PWA for offline use. Zero build, zero API key.
@@ -11,6 +11,22 @@
 > Charger Reliability + Swap Interop Navigator. **No Google Tax. Offline-first. 4W plug-in + 2W/3W swap.**
 
 PlugShare tells you a charger EXISTS. ChargeTruth tells you if it **WORKS**, if your **plug FITS**, and if you'll get **250 kW or 22 kW of sadness**.
+
+## Format: 1-page app + many-page site (hybrid, v2.2)
+
+The app shell stays **one page with 3 tabs** so a driver at 18% SoC never loses state to navigation. Everything else is a **lazy companion page** (not a tab) plus **prerendered SEO pages** Google can actually index.
+
+| Surface | File | What it does |
+|---|---|---|
+| **App (3 tabs)** | `index.html` | `Plan` wizard (Step 1 Vehicle → Step 2 Route → Step 3 boarding-pass stops) · `Score` reliability explorer (auto-filtered to your car) · `Report` 1-tap + always-visible 📣 FAB. `4W ⚡ / 2W 🔄` toggle on top, `Saved` link, 3-icon mobile bottom-nav. |
+| **Garage** | `garage.html` | 154 vehicles searchable, OEM links, Commons photos. Lazy-loads `vehicles.json` only. |
+| **Swap** | `swap.html` | Swap finder (physical-fit guard) + Swap-vs-Charge ROI. |
+| **Research** | `research.html` | Verified stats + Blender v2 math + V2H battery catalog + No-Google-Tax. |
+| **Saved packs** | `saved.html` | Offline state-pack builder (15 MB verdict + pilot gate) + Valhalla hook. |
+| **SEO pages** | `dist/route|vehicle|swap|plug/` | 49 prerendered pages (`scripts/prerender-seo.js`): corridors × hero cars, charging-time, swap guides, plug guides — each with canonical + FAQ/Dataset JSON-LD. |
+| **Docs** | `docs/*.html` | METHODOLOGY · VERIFICATION · ENTERPRISE (crawlable, linked from every page). |
+
+What we deliberately do NOT do: split the core trip flow across 2–3 pages (kills offline PWA state), keep 7 equal tabs (cognitive overload), or chat-only UI (hides provenance/scores).
 
 ## Why this exists (verified research base)
 
@@ -26,21 +42,21 @@ PlugShare tells you a charger EXISTS. ChargeTruth tells you if it **WORKS**, if 
 ## Quick start (no build, no API key)
 
 ```powershell
-# Option 1: Python (already installed)
-python -m http.server 5173 --directory C:\PlugShare
+# From the repo root (C:\ChargeTruth OS):
+python -m http.server 5173
 # open http://localhost:5173/
 
-# Option 2: Node
-npx serve -l 5173 C:\PlugShare
+# Or with Node:
+npx serve -l 5173 .
 ```
 
-Open `index.html`. Install as PWA for offline. Download a state pack before Western Ghats / Michigan winter runs.
+Open `index.html`. Install as PWA for offline. Build a pack on `saved.html` before Western Ghats / Michigan winter runs.
 
 ## Data honesty (read before piloting)
 
 - **Cities:** 109 in `data/cities.json` today (Mumbai default route works offline). 400+ is the target — tracked in `docs/VERIFICATION.md` #13.
 - **Stations:** 24 in the sample pack (measured sizes below). Production = `ingest-ocm` + `ingest-osm` → `dedupe-pipeline` → `build-offline-pack`. No synthetic stations are presented as live; every score shows provenance + hash + updated + nextRefresh.
-- **Measured pack sizes (v2.1, CI-built Oct 2026):**
+- **Measured pack sizes (v2.2, CI-built Oct 2026):**
 
 | Pack | Stations | JSON | Note |
 |---|---|---|---|
@@ -48,7 +64,7 @@ Open `index.html`. Install as PWA for offline. Download a state pack before West
 | Michigan `packs/mi.json` (Detroit–Ann Arbor–Toledo–Lansing) | 5 | ~3 KB | Sample slice; same tile note |
 | Full sample `packs/merged.json` (CI dedupe artifact) | 24 | ~18 KB | 0 dupes removed — proves pipeline runs; real OCM/OSM inputs will show dedupe counts |
 
-> **MEASURED Oct 2026 (build-offline-pack v2.2, z12 × ~45KB/tile): MH bbox (Mumbai–Pune + KA slice) = 4,389 tiles ≈ 192.9 MB → EXCEEDS 15MB. MI corridor = 289 tiles ≈ 12.7 MB → WITHIN target.** 15 MB/state is corridor-bbox-dependent, NOT guaranteed. Shrink MH bbox (split Mumbai–Pune vs KA) or drop to z11/vector before promising. Packs tab + `packs/*.manifest.json` show live verdict per build. Never quote 15MB in sales without the manifest.
+> **MEASURED Oct 2026 (build-offline-pack v2.2, z12 × ~45KB/tile): MH bbox (Mumbai–Pune + KA slice) = 4,389 tiles ≈ 192.9 MB → EXCEEDS 15MB. MI corridor = 289 tiles ≈ 12.7 MB → WITHIN target.** 15 MB/state is corridor-bbox-dependent, NOT guaranteed. Shrink MH bbox (split Mumbai–Pune vs KA) or drop to z11/vector before promising. `saved.html` + `packs/*.manifest.json` show live verdict per build. Never quote 15MB in sales without the manifest.
 > CPO priors v2.1: IONNA 0.97 / Mercedes 0.96 / Rivian 0.93 added from JDP EVX 2026 (807/797/755 vs 666 segment). Paren Q2 2026 ingested as trend (NACS 22.9% new vs 8.0% base).
 
 ## Live vs offline modes
@@ -56,15 +72,19 @@ Open `index.html`. Install as PWA for offline. Download a state pack before West
 - **Offline-only (default, zero keys):** scores from quarterly dumps + crowd `localStorage`. Provenance reads `Offline pack (quarterly dump + crowd)`. Fully working, no backend.
 - **Live (fleet/CPO):** set keys and redeploy — `OCM_KEY` for quarterly ingest cron (`.github/workflows/ingest-quarterly.yml`), and in-app `localStorage` `ct-supabase-url/key` (crowd sync), `ct-valhalla-url` (road geometry), NREL/OCPI keys for `fetchLiveStatus()` (5-min TTL). Without keys the app stays offline-first by design, never fake-live.
 
-## Repo map
+## Repo map (v2.2 hybrid)
 
 ```
-index.html                  → PWA shell + all 7 tabs
-manifest.webmanifest / sw.js → offline install + tile/station caching
-src/css/styles.css          → full design system
+index.html                  → 3-tab PWA shell: Plan wizard / Score / Report + 4W-2W toggle + FAB
+garage.html                 → vehicle companion (154 models, lazy vehicles.json)
+swap.html                   → swap companion (finder + ROI, lazy swap.js)
+research.html               → research companion (stats + Blender v2 + V2H catalog + tax math)
+saved.html                  → offline-pack companion (builder + pilot gate + Valhalla hook)
+manifest.webmanifest / sw.js → offline install (v2.2 cache: shell + 4 companions + data) + tile/station caching
+src/css/styles.css          → design system + wizard / FAB / boarding-pass / companions
 src/js/
   data-loader.js            → loads data/*.json, OCM live w/ fallback
-  media.js                  → OEM links + Commons photos + free map-link schemes (new v2.2)
+  media.js                  → OEM links + Commons photos + free map-link schemes
   gazetteer.js              → local OSM city search (no autocomplete API)
   reliability.js            → 0–100 Uptime Blender (the money feature)
   powermatch.js             → real session time via charging curves
@@ -73,8 +93,8 @@ src/js/
   trip-planner.js           → offline elevation+temp+load aware planner
   v2h.js                    → V2H/V2G safe-stop
   reports.js                → 1-tap working/broken/queue (localStorage + Supabase/D1 sync stub)
-  offline-pack.js           → 15 MB state pack builder/reader
-  app.js                    → wires all tabs + renders outputs
+  offline-pack.js           → 15 MB state pack builder/reader (tile math + verdict)
+  app.js                    → wires 3-tab shell (null-safe; companions load their own modules)
 data/
   vehicles.json             → 154 vehicles (IN/US/EU/CN/SEA): max kW, plug, curve, swap compat, official OEM page link (143/154 HEAD-verified Oct 2026, rest flagged), Commons photo lookup
   v2h-batteries.json        → 8 buyable home batteries (Powerwall 3, FranklinWH, EcoFlow, BLUETTI, Anker, Enphase, LG, Generac) with official buy/info URLs
@@ -90,23 +110,50 @@ scripts/
   ingest-ocm.js             → fetch OpenChargeMap dump → normalized stations
   ingest-osm.js             → parse OSM .pbf/.osm charging tags → normalized stations
   build-offline-pack.js     → builds 15 MB state pack (stations + tiles manifest + gazetteer slice)
+  prerender-seo.js          → builds dist/ (49 static SEO pages: route/vehicle/swap/plug + sitemap fragment)
+  enterprise-check.js       → CI gate (hybrid-aware: pilot gate may live on saved.html)
 tests/
   reliability.test.js / powermatch.test.js / pluglogic.test.js / swap.test.js / trip.test.js (engines.test.js kept as compat aggregator)
 docs/
-  METHODOLOGY.md            → scoring math, fully documented
-  VERIFICATION.md           → what is verified vs heuristic vs needs re-check
+  METHODOLOGY.md/.html     → scoring math, fully documented
+  VERIFICATION.md/.html    → what is verified vs heuristic vs needs re-check
   NO-GOOGLE-TAX.md          → cost math: why not Google Maps Platform
-  SEO.md                    → long-tail plan
+  SEO.md                    → long-tail plan (pillar → clusters)
+  SELFHOST.md               → Valhalla self-host + tile caching
 ```
 
 ## Core outputs (what the user sees)
 
-1. **Route with 2 optimal stops (not 6)** — each with Score, kW you'll ACTUALLY get, mins to add, queue risk, price/kWh, **plus exact GPS coords + Google Maps / OSM / street-photo links** so you reach the real stall, not a same-name station across town.
-2. **Vehicle picker with 154 worldwide models** (grouped by market) — selecting one shows a real photo (Wikimedia Commons, credited) + the **official OEM model page link**. No hotlinked OEM images (they bot-block and rot); no invented URLs (143/154 HEAD-verified, rest flagged `unverified`).
-3. **V2H tab with buyable batteries** — 8 home batteries (Powerwall 3, FranklinWH aPower 2, EcoFlow DELTA Pro Ultra, BLUETTI EP900, Anker Solix F3800, Enphase 5P, LG Home 8, Generac PWRcell 2) with specs, indicative pricing, and official buy/info URLs. No affiliates.
+1. **Route with 2 optimal stops (not 6)** — boarding-pass cards with Score, kW you'll ACTUALLY get, mins to add, queue risk, price/kWh, **plus exact GPS coords + Google Maps / OSM / street-photo links** so you reach the real stall, not a same-name station across town.
+2. **Vehicle picker with 4W/2W toggle** — 4W mode ranks plug-in cars, 2W mode surfaces swap scooters and deep-links to `swap.html`. Full list lives in `garage.html` with real photo (Wikimedia Commons, credited) + **official OEM model page link**. No hotlinked OEM images (they bot-block and rot); no invented URLs (143/154 HEAD-verified, rest flagged `unverified`).
+3. **V2H one-liner in app, catalog on `research.html#v2h`** — 8 home batteries (Powerwall 3, FranklinWH aPower 2, EcoFlow DELTA Pro Ultra, BLUETTI EP900, Anker Solix F3800, Enphase 5P, LG Home 8, Generac PWRcell 2) with specs, indicative pricing, and official buy/info URLs. No affiliates.
 4. **Red card:** "Avoid this station — 34% fail rate last 30d."
-5. **Swap plan for 2W:** "Swap at Station #4 and #9, 4 mins total, Rs 156."
-6. **Offline pack download:** 15 MB for the entire state.
+5. **Swap plan for 2W (`swap.html`):** "Swap at Station #4 and #9, 4 mins total, Rs 156." Physical-fit enforced — app merge ≠ physical interop.
+6. **Offline pack download (`saved.html`):** 15 MB verdict per build, never promised blind.
+
+## CI — how we keep commits green
+
+`ci.yml` runs on every push/PR (Node 20):
+
+```
+npm test → enterprise-check → cwv-budget → dedupe-pipeline → slice-sample
+→ build-offline-pack (MH + MI) → prerender-seo → node --check (all engines + app)
+```
+
+Run the same locally before pushing:
+
+```powershell
+npm test
+node scripts/enterprise-check.js
+node scripts/cwv-budget.js
+node scripts/dedupe-pipeline.js --inputs data/stations.sample.geojson --out packs/merged.json
+node scripts/slice-sample.js
+node scripts/build-offline-pack.js --state MH --inputs packs/mh-src.json --out packs/mh.json
+node scripts/build-offline-pack.js --state MI --inputs packs/mi-src.json --out packs/mi.json
+node scripts/prerender-seo.js
+```
+
+`enterprise-check.js` is hybrid-aware: the pilot gate + 15 MB verdict live on `saved.html` (not in the 3-tab shell), so the gate checks `app.js` **or** `saved.html`. The ingest cron (`.github/workflows/ingest-quarterly.yml`) uses block-style `env:` mappings — never flow-style — after the push-parser fix.
 
 ## Business impact (modeled, not promised)
 
@@ -134,7 +181,7 @@ See `docs/SELFHOST.md` for Valhalla self-host + tile caching.
 
 ## Contributing
 
-PRs welcome — especially per-city fleet verification (see `docs/VERIFICATION.md` #13), new vehicle charge curves (`data/vehicles.json`), and swap-network coverage (`data/swap-networks.json`). Run `npm test` before pushing.
+PRs welcome — especially per-city fleet verification (see `docs/VERIFICATION.md` #13), new vehicle charge curves (`data/vehicles.json`), and swap-network coverage (`data/swap-networks.json`). Run the full CI block above before pushing — green commits only.
 
 ## License
 

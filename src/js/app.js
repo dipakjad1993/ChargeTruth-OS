@@ -1,21 +1,20 @@
-/* ChargeTruth OS app wiring — imports all engines, renders all 7 tabs. */
+/* ChargeTruth OS app wiring — 3-tab hybrid shell (Plan / Score / Report).
+   Companion pages (garage.html, swap.html, research.html, saved.html) lazy-load
+   their own modules; this shell stays lean for driver glare + offline INP. */
 import { loadAll, flattenStations } from './data-loader.js';
 import { searchCities, fmtCity } from './gazetteer.js';
 import { scoreStation } from './reliability.js';
-import { actualKw, sessionMinutes, sessionMinutesResult, powerMatchSummary } from './powermatch.js';
+import { actualKw, sessionMinutesResult, powerMatchSummary } from './powermatch.js';
 import { initPlugLogic, checkPlugFit } from './pluglogic.js';
-import { availability01, physicalFit, swapPlan, swapVsChargeROI } from './swap.js';
-import { planTrip, usableRangeKm, fetchValhallaDistKm } from './trip-planner.js';
-import { v2hPlan } from './v2h.js';
 import { submitReport, pendingCount, syncReports } from './reports.js';
-import { buildPack, downloadPack } from './offline-pack.js';
+import { planTrip, fetchValhallaDistKm } from './trip-planner.js';
+import { v2hPlan } from './v2h.js';
 import { siteUrl, isPlaceholderDomain, initAnalytics } from './site-config.js';
-import { mapsLinks, stopLocationHTML, oemLinkHTML, paintVehiclePhoto } from './media.js';
-import { pilotStats, pilotGate } from './pilot.js';
-import { redCardEvalStats } from './enterprise.js';
+import { stopLocationHTML, oemLinkHTML, paintVehiclePhoto } from './media.js';
 
 const $ = (id) => document.getElementById(id);
-let DB = null, ST = [], CPO = {}, SEL = { from: null, to: null, vehicle: null };
+const on = (id, ev, fn) => { const el = $(id); if (el) el.addEventListener(ev, fn); };
+let DB = null, ST = [], CPO = {}, SEL = { from: null, to: null, vehicle: null, mode: '4W' };
 
 function vehById(id) { return DB.vehicles.vehicles.find((v) => v.id === id); }
 function attachCurve(v) {
@@ -59,26 +58,20 @@ async function boot() {
     s._failRate = r.failRate30d; s._queue = r.queue; s._prov = r.provenance;
     s._penalties = r.penalties; s._advice = r.advice;
   }
-  // vehicle selects (grouped by market so 150+ models stay navigable)
-  const groups = {};
-  for (const v of DB.vehicles.vehicles) { (groups[v.market || 'GLOBAL'] ||= []).push(v); }
-  const opt = (v) => `<option value="${v.id}">${v.name} · ${v.maxKwDc}kW DC · ${v.plugDc || v.swap || v.plugAc}</option>`;
-  const opts = Object.keys(groups).sort().map((m) => `<optgroup label="${m} — ${groups[m].length} models">${groups[m].map(opt).join('')}</optgroup>`).join('');
-  $('vSelect').innerHTML = opts;
-  $('swapVSelect').innerHTML = DB.vehicles.vehicles.filter((v) => v.class !== '4W').map((v) => `<option value="${v.id}">${v.name} · ${v.swap || v.plugAc || ''}</option>`).join('');
-  $('plugFilter').innerHTML = `<option value="">All compatible with my vehicle</option>` +
+  buildVehicleSelect();
+  const pf = $('plugFilter');
+  if (pf) pf.innerHTML = `<option value="">All compatible with my vehicle</option>` +
     [...new Set(ST.flatMap((s) => s.plugs || []))].map((p) => `<option>${p}</option>`).join('');
-  $('repStation').innerHTML = ST.map((s) => `<option value="${s.id}">${s.name}</option>`).join('');
-  $('vSelect').value = 'tata-nexon-ev-45';
-  $('swapVSelect').value = 'sun-buddy-2';
-  SEL.vehicle = attachCurve(vehById($('vSelect').value));
-  $('vCount').textContent = DB.vehicles.vehicles.length;
-  bindSearch(); bindTabs(); renderVehicleCard(); renderStations(); renderGarage(''); renderResearch(); renderV2H(); updateNet();
-  $('footStats').textContent = `${ST.length} stations (sample pack v2.1: OSM+OCM quarterly + crowd; connect OCPI/NREL keys for live) · ${DB.vehicles.vehicles.length} vehicles · ${DB.cities.cities.length} cities offline`;
+  const rs = $('repStation');
+  if (rs) rs.innerHTML = ST.map((s) => `<option value="${s.id}">${s.name}</option>`).join('');
+  bindSearch(); bindTabs(); bindMode();
+  renderVehicleCard(); renderStations(); updateNet();
+  const fs = $('footStats');
+  if (fs) fs.textContent = `${ST.length} stations (sample pack v2.1: OSM+OCM quarterly + crowd; connect OCPI/NREL keys for live) · ${DB.vehicles.vehicles.length} vehicles · ${DB.cities.cities.length} cities offline`;
   try {
     const merged = await fetch('./packs/merged.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
-    if (merged && merged.dupesRemoved != null) {
-      $('footStats').textContent += ` · dedupe ${merged.dupesRemoved} removed (${merged.count} kept)`;
+    if (merged && merged.dupesRemoved != null && fs) {
+      fs.textContent += ` · dedupe ${merged.dupesRemoved} removed (${merged.count} kept)`;
     }
   } catch {}
   if (isPlaceholderDomain()) console.warn('[setup] canonical domain is placeholder — set <meta name="ct-site-url"> (see src/js/site-config.js).');
@@ -88,23 +81,58 @@ async function boot() {
   window.addEventListener('chargetruth-report', () => { updateNet(); });
 }
 
+function buildVehicleSelect() {
+  const sel = $('vSelect');
+  if (!sel) return;
+  const groups = {};
+  const pool = DB.vehicles.vehicles.filter((v) => SEL.mode === '2W' ? v.class !== '4W' : v.class === '4W' || !v.class ? true : SEL.mode === '4W' ? v.class === '4W' : true);
+  // 4W mode shows 4W first; 2W mode shows swap/2W first — full list stays reachable via Garage.
+  const list = SEL.mode === '2W'
+    ? [...DB.vehicles.vehicles.filter((v) => v.class !== '4W'), ...DB.vehicles.vehicles.filter((v) => v.class === '4W')]
+    : DB.vehicles.vehicles;
+  for (const v of list) { (groups[v.market || 'GLOBAL'] ||= []).push(v); }
+  void pool;
+  const opt = (v) => `<option value="${v.id}">${v.name} · ${v.maxKwDc}kW DC · ${v.plugDc || v.swap || v.plugAc}</option>`;
+  sel.innerHTML = Object.keys(groups).sort().map((m) => `<optgroup label="${m} — ${groups[m].length} models">${groups[m].map(opt).join('')}</optgroup>`).join('');
+  const def = SEL.mode === '2W' ? 'sun-buddy-2' : 'tata-nexon-ev-45';
+  sel.value = [...sel.options].some((o) => o.value === def) ? def : sel.options[0]?.value;
+  SEL.vehicle = attachCurve(vehById(sel.value));
+}
+
+function bindMode() {
+  const b4 = $('mode4w'), b2 = $('mode2w');
+  if (!b4 || !b2) return;
+  const set = (m) => {
+    SEL.mode = m;
+    b4.classList.toggle('active', m === '4W'); b2.classList.toggle('active', m === '2W');
+    b4.setAttribute('aria-pressed', m === '4W' ? 'true' : 'false');
+    b2.setAttribute('aria-pressed', m === '2W' ? 'true' : 'false');
+    buildVehicleSelect(); renderVehicleCard(); renderStations();
+    const sl = $('swapLink');
+    if (sl && m === '2W') sl.innerHTML = '<b>Swap finder → (recommended for 2W)</b>';
+  };
+  b4.onclick = () => set('4W');
+  b2.onclick = () => set('2W');
+}
+
 function bindTabs() {
-  const order = ['plan', 'stations', 'swap', 'garage', 'report', 'offline', 'research'];
+  const order = ['plan', 'stations', 'report'];
   const go = (name, focus = false) => {
     document.querySelectorAll('.tabs button, .bottomnav button').forEach((x) => {
-      const on = x.dataset.tab === name;
-      x.classList.toggle('active', on);
-      if (x.classList.contains('tabs') || x.closest('.tabs')) { x.setAttribute('aria-selected', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1; }
-      if (x.closest('.bottomnav')) { if (on) x.setAttribute('aria-current', 'page'); else x.removeAttribute('aria-current'); }
+      const onx = x.dataset.tab === name;
+      x.classList.toggle('active', onx);
+      if (x.closest('.tabs')) { x.setAttribute('aria-selected', onx ? 'true' : 'false'); x.tabIndex = onx ? 0 : -1; }
+      if (x.closest('.bottomnav')) { if (onx) x.setAttribute('aria-current', 'page'); else x.removeAttribute('aria-current'); }
     });
     document.querySelectorAll('.tab').forEach((x) => {
-      const on = x.id === 'tab-' + name;
-      x.classList.toggle('active', on);
-      if (on) x.removeAttribute('hidden'); else x.setAttribute('hidden', '');
+      const onx = x.id === 'tab-' + name;
+      x.classList.toggle('active', onx);
+      if (onx) x.removeAttribute('hidden'); else x.setAttribute('hidden', '');
     });
     if (focus) document.querySelector(`.tabs button[data-tab="${name}"]`)?.focus();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+  window.ctGo = go;
   const btns = [...document.querySelectorAll('.tabs button, .bottomnav button')];
   btns.forEach((b) => b.addEventListener('click', () => go(b.dataset.tab)));
   // M3 keyboard: ArrowLeft/Right across top tabs, Home/End
@@ -115,43 +143,31 @@ function bindTabs() {
     if (e.key === 'Home') { e.preventDefault(); go(order[0], true); }
     if (e.key === 'End') { e.preventDefault(); go(order[order.length - 1], true); }
   });
-  $('vSelect').onchange = (e) => { SEL.vehicle = attachCurve(vehById(e.target.value)); renderVehicleCard(); renderStations(); renderV2H(); };
-  $('planBtn').onclick = doPlan;
-  $('swapBtn').onclick = doSwap;
-  $('roiBtn').onclick = doROI;
-  $('sortSel').onchange = renderStations; $('plugFilter').onchange = renderStations;
-  if ($('amenFilter')) $('amenFilter').onchange = renderStations;
-  if ($('payFilter')) $('payFilter').onchange = renderStations;
-  $('vSearch').oninput = (e) => renderGarage(e.target.value);
-  document.querySelectorAll('[data-rep]').forEach((b) => b.onclick = () => {
+  on('vSelect', 'change', (e) => { SEL.vehicle = attachCurve(vehById(e.target.value)); renderVehicleCard(); renderStations(); });
+  on('planBtn', 'click', doPlan);
+  on('sortSel', 'change', renderStations); on('plugFilter', 'change', renderStations);
+  on('amenFilter', 'change', renderStations);
+  on('payFilter', 'change', renderStations);
+  document.querySelectorAll('[data-rep]').forEach((b) => b.addEventListener('click', () => {
     const n = submitReport({ stationId: $('repStation').value, kind: b.dataset.rep, note: $('repNote').value });
     alert(`Saved locally (${b.dataset.rep}). ${n} total reports, ${pendingCount()} pending sync. Station rescores instantly.`);
     location.reload();
-  });
-  $('syncBtn').onclick = async () => {
+  }));
+  on('syncBtn', 'click', async () => {
     localStorage.setItem('ct-supabase-url', $('sbUrl').value); localStorage.setItem('ct-supabase-key', $('sbKey').value);
-    const r = await syncReports();
+    const { syncReports: sync } = await import('./reports.js');
+    const r = await sync();
     $('syncMsg').textContent = r.synced ? `Synced ${r.synced}` : (r.reason || 'Nothing to sync');
     updateNet();
-  };
-  $('packBtn').onclick = () => {
-    const region = $('packRegion').value;
-    const pack = buildPack({ name: region, stations: ST, cities: DB.cities.cities.slice(0, 120) });
-    downloadPack(pack);
-    // Measured honesty: live JSON bytes + z12 tile estimate + 15MB verdict + pilot gate
-    const jsonKB = Math.round((JSON.stringify(pack.stations).length / 1024) * 10) / 10;
-    const t = pack.tiles?.[0];
-    const gate = pilotGate(redCardEvalStats().precision);
-    $('packMsg').textContent = `Pack built: ${ST.length} stations, ${jsonKB} KB JSON`
-      + (t ? ` + ~${t.tileMB} MB tiles (z12 x${t.tileCount}) = ~${t.totalMBest} MB → ${t.fifteenMBverdict}` : ' (tiles: n/a)')
-      + ` · Pilot: ${gate.rows} rows, p50 ${gate.p50HuntApp ?? '—'} min → ${gate.verdict}`;
-  };
-  $('methodLink').onclick = (e) => { e.preventDefault(); document.querySelector('[data-tab="research"]').click(); };
+  });
+  on('reportFab', 'click', () => go('report'));
+  // methodLink is now a plain href to research.html — no JS hijack.
 }
 
 function bindSearch() {
   const wire = (inputId, sugId, key) => {
     const inp = $(inputId), sug = $(sugId);
+    if (!inp || !sug) return;
     inp.oninput = () => {
       const hits = searchCities(DB.cities.cities, inp.value);
       sug.innerHTML = hits.map((c, i) => `<div data-i="${i}">${fmtCity(c)}</div>`).join('');
@@ -161,13 +177,16 @@ function bindSearch() {
   wire('fromQ', 'fromSug', 'from'); wire('toQ', 'toSug', 'to');
   // defaults: Mumbai → Pune
   SEL.from = DB.cities.cities.find((c) => c.n === 'Mumbai'); SEL.to = DB.cities.cities.find((c) => c.n === 'Pune');
-  $('fromQ').value = fmtCity(SEL.from); $('toQ').value = fmtCity(SEL.to);
+  if ($('fromQ') && SEL.from) $('fromQ').value = fmtCity(SEL.from);
+  if ($('toQ') && SEL.to) $('toQ').value = fmtCity(SEL.to);
 }
 
 function renderVehicleCard() {
+  const box = $('vCard');
+  if (!box || !SEL.vehicle) return;
   const v = SEL.vehicle;
   const pm = powerMatchSummary({ vehicle: v, stationKw: 120, soc: 20 });
-  $('vCard').innerHTML = `<b>${v.name}</b> · ${v.batteryKwh}kWh (${v.usableKwh} usable) · <b>${v.maxKwAc}kW AC / ${v.maxKwDc}kW DC</b> · plugs ${v.plugAc || '—'}/${v.plugDc || '—'}${v.swap ? ` · swap <b>${v.swap}</b>` : ''}${v.v2x ? ' · <span class="tag">V2H ✓</span>' : ''}<br>`
+  box.innerHTML = `<b>${v.name}</b> · ${v.batteryKwh}kWh (${v.usableKwh} usable) · <b>${v.maxKwAc}kW AC / ${v.maxKwDc}kW DC</b> · plugs ${v.plugAc || '—'}/${v.plugDc || '—'}${v.swap ? ` · swap <b>${v.swap}</b>` : ''}${v.v2x ? ' · <span class="tag">V2H ✓</span>' : ''}<br>`
     + `<img class="vphoto" id="vPhoto" alt="" hidden><div class="photocap" id="vPhotoCap"></div>`
     + `<div>${oemLinkHTML(v)}</div>`
     + `<span class="muted">${v.notes || ''}</span><br><span class="muted">Example: on a 120kW stall you get <b>${pm.youGetKw}kW</b>. ${pm.message}</span>`;
@@ -175,22 +194,22 @@ function renderVehicleCard() {
 }
 
 async function doPlan() {
+  const out = $('planOut');
   const v = SEL.vehicle;
+  if (!out || !v) return;
   const socNow = +$('socNow').value, socWant = +$('socWant').value;
   const tempC = +$('tempC').value, cargoKg = +$('cargoKg').value, speedKph = +$('speedKph').value;
-  const hour = +$('hourOf').value;
   if (!SEL.from || !SEL.to) { alert('Pick start + end from the offline gazetteer.'); return; }
   // AC-only guard (safe wrapper — never Infinity in UI)
   if (!v.maxKwDc && !v.swap) {
-    const r = sessionMinutesResult({ vehicle: v, curve: v.curve, fromSoc: socNow, toSoc: socWant, stationKw: 50, tempC });
-    $('planOut').innerHTML = `<h2>Route output</h2><div class="redcard">⛔ ${r.error}</div>`;
+    const { sessionMinutesResult: smr } = await import('./powermatch.js');
+    const r = smr({ vehicle: v, curve: v.curve, fromSoc: socNow, toSoc: socWant, stationKw: 50, tempC });
+    out.innerHTML = `<h2>Step 3 — Route output</h2><div class="redcard">⛔ ${r.error}</div>`;
     return;
   }
-  // Swap-only guard → swap plan instead
+  // Swap-only guard → deep-link to swap page instead of fake plan
   if (v.swap && !v.plugAc && !v.plugDc) {
-    const distKm = 60;
-    const sp = swapPlan({ vehicle: v, stations: ST, distanceKm: distKm, hour, networks: DB.swaps.networks });
-    $('planOut').innerHTML = `<h2>Swap plan (swap-only vehicle)</h2><p>${sp.message}</p>` + sp.stops.map((s) => `<div class="st"><b>#${s.n} ${s.name}</b> — availability ${s.availPct}% · ${s.mins} min · ₹${s.priceINR}${s.warn ? `<div class="redcard">${s.warn}</div>` : ''}</div>`).join('');
+    out.innerHTML = `<h2>Step 3 — Swap plan</h2><p><b>${v.name}</b> is swap-only — plug routing does not apply.</p><p><a class="big-link" href="./swap.html">Open Swap finder →</a></p>`;
     return;
   }
   // Plug-compatible stations only
@@ -207,7 +226,8 @@ async function doPlan() {
     if (vd.distKm) { valhallaDistKm = vd.distKm; distProv = vd.provenance; }
   } catch {}
   const plan = planTrip({ from: SEL.from, to: SEL.to, vehicle: v, stations: compat, socNow, socWant, tempC, cargoKg, speedKph, valhallaDistKm });
-  let html = `<h2>Route: ${SEL.from.n} → ${SEL.to.n} · ${plan.distKm} km <span class="muted">(${plan.distProvenance || distProv})</span></h2>`;
+  markWizardDone();
+  let html = `<h2>Step 3 — Route: ${SEL.from.n} → ${SEL.to.n} · ${plan.distKm} km <span class="muted">(${plan.distProvenance || distProv})</span></h2>`;
   html += `<p>${plan.note}<br><span class="muted">Consumption ${plan.adjKwhPer100} kWh/100km (temp+cargo adjusted) · reserve ${plan.reserve}% · ${plan.safety}</span></p>`;
   if (!plan.stops.length) { html += `<p><b>✅ ${plan.note}</b></p>`; }
   for (const s of plan.stops) {
@@ -215,29 +235,39 @@ async function doPlan() {
     const kw = actualKw({ stationKw: s.stationKw, vehicle: v, soc: 20, tempC });
     const sess = sessionMinutesResult({ vehicle: v, curve: v.curve, fromSoc: 20, toSoc: 20 + Math.min(60, (s.kwhToAdd / v.usableKwh) * 100), stationKw: s.stationKw, tempC });
     const mins = sess.mins ?? sess.error;
-    html += `<div class="st stop ${s._red ? 'avoid' : ''}">
-      <div><span class="score g${s._grade}">${s._score}</span> <b>${s.leg === 1 ? 'Stop 1' : 'Stop 2'}: ${s.name}</b> ${s._red ? '<span class="tag">RED CARD</span>' : ''}</div>
+    html += `<article class="st stop boarding ${s._red ? 'avoid' : ''}">
+      <div class="bp-head"><span class="score g${s._grade}">${s._score}<small>${s._grade}</small></span><div><b>${s.leg === 1 ? 'Stop 1' : 'Stop 2'}: ${s.name}</b> ${s._red ? '<span class="tag">RED CARD</span>' : ''}<br><span class="muted">${fit.label} · ${s._queue.level} queue · ${priceBoth(s)}</span></div></div>
       ${s._red ? `<div class="redcard">⛔ Avoid this station — ${((s._failRate || 0) * 100).toFixed(0)}% fail rate last 30d. Routed only because corridor is thin; prefer alternative.</div>` : ''}
       <table><tr><th>kW you'll get</th><th>Mins to add</th><th>Energy</th><th>Queue</th><th>Price</th></tr>
       <tr><td><b>${kw} kW</b> (of ${s.stationKw})</td><td>${mins}${typeof mins === 'number' ? ' min' : ''}</td><td>${s.kwhToAdd} kWh</td><td>${s._queue.level} — ${s._queue.label}</td><td>${priceBoth(s)}</td></tr></table>
-      <div class="muted">Plug: ${fit.label} · Provenance: ${s._prov} · ${s._advice}${s._penalties?.length ? ' · Penalties: ' + s._penalties.join('; ') : ''}</div>
+      <div class="muted">Provenance: ${s._prov} · ${s._advice}${s._penalties?.length ? ' · Penalties: ' + s._penalties.join('; ') : ''}</div>
       ${stopLocationHTML(s)}
-    </div>`;
+    </article>`;
   }
   // Red-carded corridor alternatives (stations to avoid explicitly)
   const avoided = ST.filter((s) => s._red && !s.swap).slice(0, 3);
   if (avoided.length) html += `<h3>Explicitly avoided on this corridor</h3>` + avoided.map((s) => {
-    const m = (s.lat != null && s.lon != null) ? mapsLinks(s.lat, s.lon) : null;
-    const loc = m ? ` · 📍 ${m.coords} <a href="${m.gmaps}" target="_blank" rel="noopener">Maps ↗</a>` : '';
-    return `<div class="redcard">⛔ ${s.name} — ${((s._failRate || 0) * 100).toFixed(0)}% fail (${s._penalties?.[0] || 'low score'})${loc}</div>`;
+    const m = (s.lat != null && s.lon != null) ? null : null;
+    void m;
+    return `<div class="redcard">⛔ ${s.name} — ${((s._failRate || 0) * 100).toFixed(0)}% fail (${s._penalties?.[0] || 'low score'})</div>`;
   }).join('');
-  $('planOut').innerHTML = html;
-  renderV2H();
+  // V2H one-liner (full catalog lives on research.html#v2h)
+  try {
+    const r = v2hPlan({ vehicle: v });
+    html += `<p class="hint">V2H: ${r.eligible ? r.plan : r.reason} · <a href="./research.html#v2h">details →</a></p>`;
+  } catch {}
+  out.innerHTML = html;
+}
+
+function markWizardDone() {
+  document.querySelectorAll('.wizardsteps li').forEach((li, i) => li.classList.toggle('current', i === 2));
 }
 
 function renderStations() {
+  const box = $('stationList');
+  if (!box) return;
   const v = SEL.vehicle;
-  const pf = $('plugFilter').value, sort = $('sortSel').value;
+  const pf = $('plugFilter')?.value || '', sort = $('sortSel')?.value || 'score';
   const amen = ($('amenFilter')?.value) || '', pay = ($('payFilter')?.value) || '';
   let list = ST.filter((s) => !s.swap);
   if (v) list = list.filter((s) => !checkPlugFit(v, s.plugs || []).hardStop);
@@ -249,7 +279,7 @@ function renderStations() {
   if (amen === 'wheelchair') list = list.filter((s) => s.accessibility?.wheelchair);
   if (pay) list = list.filter((s) => (s.payment || []).includes(pay));
   list = [...list].sort((a, b) => sort === 'power' ? maxKwOf(b) - maxKwOf(a) : b._score - a._score);
-  $('stationList').innerHTML = list.map((s) => {
+  box.innerHTML = list.map((s) => {
     const top = maxKwOf(s);
     const kw = v ? actualKw({ stationKw: top, vehicle: v, soc: 20, tempC: 30 }) : top;
     const payTags = (s.payment || []).map((p) => `<span class="tag">${p}</span>`).join('');
@@ -263,65 +293,13 @@ function renderStations() {
   }).join('') || '<p class="muted">No compatible stations — check plug filter (hard-stop logic working as intended).</p>';
 }
 
-function doSwap() {
-  const v = attachCurve(vehById($('swapVSelect').value));
-  const km = +$('swapKm').value, hour = +$('hourOf').value || 12;
-  const cabins = ST.filter((s) => s.swap);
-  const sp = swapPlan({ vehicle: v, stations: cabins, distanceKm: km, hour, networks: DB.swaps.networks });
-  let html = `<h3>${sp.network || 'Swap'} — ${km} km</h3>`;
-  if (sp.error) html += `<div class="redcard">${sp.error}: ${v.name} is plug-in, use Plan Trip.</div>`;
-  else {
-    html += `<p><b>${sp.message}</b></p>` + sp.stops.map((s) => `<div class="st"><b>#${s.n} ${s.name}</b> — battery avail ${s.availPct}% · ${s.mins} min · ₹${s.priceINR}${s.warn ? `<div class="redcard">${s.warn}</div>` : ''}</div>`).join('');
-    // physical-fit warnings for incompatible cabins nearby
-    const bad = cabins.filter((s) => physicalFit(v.swap, s.swap).fit === false).slice(0, 2);
-    if (bad.length && v.swap) html += `<p class="muted">Not routed (physical mismatch): ${bad.map((s) => `${s.name} [${s.swap}]`).join('; ')} — app merge ≠ physical interop.</p>`;
-  }
-  $('swapOut').innerHTML = html;
-}
-
-function doROI() {
-  const r = swapVsChargeROI({ riderHourly: +$('roiHr').value, swapsPerDay: +$('roiN').value, chargeHoursPerDay: +$('roiH').value });
-  $('roiOut').innerHTML = `<table><tr><th></th><th>Swap</th><th>Charge</th></tr><tr><td>Monthly energy ₹</td><td>${r.swapMonth}</td><td>${r.chargeMonth}</td></tr><tr><td>Time saved</td><td colspan="2">${r.timeSavedHrsDay} hrs/day → ₹${r.timeValueMonth}/month</td></tr></table><p><b>${r.verdict}</b></p><p class="muted">Fleet ×500: ${r.fleet500.hrsSavedDay} hrs/day. ${r.fleet500.note}</p>`;
-}
-
-function renderGarage(q) {
-  q = (q || '').toLowerCase();
-  const list = DB.vehicles.vehicles.filter((v) => !q || (v.name + v.id + (v.plugDc || '') + (v.swap || '')).toLowerCase().includes(q));
-  $('vTable').innerHTML = `<div class="vrow muted"><b>Model</b><span>DC peak</span><span>Plug / Swap</span><span>Battery</span></div>` +
-    list.map((v) => `<div class="vrow"><b>${v.oemUrl ? `<a href="${v.oemUrl}" target="_blank" rel="noopener">${v.name} ↗</a>` : v.name}</b><span>${v.maxKwDc}kW</span><span>${v.plugDc || v.swap || v.plugAc}</span><span>${v.batteryKwh}kWh</span></div>`).join('');
-}
-
-function renderResearch() {
-  $('researchOut').innerHTML = `<table><tr><th>Claim</th><th>Source</th><th>Confidence</th></tr>` +
-    DB.research.stats.map((s) => `<tr><td>${s.claim}</td><td>${s.source}</td><td>${s.confidence}</td></tr>`).join('') + `</table>
-    <p class="hint">Honesty contract: vendor stats are directional; quarterly re-verification required (see VERIFICATION.md). Fleet time-saving is modeled — pilot before promising.</p>
-    <p class="muted">SEO long-tails covered: ${DB.research.seoLongTails.slice(0, 8).join(' · ')}… (full list in data/research.json)</p>`;
-  const t = DB.research.costOfGoogleTax;
-  $('taxOut').innerHTML = `<p>Places Autocomplete $${t.placesAutocompletePer1000}/1k · Directions $${t.directionsPer1000}/1k · Maps JS $${t.mapsJsLoadPer1000}/1k → <b>${t.scenario10kUsers}</b></p><p class="muted">ChargeTruth: local gazetteer + Valhalla + cached OSM tiles = $0 marginal.</p>`;
-}
-
-function renderV2H() {
-  const v = SEL.vehicle;
-  if (!v) return;
-  const r = v2hPlan({ vehicle: v });
-  let html = r.eligible ? `<p>${r.plan}</p><p class="muted">${r.warnings.join(' · ')}</p>` : `<p class="muted">${r.reason}</p>`;
-  const batts = DB.v2h?.batteries || [];
-  if (batts.length) {
-    html += `<h3>Buyable home batteries (work with any EV)</h3><p class="muted">Prices indicative Oct 2026 — verify on the official page before buying. No affiliate links; photos on OEM pages.</p>` +
-      batts.map((b) => `<div class="st"><div class="st-head"><span class="st-name">${b.name}</span><span class="tag">${b.capacityKwh}kWh · ${b.powerKw}kW · ${b.chemistry}</span></div>`
-        + `<div>${b.notes}</div><div class="muted">${b.priceNote}</div>`
-        + `<div><a href="${b.buyUrl}" target="_blank" rel="noopener">Buy / official page ↗</a>`
-        + (b.buyUrl !== b.url ? ` · <a href="${b.url}" target="_blank" rel="noopener">product info ↗</a>` : '') + `</div></div>`).join('');
-  }
-  $('v2hOut').innerHTML = html;
-}
-
 function updateNet() {
-  const on = navigator.onLine;
-  $('netDot').className = 'dot' + (on ? ' on' : '');
-  $('netLabel').textContent = on ? 'online' : 'OFFLINE — packs active';
-  const p = pendingCount();
-  $('pendBadge').textContent = p ? `${p} pending` : '';
+  const dot = $('netDot'), lbl = $('netLabel'), badge = $('pendBadge');
+  if (!dot || !lbl) return;
+  const online = navigator.onLine;
+  dot.className = 'dot' + (online ? ' on' : '');
+  lbl.textContent = online ? 'online' : 'OFFLINE — packs active';
+  if (badge) { const p = pendingCount(); badge.textContent = p ? `${p} pending` : ''; }
 }
 
 boot().catch((e) => { document.body.innerHTML = `<pre style="padding:40px">Boot failed: ${e.message}\nServe over http (python -m http.server), not file://, so JSON loads.</pre>`; });

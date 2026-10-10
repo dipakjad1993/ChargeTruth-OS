@@ -1,13 +1,19 @@
-/* ChargeTruth OS service worker v2.1 — offline-first, no Google Tax.
-   Caches app shell + data/*.json + packs. Stations update quarterly.
-   v2.1: versioned cache, SWR for data, OCM/NREL network-first 5-min TTL,
+/* ChargeTruth OS service worker v2.2 — offline-first, no Google Tax.
+   Caches 3-tab app shell + 4 companion pages + data/*.json + packs.
+   Stations update quarterly.
+   v2.2: hybrid 1-page app + many-page site (garage/swap/research/saved lazy).
+   SWR for data, OCM/NREL network-first 5-min TTL,
    background-sync outbox flush, offline fallback page.
    TILES POLICY: OSM tile.openstreetmap.org is a demo fallback ONLY (low-volume,
    attribution required). Fleets MUST self-host PMTiles at tiles.chargetruth.example.com
    (pre-cache z12 bbox per state pack manifest). Bulk scrape of OSM tiles is forbidden. */
-const CACHE = 'chargetruth-v2-1-0';
+const CACHE = 'chargetruth-v2-2-0';
 const SHELL = [
   './index.html',
+  './garage.html',
+  './swap.html',
+  './research.html',
+  './saved.html',
   './offline.html',
   './404.html',
   './manifest.webmanifest',
@@ -24,6 +30,7 @@ const SHELL = [
   './src/js/swap.js',
   './src/js/trip-planner.js',
   './src/js/v2h.js',
+  './src/js/media.js',
   './src/js/reports.js',
   './src/js/offline-pack.js',
   './src/js/enterprise.js',

@@ -8,7 +8,11 @@
 - Offline: packs are quarterly OSM + OpenChargeMap dumps + crowd, never fake-live. Online uses OCPI 2.2.1 / NREL live with 5-min TTL.
 
 ## Key pages
-- [Home / App](https://chargetruth.example.com/): plan trip, reliability explorer, swap finder
+- [Home / App](https://chargetruth.example.com/): Plan wizard (3 steps) + Score explorer + 1-tap Report. 4W/2W toggle, Saved packs link, Report FAB.
+- [Garage](https://chargetruth.example.com/garage.html): 154 vehicles searchable, OEM links
+- [Swap finder](https://chargetruth.example.com/swap.html): cabins + physical-fit guard + ROI
+- [Research](https://chargetruth.example.com/research.html): stats + Blender v2 math + V2H batteries + No-Google-Tax
+- [Saved packs](https://chargetruth.example.com/saved.html): offline state packs + Valhalla hook
 - [Methodology](https://chargetruth.example.com/docs/METHODOLOGY.html): blender math v2.1 (decay hl=10d, Wilson 95% CI, fraud weights, 28% red-card + queue escalation)
 - [Verification](https://chargetruth.example.com/docs/VERIFICATION.html): what is verified vs heuristic vs pilot-gated (14-row ledger)
 - [Enterprise & SLA](https://chargetruth.example.com/docs/ENTERPRISE.html): SOC2/DPDP/NIS2, RBAC, audit, 99.9% API SLO
